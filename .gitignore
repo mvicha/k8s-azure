@@ -6,3 +6,6 @@ resources/id_rsa_*
 
 # Temp files
 *.swp
+
+# Output files
+*.out
