@@ -1,0 +1,8 @@
+# SSH keys
+resources/id_rsa_*
+
+# Terraform directory
+.terraform*
+
+# Temp files
+*.swp
