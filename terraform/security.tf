@@ -39,3 +39,19 @@ resource "tls_private_key" "internal_ssh" {
   rsa_bits  = 4096
 }
 
+# Save external pem to file
+resource "local_file" "external_pem" { 
+  filename             = "${path.module}/resources/external.pem"
+  content              = tls_private_key.external_ssh.private_key_pem
+  directory_permission = "0700"
+  file_permission      = "0400"
+}
+
+# Save internal pem to file
+resource "local_file" "internal_pem" { 
+  filename             = "${path.module}/resources/internal.pem"
+  content              = tls_private_key.internal_ssh.private_key_pem
+  directory_permission = "0700"
+  file_permission      = "0400"
+}
+

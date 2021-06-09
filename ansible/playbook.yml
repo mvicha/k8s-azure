@@ -1,0 +1,13 @@
+---
+- hosts: all
+  gather_facts: true
+  #become: true
+  tasks:
+  - name: Cat hostname
+    ansible.builtin.shell:
+      cmd: cat /etc/hostname
+  #    chdir: /opt
+  #- name: Print return information from the previous task
+  #  ansible.builtin.debug:
+  #    var: jump_host
+ 

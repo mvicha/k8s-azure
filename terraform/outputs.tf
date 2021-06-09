@@ -1,12 +1,12 @@
-output "tls_external_private_key" {
-  value     = tls_private_key.external_ssh.private_key_pem
-  sensitive = true
-}
+#output "tls_external_private_key" {
+#  value     = tls_private_key.external_ssh.private_key_pem
+#  sensitive = true
+#}
 
-output "tls_internal_private_key" {
-  value     = tls_private_key.internal_ssh.private_key_pem
-  sensitive = true
-}
+#output "tls_internal_private_key" {
+#  value     = tls_private_key.internal_ssh.private_key_pem
+#  sensitive = true
+#}
 
 output "master_public_address" {
   value = azurerm_public_ip.pi_k8s.ip_address
@@ -22,5 +22,9 @@ output "node01_private_address" {
 
 output "node02_private_address" {
   value = azurerm_network_interface.nic_k8s_node02.private_ip_address
+}
+
+output "nfs_private_address" {
+  value = azurerm_network_interface.nic_nfs.private_ip_address
 }
 

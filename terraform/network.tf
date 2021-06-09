@@ -113,3 +113,22 @@ resource "azurerm_network_interface" "nic_k8s_node02" {
   }
 }
 
+# Create NFS private network interface
+resource "azurerm_network_interface" "nic_nfs" {
+  name                = "nic_nfs"
+  location            = "eastus"
+  resource_group_name = azurerm_resource_group.rg_k8s.name
+
+  ip_configuration {
+    name                          = "nic_config_nfs"
+    subnet_id                     = azurerm_subnet.sn_k8s_private.id
+    private_ip_address_allocation = "Static"
+    private_ip_address            = "192.168.1.103"
+  }
+
+  tags = {
+    environment = "K8s"
+    node        = "Worker"
+  }
+}
+

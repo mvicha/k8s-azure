@@ -1,0 +1,31 @@
+- name: Download Docker installation script
+  get_url:
+    url: https://get.docker.com
+    dest: /tmp/get.docker.sh
+
+- name Install Docker
+  shell: /tmp/get.docker.sh
+
+- name: Enable Docker service
+  become: true
+  systemd:
+    name: docker
+    enabled: yes
+
+- name: Ensure Docker service is running
+  become: true
+  systemd:
+    name: docker
+    state: started
+
+- name: Remove Docker installation script
+  file:
+    path: /tmp/get.docker.sh
+    state: absent
+
+- name: Add {{ ansible_user }} to docker group
+  become: true
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: yes
