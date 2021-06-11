@@ -10,24 +10,28 @@
 #  #- name: Print return information from the previous task
 #  #  ansible.builtin.debug:
 #  #    var: jump_host
- 
+
 - hosts: all
   gather_facts: true
   roles:
     - common
 
-# Merge NFS with MASTER
-#- hosts: nfs
-- hosts: kubemasters
+- hosts: nfs
   gather_facts: true
   roles:
     - nfs
+
+- hosts: deployers
+  gather_facts: true
+  roles:
+    - deployment-tools
 
 - hosts: kubernetes
   gather_facts: true
   roles:
     - docker
     - kubernetes
+    - deployment-tools
 
 - hosts: kubemasters
   gather_facts: true
@@ -38,3 +42,8 @@
   gather_facts: true
   roles:
     - kubenodes
+
+- hosts: deployers
+  gather_facts: true
+  roles:
+    - ingress-nginx-controller

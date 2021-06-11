@@ -1,0 +1,14 @@
+# ansible-galaxy collection install community.kubernetes
+- name: Add stable chart repo
+  community.kubernetes.helm_repository:
+    name: nginx-stable
+    repo_url: https://helm.nginx.com/stable
+    #repo_url: "https://kubernetes.github.io/ingress-nginx"
+
+- name: Deploy latest version of ingress-nginx-controller
+  community.kubernetes.helm:
+    name: my-nginx
+    #chart_ref: ingress-nginx/ingress-nginx
+    chart_ref: nginx-stable/nginx-ingress
+    release_namespace: default
+    update_repo_cache: yes

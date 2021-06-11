@@ -2,7 +2,7 @@
 - name: Init K8s
   become: true
   ansible.builtin.shell:
-    cmd: kubeadm init --apiserver-advertise-address="{{ control_plane_endpoint }}" --node-name="master.k8s.mvilla" --pod-network-cidr="{{ pod_network_cidr }}" --ignore-preflight-errors="all"
+    cmd: kubeadm init --apiserver-advertise-address="{{ control_plane_endpoint }}" --node-name="master.k8smvilla.com" --pod-network-cidr="{{ pod_network_cidr }}" --ignore-preflight-errors="all"
 
 # Create $HOME/.kube directory for copying kubernetes config file
 - name: Create .kube directory
@@ -21,24 +21,21 @@
     dest: /home/{{ ansible_user }}/.kube/config
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
+    mode: "0600"
     remote_src: yes
 
-# Install Azure CNI
-# https://docs.microsoft.com/en-us/azure/virtual-network/deploy-container-networking#cni-network-configuration-file
-- name: Download Azure CNI installer
-  ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/Azure/azure-container-networking/master/scripts/install-cni-plugin.sh
-    dest: /tmp/install-cni-plugin.sh
-
-- name: Install Azure CNI
+- name: Copy k8s config to local .kube directory
   become: true
+  ansible.builtin.fetch:
+    src: /etc/kubernetes/admin.conf
+    dest: /root/.kube/config
+    flat: yes
+- name: Install Calico
   ansible.builtin.shell:
-    cmd: /bin/bash /tmp/install-cni-plugin.sh
+    cmd: kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
 
-- name: Remove Azure CNI installer
-  ansible.builtin.file:
-    path: /tmp/install-cni-plugin.sh
-    state: absent
+- name: Apply Calico manifest
+  shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 
 - name: Get Join command
   ansible.builtin.shell:

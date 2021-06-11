@@ -17,13 +17,13 @@ output "master_private_address" {
   value = azurerm_network_interface.nic_k8s_master.private_ip_address
 }
 
-#output "node01_private_address" {
-#  value = azurerm_network_interface.nic_k8s_node01.private_ip_address
-#}
-#
-#output "node02_private_address" {
-#  value = azurerm_network_interface.nic_k8s_node02.private_ip_address
-#}
+output "node01_private_address" {
+  value = azurerm_network_interface.nic_k8s_node01.private_ip_address
+}
+
+output "node02_private_address" {
+  value = azurerm_network_interface.nic_k8s_node02.private_ip_address
+}
 
 # Merge NFS with MASTER
 #output "nfs_private_address" {

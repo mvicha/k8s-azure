@@ -5,6 +5,6 @@ resource "null_resource" "ansible" {
 
   # Merge NFS with MASTER
   #depends_on = [azurerm_virtual_machine.vm_k8s_master, azurerm_virtual_machine.vm_k8s_node01, azurerm_virtual_machine.vm_k8s_node02, azurerm_virtual_machine.vm_nfs]
-  #depends_on = [azurerm_virtual_machine.vm_k8s_master, azurerm_virtual_machine.vm_k8s_node01, azurerm_virtual_machine.vm_k8s_node02]
-  depends_on = [azurerm_virtual_machine.vm_k8s_master]
+  depends_on = [azurerm_virtual_machine.vm_k8s_master, azurerm_virtual_machine.vm_k8s_node01, azurerm_virtual_machine.vm_k8s_node02]
+  #depends_on = [azurerm_virtual_machine.vm_k8s_master]
 }

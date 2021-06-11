@@ -16,6 +16,15 @@
     - nfs-kernel-server
     - xfsprogs
 
+# Make NFS listen on specific address
+- name: Make NFS to run in private LAN only
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/default/nfs-kernel-server
+    backup: yes
+    line: "RPCNFSDOPTS=\"-N 2 -N 3 -H 10.17.1.100\""
+    state: present
+
 # Check if partiton exists
 # https://docs.ansible.com/ansible/latest/collections/community/general/parted_module.html
 - name: Read device information
@@ -110,7 +119,7 @@
   ansible.builtin.lineinfile:
     path: /etc/exports
     backup: yes
-    line: "/srv/nfs\t192.168.1.0/24(rw,sync,insecure,fsid=0,no_subtree_check,no_root_squash)"
+    line: "/srv/nfs\t10.17.1.0/24(rw,sync,insecure,fsid=0,no_subtree_check,no_root_squash)"
     create: yes
     state: present
   register: exportfs
@@ -119,7 +128,7 @@
   become: true
   ansible.builtin.systemd:
     daemon_reload: yes
-    state: started
+    state: restarted
     name: nfs-kernel-server.service
   when: exportfs.changed
 

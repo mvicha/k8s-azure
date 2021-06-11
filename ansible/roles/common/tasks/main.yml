@@ -1,9 +1,10 @@
 ---
-- name: Copy hosts file to identify master on private LAN
+- name: Correct python version selected
   become: true
-  ansible.builtin.copy:
-    src: hosts
-    dest: /etc/hosts
+  community.general.alternatives:
+    name: python
+    link: /usr/bin/python
+    path: /usr/bin/python3
 
 - name: Update apt repository cache
   become: true
@@ -21,11 +22,11 @@
     - ca-certificates
     - chrony
     - curl
-    - software-properties-common
+    - git
     - net-tools
     - nfs-common
-    #- nfs-utils
-    - git
+    - python3-pip
+    - software-properties-common
     - vim
 
 - name: Set vim as default editor
@@ -34,7 +35,6 @@
     name: editor
     path: /usr/bin/vim.basic
 
-# ansible-galaxy collection install community.general
 - name: Set timezone to Europe/Madrid
   become: true
   community.general.timezone:
