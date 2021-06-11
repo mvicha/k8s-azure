@@ -1,0 +1,54 @@
+# Init Kubernetes master
+- name: Init K8s
+  become: true
+  ansible.builtin.shell:
+    cmd: kubeadm init --apiserver-advertise-address="{{ control_plane_endpoint }}" --node-name="master.k8s.mvilla" --pod-network-cidr="{{ pod_network_cidr }}" --ignore-preflight-errors="all"
+
+# Create $HOME/.kube directory for copying kubernetes config file
+- name: Create .kube directory
+  become: true
+  ansible.builtin.file:
+    path: /home/{{ ansible_user }}/.kube
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+
+# Copy /etc/kubernetes/admin.conf to $HOME/.kube/config to use kubernetes
+- name: Copy k8s config
+  become: true
+  ansible.builtin.copy:
+    src: /etc/kubernetes/admin.conf
+    dest: /home/{{ ansible_user }}/.kube/config
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    remote_src: yes
+
+# Install Azure CNI
+# https://docs.microsoft.com/en-us/azure/virtual-network/deploy-container-networking#cni-network-configuration-file
+- name: Download Azure CNI installer
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/Azure/azure-container-networking/master/scripts/install-cni-plugin.sh
+    dest: /tmp/install-cni-plugin.sh
+
+- name: Install Azure CNI
+  become: true
+  ansible.builtin.shell:
+    cmd: /bin/bash /tmp/install-cni-plugin.sh
+
+- name: Remove Azure CNI installer
+  ansible.builtin.file:
+    path: /tmp/install-cni-plugin.sh
+    state: absent
+
+- name: Get Join command
+  ansible.builtin.shell:
+    cmd: kubeadm token create --print-join-command
+  register: k8sjc
+
+- name: Register Join command
+  ansible.builtin.set_fact:
+    kubernetes_join_command: "{{ k8sjc.stdout }}"
+
+- name: Debug join command
+  ansible.builtin.debug:
+    var: k8sjc.stdout

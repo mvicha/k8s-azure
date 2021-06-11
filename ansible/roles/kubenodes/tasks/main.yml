@@ -1,0 +1,3 @@
+- name: Join Cluster
+  become: true
+  shell: "{{ hostvars['Master']['kubernetes_join_command'] }} --ignore-preflight-errors Swap"

@@ -37,6 +37,12 @@ resource "azurerm_public_ip" "pi_k8s" {
   }
 }
 
+data "azurerm_public_ip" "pi_k8s" {
+  name                = "${azurerm_public_ip.pi_k8s.name}"
+  resource_group_name = "${azurerm_resource_group.rg_k8s.name}"
+  depends_on          = [azurerm_virtual_machine.vm_k8s_master]
+}
+
 # Create K8s master public network interface
 resource "azurerm_network_interface" "nic_k8s_external" {
   name                = "nic_k8s_external"
@@ -76,59 +82,60 @@ resource "azurerm_network_interface" "nic_k8s_master" {
 }
 
 # Create K8s node01 private network interface
-resource "azurerm_network_interface" "nic_k8s_node01" {
-  name                = "nic_k8s_node01"
-  location            = "eastus"
-  resource_group_name = azurerm_resource_group.rg_k8s.name
+#resource "azurerm_network_interface" "nic_k8s_node01" {
+#  name                = "nic_k8s_node01"
+#  location            = "eastus"
+#  resource_group_name = azurerm_resource_group.rg_k8s.name
+#
+#  ip_configuration {
+#    name                          = "nic_config_node01"
+#    subnet_id                     = azurerm_subnet.sn_k8s_private.id
+#    private_ip_address_allocation = "Static"
+#    private_ip_address            = "192.168.1.101"
+#  }
+#
+#  tags = {
+#    environment = "K8s"
+#    node        = "Worker"
+#  }
+#}
+#
+## Create K8s node02 private network interface
+#resource "azurerm_network_interface" "nic_k8s_node02" {
+#  name                = "nic_k8s_node02"
+#  location            = "eastus"
+#  resource_group_name = azurerm_resource_group.rg_k8s.name
+#
+#  ip_configuration {
+#    name                          = "nic_config_node02"
+#    subnet_id                     = azurerm_subnet.sn_k8s_private.id
+#    private_ip_address_allocation = "Static"
+#    private_ip_address            = "192.168.1.102"
+#  }
+#
+#  tags = {
+#    environment = "K8s"
+#    node        = "Worker"
+#  }
+#}
 
-  ip_configuration {
-    name                          = "nic_config_node01"
-    subnet_id                     = azurerm_subnet.sn_k8s_private.id
-    private_ip_address_allocation = "Static"
-    private_ip_address            = "192.168.1.101"
-  }
-
-  tags = {
-    environment = "K8s"
-    node        = "Worker"
-  }
-}
-
-# Create K8s node02 private network interface
-resource "azurerm_network_interface" "nic_k8s_node02" {
-  name                = "nic_k8s_node02"
-  location            = "eastus"
-  resource_group_name = azurerm_resource_group.rg_k8s.name
-
-  ip_configuration {
-    name                          = "nic_config_node02"
-    subnet_id                     = azurerm_subnet.sn_k8s_private.id
-    private_ip_address_allocation = "Static"
-    private_ip_address            = "192.168.1.102"
-  }
-
-  tags = {
-    environment = "K8s"
-    node        = "Worker"
-  }
-}
-
-# Create NFS private network interface
-resource "azurerm_network_interface" "nic_nfs" {
-  name                = "nic_nfs"
-  location            = "eastus"
-  resource_group_name = azurerm_resource_group.rg_k8s.name
-
-  ip_configuration {
-    name                          = "nic_config_nfs"
-    subnet_id                     = azurerm_subnet.sn_k8s_private.id
-    private_ip_address_allocation = "Static"
-    private_ip_address            = "192.168.1.103"
-  }
-
-  tags = {
-    environment = "K8s"
-    node        = "Worker"
-  }
-}
+# Merge NFS with MASTER
+## Create NFS private network interface
+#resource "azurerm_network_interface" "nic_nfs" {
+#  name                = "nic_nfs"
+#  location            = "eastus"
+#  resource_group_name = azurerm_resource_group.rg_k8s.name
+#
+#  ip_configuration {
+#    name                          = "nic_config_nfs"
+#    subnet_id                     = azurerm_subnet.sn_k8s_private.id
+#    private_ip_address_allocation = "Static"
+#    private_ip_address            = "192.168.1.103"
+#  }
+#
+#  tags = {
+#    environment = "K8s"
+#    node        = "Worker"
+#  }
+#}
 

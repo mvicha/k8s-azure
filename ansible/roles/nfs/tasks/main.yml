@@ -1,0 +1,129 @@
+- name: Make sure mount point exists
+  become: true
+  ansible.builtin.file:
+    path: /srv/nfs
+    state: directory
+    mode: '0755'
+
+# Install LVM2
+- name: Install LVM and NFS packages
+  become: true
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - lvm2
+    - nfs-kernel-server
+    - xfsprogs
+
+# Check if partiton exists
+# https://docs.ansible.com/ansible/latest/collections/community/general/parted_module.html
+- name: Read device information
+  become: true
+  community.general.parted: device=/dev/sdc unit=MiB
+  register: sdc_info
+
+# Create partition
+# https://docs.ansible.com/ansible/latest/collections/community/general/parted_module.html
+- name: Debug sdc_info
+  ansible.builtin.debug:
+    var: sdc_info.partitions
+  when:
+    - sdc_info.partitions | length == 0
+
+- name: Create a new ext4 primary partition
+  become: true
+  community.general.parted:
+    device: /dev/sdc
+    number: 1
+    state: present
+    #fs_type: ext4
+  when: sdc_info.partitions | length == 0
+  register: nfs_partition
+
+# Create logical volume
+# https://docs.ansible.com/ansible/latest/collections/community/general/lvol_module.html
+- name: Create Volume Group on /dev/sdc with physical extent size = 10g
+  become: true
+  community.general.lvg:
+    vg: nfs-vg
+    pvs: /dev/sdc1
+    #pesize: 10g
+    force: no
+    state: present
+  when: nfs_partition.changed
+
+
+- name: Create a logical volume
+  become: true
+  community.general.lvol:
+    vg: nfs-vg
+    lv: nfs-lv
+    size: 100%FREE
+    #pvs: /dev/sdc1
+    force: no
+    state: present
+  when: nfs_partition.changed
+
+
+- name: Create xfs filesystem on nfs data partition
+  become: true
+  community.general.filesystem:
+    fstype: xfs
+    dev: /dev/nfs-vg/nfs-lv
+    #opts: -cc
+    force: yes
+  when: nfs_partition.changed
+
+- name: Make sure mount point exists
+  become: true
+  ansible.builtin.file:
+    path: /srv/nfs
+    state: directory
+    mode: '0755'
+
+
+# Check if mount point exists in fstab
+# https://stackoverflow.com/questions/25977410/adding-an-fstab-option-using-ansible
+- name: Check if /dev/nfs-vg/nfs-lv is in fstab
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/fstab
+    backup: yes
+    #backrefs: yes
+    #regexp: '^/dev/nfs-vg/nfs-lv /srv/nfs xfs defaults 0 0$'
+    line: "/dev/nfs-vg/nfs-lv\t/srv/nfs\txfs\tdefaults\t0 0"
+    state: present
+
+# Mount volume
+# https://docs.ansible.com/ansible/latest/collections/ansible/posix/mount_module.html
+- name: Make sure /srv/nfs is mounted
+  become: true
+  ansible.posix.mount:
+    path: /srv/nfs
+    src: /dev/nfs-vg/nfs-lv
+    fstype: xfs
+    state: mounted
+
+- name: Make sure exportfs accepts LAN
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/exports
+    backup: yes
+    line: "/srv/nfs\t192.168.1.0/24(rw,sync,insecure,fsid=0,no_subtree_check,no_root_squash)"
+    create: yes
+    state: present
+  register: exportfs
+
+- name: Restart nfs-kernel-server.service 
+  become: true
+  ansible.builtin.systemd:
+    daemon_reload: yes
+    state: started
+    name: nfs-kernel-server.service
+  when: exportfs.changed
+
+- name: Re-export the share
+  become: true
+  command: exportfs -ravs
+  when: exportfs.changed

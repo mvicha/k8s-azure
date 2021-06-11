@@ -1,18 +1,25 @@
 # Hosts
-#Master ansible_host=192.168.1.100
+Master
 Node01 ansible_host=192.168.1.101
 #Node02 ansible_host=192.168.1.102
-#Nfs    ansible_host=192.168.1.103
+Nfs    ansible_host=192.168.1.103
 
-#[kubemasters]
-#Master
+[kubernetes]
+Master
+Node01
+#Node02
+
+[kubemasters]
+Master
 
 [kubenodes]
 Node01
 #Node02
 
-#[nfs]
-#Nfs
+[nfs]
+Nfs
 
 [lan]
 Node01
+#Node02
+Nfs
