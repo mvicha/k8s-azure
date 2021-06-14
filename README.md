@@ -6,29 +6,37 @@ Este c&aacute;so pr&aacute;ctico est&aacute; dise&ntilde;ado para funcionar con 
 Entre los nodos se cuenta con un servidor de NFS para poder compartir archivos. Como no fue posible desplegar un servidor independiente para proveer la soluci&oacute;n de NFS, se opt&oacute; por incluirlo en el Nodo01.
 
 ## La soluci&oacute;n funciona de la siguiente manera:
-  - Primero se despliega el entorno utilindo Terraform. Hay algunas variables que se pueden modificar para desplegar un entorno personalizable, aunque algunas de ellas se recomienda no modificarlas:
+  - Primero se despliega el entorno utilizando Terraform. Hay algunas variables que se pueden modificar para desplegar un entorno personalizable, aunque algunas de ellas se recomienda no modificarlas:
     * admin_user:
+
       Esta variable permite seleccionar el nombre de usuario que utilizaremos para iniciar sesi&oacute;n ssh en los servidores
 
     * virtual_network_cidr:
+
       Esta variable define el CIDR de nuestra red virtual. Se recomienda no cambiarla
 
     * subnet_cidr_private:
+
       Esta variable define el CIDR de nuestra red privada. Se recomienda no cambiarla
 
     * private_lan_master:
+
       Esta variable define la IP que utilizar&aacute; el nodo master en la red privada
 
     * private_lan_node01:
+
       Esta variable define la IP que utilizar&aacute; el nodo node01 en la red privada
 
     * private_lan_node02:
+
       Esta variable define la IP que utilizar&aacute; el nodo node02 en la red privada
 
     * mysql_ghost_database:
+
       Esta variable define el nombre de la DB que se utilizar&aacute; con la aplicaci&oacute;n de blog
 
     * mysql_ghost_username:
+
       Esta variable define el nombre de usuario que se utilizar&aacute; para conectar la la DB del blog
 
   - Todo el resto de las configuraciones de Ansible se manejan autom&aacute;ticamente en base a los par&aacute;metros que Terraform env&iacute;a luego de desplegar la infraestructura.
@@ -49,7 +57,7 @@ Entre los nodos se cuenta con un servidor de NFS para poder compartir archivos. 
 ### Ansible realiza:
   - Instalaci&oacute;n de paquetes b&aacute;sicos de funcionamiento
   - Formatea HD SSD en xfs y crea sistema de archivos LVM para NFS
-  - Instalaci&oacute;n y configuraci&oacute; de NFS en Nodo01
+  - Instalaci&oacute;n y configuraci&oacute;n de NFS en Nodo01
   - Herramientas para realizar el deployment (Helm, Python modules, etc.)
   - Instalaci&oacute;n de Docker en todos los Nodos
   - Instalaci&oacute;n de Kubelet, Kubeadm y Kubectl en todos los nodos
@@ -63,7 +71,7 @@ Entre los nodos se cuenta con un servidor de NFS para poder compartir archivos. 
   - Setup de Ghost
 
 ## Modo de empleo
-  - Clone repository
+  - Clonamos repositorio
   ```bash
   git clone git@github.com:mvicha/k8s-azure
   ```
@@ -115,7 +123,7 @@ virtual_network_cidr = tolist([
 ])
 ```
 
-Si por alg&uacute;n motivo quisi&eacute;ramos ejecutar Ansible de forma manual, s&oacute;lo debemos realizar los siguientes pasos:
+* Si por alg&uacute;n motivo quisi&eacute;ramos ejecutar Ansible de forma manual, s&oacute;lo debemos realizar los siguientes pasos:
   - Desde el mismo directorio de trabajo local ejecutamos la l&iacute;nea siguiente reemplazando <master_public_ip_address> por el valor obtenido en la salida de terraform output:
   ```bash
   ansible-playbook -i ../ansible/hosts -e jump_host=<master_public_address> -e admin_user=azureuser -e subnet_cidr_private=192.168.1.0/24 -e private_lan_master=192.168.1.100 -e private_lan_node01=192.168.1.101 -e private_lan_node02=192.168.1.102 ../ansible/playbook.yml
