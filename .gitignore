@@ -1,6 +1,6 @@
 # SSH keys
 resources/id_rsa_*
-resource/*.pem
+terraform/resources/*.pem
 
 # Terraform directory
 .terraform*
