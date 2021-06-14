@@ -35,5 +35,5 @@ spec:
       volumes:
       - name: ghost-nfs-volume
         nfs:
-          server: 192.168.1.101
+          server: '{{ nfs_host }}'
           path: "/srv/nfs/mounts/ghost/data"

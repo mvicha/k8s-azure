@@ -1,1 +1,2 @@
 nfs_server: false
+nfs_host: '{{ private_lan_node01 }}'
