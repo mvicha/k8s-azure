@@ -1,14 +1,29 @@
+# Create ingress-basic namespace
+- name: Create a ingress-basic namespace
+  community.kubernetes.k8s:
+    name: ingress-basic
+    api_version: v1
+    kind: Namespace
+    state: present
+
 # ansible-galaxy collection install community.kubernetes
 - name: Add stable chart repo
   community.kubernetes.helm_repository:
-    name: nginx-stable
-    repo_url: https://helm.nginx.com/stable
-    #repo_url: "https://kubernetes.github.io/ingress-nginx"
+    name: ingress-nginx
+    repo_url: "https://kubernetes.github.io/ingress-nginx"
 
 - name: Deploy latest version of ingress-nginx-controller
   community.kubernetes.helm:
-    name: my-nginx
-    #chart_ref: ingress-nginx/ingress-nginx
-    chart_ref: nginx-stable/nginx-ingress
-    release_namespace: default
+    name: nginx-ingress
+    chart_ref: ingress-nginx/ingress-nginx
+    release_namespace: ingress-basic
     update_repo_cache: yes
+    values:
+      controller.replicaCount: 2
+      controller.nodeSelector.beta.kubernetes.io/os: linux
+      defaultBackend.nodeSelector.beta.kubernetes.io/os: linux
+      controller.admissionWebhooks.patch.nodeSelector.beta.kubernetes.io/os: linux
+
+- name: Patch ingress controller
+  ansible.builtin.shell:
+    cmd: kubectl -n ingress-basic patch service nginx-ingress-ingress-nginx-controller -p '{"spec":{"externalIPs":["{{ private_lan_master }}"]}}'

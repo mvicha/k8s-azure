@@ -1,14 +1,14 @@
 # Hosts
 Master
-Node01 ansible_host=10.17.1.101
-Node02 ansible_host=10.17.1.102
+Node01 ansible_host='{{ private_lan_node01 }}'
+Node02 ansible_host='{{ private_lan_node02 }}'
 
 [kubernetes]
 Master
 Node01
 Node02
 
-[deployers]
+[deployer]
 Master
 
 [kubemasters]
@@ -19,8 +19,9 @@ Node01
 Node02
 
 [nfs]
-Master
+Node01
 
 [lan]
+#Master
 Node01
 Node02

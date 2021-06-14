@@ -22,7 +22,8 @@
   ansible.builtin.lineinfile:
     path: /etc/default/nfs-kernel-server
     backup: yes
-    line: "RPCNFSDOPTS=\"-N 2 -N 3 -H 10.17.1.100\""
+    # line: "RPCNFSDOPTS=\"-N 2 -N 3 -H {{ ansible_host }}\""
+    line: "RPCNFSDOPTS=\"-H {{ ansible_host }}\""
     state: present
 
 # Check if partiton exists
@@ -46,7 +47,6 @@
     device: /dev/sdc
     number: 1
     state: present
-    #fs_type: ext4
   when: sdc_info.partitions | length == 0
   register: nfs_partition
 
@@ -57,7 +57,6 @@
   community.general.lvg:
     vg: nfs-vg
     pvs: /dev/sdc1
-    #pesize: 10g
     force: no
     state: present
   when: nfs_partition.changed
@@ -69,7 +68,6 @@
     vg: nfs-vg
     lv: nfs-lv
     size: 100%FREE
-    #pvs: /dev/sdc1
     force: no
     state: present
   when: nfs_partition.changed
@@ -80,7 +78,6 @@
   community.general.filesystem:
     fstype: xfs
     dev: /dev/nfs-vg/nfs-lv
-    #opts: -cc
     force: yes
   when: nfs_partition.changed
 
@@ -99,8 +96,6 @@
   ansible.builtin.lineinfile:
     path: /etc/fstab
     backup: yes
-    #backrefs: yes
-    #regexp: '^/dev/nfs-vg/nfs-lv /srv/nfs xfs defaults 0 0$'
     line: "/dev/nfs-vg/nfs-lv\t/srv/nfs\txfs\tdefaults\t0 0"
     state: present
 
@@ -119,7 +114,7 @@
   ansible.builtin.lineinfile:
     path: /etc/exports
     backup: yes
-    line: "/srv/nfs\t10.17.1.0/24(rw,sync,insecure,fsid=0,no_subtree_check,no_root_squash)"
+    line: "/srv/nfs\t{{ subnet_cidr_private }}(rw,sync,insecure,fsid=0,no_subtree_check,no_root_squash)"
     create: yes
     state: present
   register: exportfs

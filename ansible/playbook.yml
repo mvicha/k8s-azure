@@ -1,16 +1,4 @@
 ---
-#- hosts: all
-#  gather_facts: true
-#  #become: true
-#  tasks:
-#  - name: Cat hostname
-#    ansible.builtin.shell:
-#      cmd: cat /etc/hostname
-#  #    chdir: /opt
-#  #- name: Print return information from the previous task
-#  #  ansible.builtin.debug:
-#  #    var: jump_host
-
 - hosts: all
   gather_facts: true
   roles:
@@ -21,7 +9,7 @@
   roles:
     - nfs
 
-- hosts: deployers
+- hosts: deployer
   gather_facts: true
   roles:
     - deployment-tools
@@ -31,7 +19,6 @@
   roles:
     - docker
     - kubernetes
-    - deployment-tools
 
 - hosts: kubemasters
   gather_facts: true
@@ -43,7 +30,9 @@
   roles:
     - kubenodes
 
-- hosts: deployers
+- hosts: deployer
   gather_facts: true
   roles:
     - ingress-nginx-controller
+    - mysql
+    - ghost

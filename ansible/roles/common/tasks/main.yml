@@ -8,12 +8,12 @@
 
 - name: Update apt repository cache
   become: true
-  apt:
+  ansible.builtin.apt:
     update_cache: yes
 
 - name: Install Common packages
   become: true
-  apt:
+  ansible.builtin.apt:
     name: "{{ packages }}"
   vars:
     packages:
@@ -29,9 +29,16 @@
     - software-properties-common
     - vim
 
+- name: Install pip packages
+  ansible.builtin.pip:
+    name:
+      - azure-cli==2.11.1
+      - azure.identity
+      - azure-keyvault-secrets
+
 - name: Set vim as default editor
   become: true
-  alternatives:
+  community.general.alternatives:
     name: editor
     path: /usr/bin/vim.basic
 
@@ -42,12 +49,12 @@
 
 - name: Enable Chrony service
   become: true
-  systemd:
+  ansible.builtin.systemd:
     name: chrony
     enabled: yes
 
 - name: Ensure Chrony service is running
   become: true
-  systemd:
+  ansible.builtin.systemd:
     name: chrony
     state: started

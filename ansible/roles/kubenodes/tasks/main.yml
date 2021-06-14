@@ -2,3 +2,10 @@
   become: true
   ansible.builtin.shell:
     cmd: "{{ hostvars['Master']['kubernetes_join_command'] }}"
+
+- name: Create local file system where to store mysql databases
+  become: true
+  ansible.builtin.file:
+    path: /srv/mysql
+    state: directory
+  when: nfs_server

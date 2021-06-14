@@ -1,8 +1,15 @@
+# Copy rbac.yaml
+- name: Copy rbac.yaml to /tmp/rbac.yaml
+  ansible.builtin.copy:
+    src: rbac.yaml
+    dest: /tmp/rbac.yaml
+
 # Init Kubernetes master
 - name: Init K8s
   become: true
   ansible.builtin.shell:
-    cmd: kubeadm init --apiserver-advertise-address="{{ control_plane_endpoint }}" --node-name="master.k8smvilla.com" --pod-network-cidr="{{ pod_network_cidr }}" --ignore-preflight-errors="all"
+    # cmd: kubeadm init --apiserver-advertise-address="{{ control_plane_endpoint }}" --node-name="master.k8smvilla.com" --pod-network-cidr="{{ pod_network_cidr }}"
+    cmd: kubeadm init --node-name="master.k8smvilla.com" --pod-network-cidr="{{ pod_network_cidr }}"
 
 # Create $HOME/.kube directory for copying kubernetes config file
 - name: Create .kube directory
@@ -30,12 +37,6 @@
     src: /etc/kubernetes/admin.conf
     dest: /root/.kube/config
     flat: yes
-- name: Install Calico
-  ansible.builtin.shell:
-    cmd: kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
-
-- name: Apply Calico manifest
-  shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 
 - name: Get Join command
   ansible.builtin.shell:
@@ -49,3 +50,33 @@
 - name: Debug join command
   ansible.builtin.debug:
     var: k8sjc.stdout
+
+- name: Download kube-flannel manifest
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+    dest: /tmp/kube-flannel.yml
+    mode: '0664'
+
+- name: Apply flannel manifest to the cluster
+  community.kubernetes.k8s:
+    state: present
+    src: /tmp/kube-flannel.yml
+
+- name: Apply RBAC
+  community.kubernetes.k8s:
+    state: present
+    src: /tmp/rbac.yaml
+
+- name: Remove kube-flannel.yml manifest
+  ansible.builtin.file:
+    path: /tmp/kube-flannel.yml
+    state: absent
+
+- name: Remove RBAC
+  ansible.builtin.file:
+    path: /tmp/rbac.yaml
+    state: absent
+
+- name: Create clusterrolebinding
+  ansible.builtin.shell:
+    cmd: kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard

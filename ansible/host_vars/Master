@@ -1,5 +1,5 @@
 ansible_host: '{{ jump_host }}'
-ansible_user: azureuser
+ansible_user: '{{ admin_user }}'
 ansible_private_key_file: ../terraform/resources/external.pem
-control_plane_endpoint: 10.17.1.100
-pod_network_cidr: 192.168.0.0/16
+#control_plane_endpoint: '{{ private_lan_master }}'
+pod_network_cidr: 10.244.0.0/16

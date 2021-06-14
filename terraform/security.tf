@@ -45,11 +45,13 @@ resource "azurerm_network_security_group" "nsg_k8s_external" {
   }
 }
 
+
 # Connect the security group to the network interface
 resource "azurerm_network_interface_security_group_association" "nic_nsg_external" {
-  network_interface_id      = azurerm_network_interface.nic_k8s_external.id
+  network_interface_id      = azurerm_network_interface.nic_k8s_master.id
   network_security_group_id = azurerm_network_security_group.nsg_k8s_external.id
 }
+
 
 # Create (and display) an SSH key for connecting from WAN
 resource "tls_private_key" "external_ssh" {
@@ -57,11 +59,13 @@ resource "tls_private_key" "external_ssh" {
   rsa_bits  = 4096
 }
 
+
 # Create (and display) an SSH key for connecting from LAN
 resource "tls_private_key" "internal_ssh" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
+
 
 # Save external pem to file
 resource "local_file" "external_pem" { 
@@ -71,6 +75,7 @@ resource "local_file" "external_pem" {
   file_permission      = "0400"
 }
 
+
 # Save internal pem to file
 resource "local_file" "internal_pem" { 
   filename             = "${path.module}/resources/internal.pem"
@@ -79,3 +84,18 @@ resource "local_file" "internal_pem" {
   file_permission      = "0400"
 }
 
+resource "random_string" "mysql_admin_password" {
+  length      = 18
+  min_upper   = 2
+  min_lower   = 2
+  min_numeric = 2
+  min_special = 2
+}
+
+resource "random_string" "mysql_ghost_password" {
+  length      = 18
+  min_upper   = 2
+  min_lower   = 2
+  min_numeric = 2
+  min_special = 2
+}

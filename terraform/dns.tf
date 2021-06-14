@@ -3,6 +3,7 @@ resource "azurerm_private_dns_zone" "k8s_mvilla" {
   resource_group_name = azurerm_resource_group.rg_k8s.name
 }
 
+
 resource "azurerm_private_dns_zone_virtual_network_link" "vn_dns_link" {
   name                  = "vn_dns_link"
   resource_group_name   = azurerm_resource_group.rg_k8s.name
@@ -16,24 +17,27 @@ resource "azurerm_private_dns_a_record" "master" {
   zone_name           = azurerm_private_dns_zone.k8s_mvilla.name
   resource_group_name = azurerm_resource_group.rg_k8s.name
   ttl                 = 300
-  records             = ["10.17.1.100"]
+  records             = [var.private_lan_master]
 }
+
 
 resource "azurerm_private_dns_a_record" "node01" {
   name                = "node01"
   zone_name           = azurerm_private_dns_zone.k8s_mvilla.name
   resource_group_name = azurerm_resource_group.rg_k8s.name
   ttl                 = 300
-  records             = ["10.17.1.101"]
+  records             = [var.private_lan_node01]
 }
+
 
 resource "azurerm_private_dns_a_record" "node02" {
   name                = "node02"
   zone_name           = azurerm_private_dns_zone.k8s_mvilla.name
   resource_group_name = azurerm_resource_group.rg_k8s.name
   ttl                 = 300
-  records             = ["10.17.1.102"]
+  records             = [var.private_lan_node02]
 }
+
 
 resource "azurerm_private_dns_cname_record" "nfs" {
   name                = "nfs"

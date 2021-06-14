@@ -1,0 +1,1 @@
+> docker container run --name casopractico2 -it -v /Users/mvilla/UNIR/Caso\ Práctico\ 2/WIP/.azure:/root/.azure -v /Users/mvilla/UNIR/Caso\ Práctico\ 2/WIP/.kube:/root/.kube -v /Users/mvilla/UNIR/Caso\ Práctico\ 2/WIP/.ssh:/root/.ssh -v /Users/mvilla/UNIR/Caso\ Práctico\ 2/WIP:/SAFE_VOLUME mvilla/casopractico2:latest /bin/bash

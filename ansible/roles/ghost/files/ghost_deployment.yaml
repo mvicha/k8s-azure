@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghost
+  namespace: ghost
+  labels:
+    app: ghost
+spec:
+  selector:
+    matchLabels:
+      app: ghost
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ghost
+    spec:
+      containers:
+      - name: ghost
+        image: ghost:4.7.0-alpine
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: ghost-config
+        - secretRef:
+            name: ghost-password
+        ports:
+        - containerPort: 2368
+          name: ghost-tcp
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /var/lib/ghost/content
+          name: ghost-nfs-volume
+      volumes:
+      - name: ghost-nfs-volume
+        nfs:
+          server: 192.168.1.101
+          path: "/srv/nfs/mounts/ghost/data"

@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: mysql
+  labels:
+    app: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TZ
+          value: "Europe/Madrid"
+        - name: MYSQL_ROOT_PASSWORD_FILE
+          value: /tmp/mysql-root-password-file/password
+        ports:
+        - containerPort: 3306
+          name: mysql-tcp
+          protocol: TCP
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: mysql-data-volume
+        - mountPath: /tmp/mysql-root-password-file
+          name: mysql-root-password-file
+      nodeSelector:
+        mysql: server
+      volumes:
+      - name: mysql-data-volume
+        hostPath:
+          path: "/srv/mysql"
+      - name: mysql-root-password-file
+        secret:
+          secretName: mysql-password
