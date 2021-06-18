@@ -1,7 +1,7 @@
 # Create Network Security Group and rule
 resource "azurerm_network_security_group" "nsg_k8s_external" {
   name                = "nsg_k8s_external"
-  location            = "eastus"
+  location            = azurerm_resource_group.rg_k8s.location
   resource_group_name = azurerm_resource_group.rg_k8s.name
 
   security_rule {
@@ -69,6 +69,8 @@ resource "tls_private_key" "internal_ssh" {
 
 # Save external pem to file
 resource "local_file" "external_pem" { 
+  count                = length(var.private_key_path) == 0 || length(var.public_key_path) == 0 ? 1 : 0
+
   filename             = "${path.module}/resources/external.pem"
   content              = tls_private_key.external_ssh.private_key_pem
   directory_permission = "0700"
@@ -78,6 +80,8 @@ resource "local_file" "external_pem" {
 
 # Save internal pem to file
 resource "local_file" "internal_pem" { 
+  count                = length(var.private_key_path) == 0 || length(var.public_key_path) == 0 ? 1 : 0
+
   filename             = "${path.module}/resources/internal.pem"
   content              = tls_private_key.internal_ssh.private_key_pem
   directory_permission = "0700"

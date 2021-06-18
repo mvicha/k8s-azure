@@ -11,9 +11,10 @@ resource "random_id" "randomId" {
 
 # Create storage account for boot diagnostics
 resource "azurerm_storage_account" "sa_k8s" {
-  name                     = "diag${random_id.randomId.hex}"
+  #name                     = "diag${random_id.randomId.hex}"
+  name                     = var.storage_account
   resource_group_name      = azurerm_resource_group.rg_k8s.name
-  location                 = "eastus"
+  location                 = azurerm_resource_group.rg_k8s.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
 
@@ -24,7 +25,11 @@ resource "azurerm_storage_account" "sa_k8s" {
 
 
 resource "azurerm_managed_disk" "nfs" {
-  name                 = "${azurerm_virtual_machine.vm_k8s_node01.name}-data"
+  count                = length(var.workers) > 0 ? 1 : 0
+
+  # name                 = "${azurerm_virtual_machine.vm_k8s_node[count.index].name}-data"
+  # name                 = "${azurerm_virtual_machine.vm_k8s_node[each.key].name}-data"
+  name                 = "${azurerm_virtual_machine.vm_k8s_node["Node01"].name}-data"
   location             = azurerm_resource_group.rg_k8s.location
   resource_group_name  = azurerm_resource_group.rg_k8s.name
   storage_account_type = "Standard_LRS"
@@ -34,8 +39,30 @@ resource "azurerm_managed_disk" "nfs" {
 
 
 resource "azurerm_virtual_machine_data_disk_attachment" "nfs" {
-  managed_disk_id    = azurerm_managed_disk.nfs.id
-  virtual_machine_id = azurerm_virtual_machine.vm_k8s_node01.id
+   count              = length(var.workers) > 0 ? 1 : 0
+
+  # managed_disk_id    = azurerm_managed_disk.nfs[count.index].id
+  # virtual_machine_id = azurerm_virtual_machine.vm_k8s_node[count.index].id
+  managed_disk_id    = azurerm_managed_disk.nfs.0.id
+  virtual_machine_id = azurerm_virtual_machine.vm_k8s_node["Node01"].id
   lun                = "10"
   caching            = "ReadWrite"
 }
+
+
+# resource "azurerm_managed_disk" "nfs" {
+#   name                 = "${azurerm_virtual_machine.vm_k8s_node01.name}-data"
+#   location             = azurerm_resource_group.rg_k8s.location
+#   resource_group_name  = azurerm_resource_group.rg_k8s.name
+#   storage_account_type = "Standard_LRS"
+#   create_option        = "Empty"
+#   disk_size_gb         = 10
+# }
+
+
+# resource "azurerm_virtual_machine_data_disk_attachment" "nfs" {
+#   managed_disk_id    = azurerm_managed_disk.nfs.id
+#   virtual_machine_id = azurerm_virtual_machine.vm_k8s_node01.id
+#   lun                = "10"
+#   caching            = "ReadWrite"
+# }

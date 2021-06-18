@@ -45,8 +45,3 @@
     mode: "0700"
     owner: '{{ ansible_user }}'
 
-- name: Make sure fs structure for ghost data exists
-  become: true
-  ansible.builtin.file:
-    path: /srv/nfs/mounts/ghost/data
-    state: directory

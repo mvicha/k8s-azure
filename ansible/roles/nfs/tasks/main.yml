@@ -131,3 +131,9 @@
   become: true
   command: exportfs -ravs
   when: exportfs.changed
+
+- name: Make sure fs structure for ghost data exists
+  become: true
+  ansible.builtin.file:
+    path: /srv/nfs/mounts/ghost/data
+    state: directory

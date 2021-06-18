@@ -1,6 +1,6 @@
 - name: Label node
   ansible.builtin.shell:
-    cmd: kubectl label node node01 mysql=server
+    cmd: kubectl label --overwrite node node01 mysql=server
 
 # Create mysql namespace
 - name: Create a mysql namespace

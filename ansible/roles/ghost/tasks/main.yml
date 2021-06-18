@@ -91,6 +91,12 @@
 #   ansible.builtin.debug:
 #     var: grantperms
 
+- name: Create tls issuer
+  community.kubernetes.k8s:
+    state: present
+    template:
+      path: tls_issuer.yaml.j2
+
 - name: Deploy Ghost secrets
   community.kubernetes.k8s:
     state: present
@@ -126,7 +132,9 @@
 - name: Create Ghost deployment
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', 'ghost_deployment.yaml') | from_yaml }}"
+    #definition: "{{ lookup('file', 'ghost_deployment.yaml') | from_yaml }}"
+    template:
+      path: ghost_deployment.yaml.j2
     wait: yes
     wait_sleep: 10
     wait_timeout: 600
@@ -140,4 +148,6 @@
 - name: Create Ghost ingress
   community.kubernetes.k8s:
     state: present
-    definition: "{{ lookup('file', 'ghost_ingress.yaml') | from_yaml }}"
+    #definition: "{{ lookup('file', 'ghost_ingress.yaml') | from_yaml }}"
+    template:
+      path: ghost_ingress.yaml.j2

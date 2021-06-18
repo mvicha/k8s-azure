@@ -1,14 +1,13 @@
-# Configure the Microsoft Azure Provider
 provider "azurerm" {
-  # The "feature" block is required for AzureRM provider 2.x. 
-  # If you're using version 1.x, the "features" block is not allowed.
+  subscription_id = "fa4d5daf-6219-4ac5-8718-a1ff86d3fca7"
+  tenant_id       = "899789dc-202f-44b4-8472-a6d40f9eb440"
   features {}
 }
 
 # Create a resource group if it doesn't exist
 resource "azurerm_resource_group" "rg_k8s" {
   name     = "RG_Kubernetes"
-  location = "eastus"
+  location = var.location
 
   tags = {
     environment = "K8s"

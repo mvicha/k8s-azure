@@ -6,8 +6,50 @@ Este c&aacute;so pr&aacute;ctico est&aacute; dise&ntilde;ado para funcionar con 
 Entre los nodos se cuenta con un servidor de NFS para poder compartir archivos. Como no fue posible desplegar un servidor independiente para proveer la soluci&oacute;n de NFS, se opt&oacute; por incluirlo en el Nodo01.
 
 ## La soluci&oacute;n funciona de la siguiente manera:
+az login
+az account list
+The output (similar to below) will display one or more Subscriptions - with the id field being the subscription_id field referenced above.
+[
+  {
+    "cloudName": "AzureCloud",
+    "id": "00000000-0000-0000-0000-000000000000",
+    "isDefault": true,
+    "name": "PAYG Subscription",
+    "state": "Enabled",
+    "tenantId": "00000000-0000-0000-0000-000000000000",
+    "user": {
+      "name": "user@example.com",
+      "type": "user"
+    }
+  }
+]
+Should you have more than one Subscription, you can specify the Subscription to use via the following command:
+$ az account set --subscription="SUBSCRIPTION_ID"
+We can now create the Service Principal which will have permissions to manage resources in the specified Subscription using the following command:
+$ az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/SUBSCRIPTION_ID"
+This command will output 5 values:
+{
+  "appId": "00000000-0000-0000-0000-000000000000",
+  "displayName": "azure-cli-2017-06-05-10-41-15",
+  "name": "http://azure-cli-2017-06-05-10-41-15",
+  "password": "0000-0000-0000-0000-000000000000",
+  "tenant": "00000000-0000-0000-0000-000000000000"
+}
+These values map to the Terraform variables like so:
+appId is the client_id defined above.
+password is the client_secret defined above.
+tenant is the tenant_id defined above.
+Finally, it's possible to test these values work as expected by first logging in:
+$ az login --service-principal -u CLIENT_ID -p CLIENT_SECRET --tenant TENANT_ID
+
+  - Antes de desplegar el entorno en Teraform debemos ejecutar storage_account.sh
+  ```bash
+  storage_account.sh
+  ```
+
+
   - Primero se despliega el entorno utilizando Terraform. Hay algunas variables que se pueden modificar para desplegar un entorno personalizable, aunque algunas de ellas se recomienda no modificarlas:
-    * admin_user:
+    * ssh_user:
 
       Esta variable permite seleccionar el nombre de usuario que utilizaremos para iniciar sesi&oacute;n ssh en los servidores
 

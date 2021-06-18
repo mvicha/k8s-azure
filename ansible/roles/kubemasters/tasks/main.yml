@@ -4,12 +4,24 @@
     src: rbac.yaml
     dest: /tmp/rbac.yaml
 
+# Cuando no pueda conectarse al servidor, stderr tendrá una descripción del error, la que utilizaremos para saber si debemos iniciar el master o no
+- name: Debug kubernetes state before init
+  ansible.builtin.shell:
+    cmd: kubectl cluster-info dump
+  register: kubernetes_init_debug
+  ignore_errors: yes
+
+# - name: Print kubernetes state debug
+#   ansible.builtin.debug:
+#     var: kubernetes_debug
+
 # Init Kubernetes master
 - name: Init K8s
   become: true
   ansible.builtin.shell:
     # cmd: kubeadm init --apiserver-advertise-address="{{ control_plane_endpoint }}" --node-name="master.k8smvilla.com" --pod-network-cidr="{{ pod_network_cidr }}"
     cmd: kubeadm init --node-name="master.k8smvilla.com" --pod-network-cidr="{{ pod_network_cidr }}"
+  when: kubernetes_init_debug.stderr | length > 0
 
 # Create $HOME/.kube directory for copying kubernetes config file
 - name: Create .kube directory
@@ -77,6 +89,22 @@
     path: /tmp/rbac.yaml
     state: absent
 
+- name: Get clusterrolebinding
+  ansible.builtin.shell:
+    cmd: kubectl get clusterrolebindings
+  register: crb_dashboard
+
 - name: Create clusterrolebinding
   ansible.builtin.shell:
     cmd: kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
+  when: not "kubernetes-dashboard" in crb_dashboard.stdout
+
+- name: Get kubernetes node list
+  ansible.builtin.shell:
+    cmd: kubectl get nodes
+  register: k8s_node_list
+  ignore_errors: yes
+
+- name: Register node list
+  ansible.builtin.set_fact:
+    kubernetes_node_list: "{{ k8s_node_list.stdout }}"

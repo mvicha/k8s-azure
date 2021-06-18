@@ -34,5 +34,6 @@
   gather_facts: true
   roles:
     - ingress-nginx-controller
+    - cert-manager
     - mysql
     - ghost

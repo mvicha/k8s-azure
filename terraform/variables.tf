@@ -1,8 +1,3 @@
-variable "admin_user" {
-  description = "Usuario que se creará en la VM como admin"
-  default = "azureuser"
-}
-
 variable "virtual_network_cidr" {
   default = "192.168.0.0/16"
 }
@@ -29,4 +24,22 @@ variable "mysql_ghost_database" {
 
 variable "mysql_ghost_username" {
   default = "ghost"
+}
+
+# variable "private_ip_address_workers" {
+#   default = [
+#     "192.168.1.101",
+#     "192.168.1.102"
+#   ]
+# }
+
+variable "workers" {
+  default = {
+    Node01: {
+      "ip"   = "192.168.1.101"
+    },
+    Node02: {
+      "ip"   = "192.168.1.102"
+    }
+  }
 }
