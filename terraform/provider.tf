@@ -1,12 +1,3 @@
-provider "azurerm" {
-  features {}
-
-  subscription_id = "fa4d5daf-6219-4ac5-8718-a1ff86d3fca7"
-  client_id       = "9ab06884-6560-4241-9ab4-787a35c18f1f"
-  client_secret   = "79hWAEe4upqk-FD-zu8QKMcLN2VjGEFrgc"
-  tenant_id       = "899789dc-202f-44b4-8472-a6d40f9eb440"
-}
-
 # Create a resource group if it doesn't exist
 resource "azurerm_resource_group" "rg_k8s" {
   name     = "RG_Kubernetes"
