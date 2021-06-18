@@ -8,7 +8,4 @@ locals {
   # Private SSH Key file location
   internal_private_key_file = length(var.public_key_path) > 0 && length(var.private_key_path) > 0 ? var.private_key_path : "resources/internal.pem"
   external_private_key_file = length(var.public_key_path) > 0 && length(var.private_key_path) > 0 ? var.private_key_path : "resources/external.pem"
-
-  # Ansible list
-  ansible_list = ""
 }

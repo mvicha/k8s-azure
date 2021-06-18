@@ -6,13 +6,7 @@ resource "azurerm_key_vault" "keyvault_k8s" {
   tenant_id                  = data.azurerm_client_config.current.tenant_id
   sku_name                   = "standard"
 
-  # enabled_for_deployment     = true
   soft_delete_retention_days = 7
-
-  # network_acls {
-  #   default_action = "Allow"
-  #   bypass         = "AzureServices"
-  # }
 }
 
 resource "azurerm_key_vault_access_policy" "keyvault_k8s_ro" {

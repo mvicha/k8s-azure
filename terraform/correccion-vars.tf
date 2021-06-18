@@ -21,7 +21,7 @@ variable "public_key_path" {
 variable "private_key_path" {
   type = string
   description = "Ruta para la clave pública de acceso a las instancias"
-  default = "" # o la ruta correspondiente. Si esta variable o public_key_path están vacías se genera una llave automáticamente
+  default = "~/.ssh/test.pem" # o la ruta correspondiente. Si esta variable o public_key_path están vacías se genera una llave automáticamente
 }
 
 variable "ssh_user" {

@@ -21,21 +21,14 @@ resource "azurerm_private_dns_a_record" "master" {
 }
 
 
-resource "azurerm_private_dns_a_record" "node01" {
-  name                = "node01"
+resource "azurerm_private_dns_a_record" "node" {
+  for_each = var.workers
+
+  name                = lower(each.key)
   zone_name           = azurerm_private_dns_zone.k8s_mvilla.name
   resource_group_name = azurerm_resource_group.rg_k8s.name
   ttl                 = 300
-  records             = [var.private_lan_node01]
-}
-
-
-resource "azurerm_private_dns_a_record" "node02" {
-  name                = "node02"
-  zone_name           = azurerm_private_dns_zone.k8s_mvilla.name
-  resource_group_name = azurerm_resource_group.rg_k8s.name
-  ttl                 = 300
-  records             = [var.private_lan_node02]
+  records             = [each.value.ip]
 }
 
 

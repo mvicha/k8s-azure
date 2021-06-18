@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">=2.63.0"
+    }
+  }
+}
+
 # Create a resource group if it doesn't exist
 resource "azurerm_resource_group" "rg_k8s" {
   name     = "RG_Kubernetes"
@@ -5,21 +14,6 @@ resource "azurerm_resource_group" "rg_k8s" {
 
   tags = {
     environment = "K8s"
-  }
-}
-
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "=2.62.0"
-    }
-  }
-  backend "azurerm" {
-    resource_group_name   = "tstate"
-    storage_account_name  = "tstate28512"
-    container_name        = "tstate"
-    key                   = "terraform.tfstate"
   }
 }
 
@@ -34,3 +28,4 @@ data "azurerm_role_definition" "contributor" {
 data "azurerm_role_definition" "owner" {
   name = "Owner"
 }
+

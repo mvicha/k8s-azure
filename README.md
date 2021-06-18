@@ -41,7 +41,11 @@ password is the client_secret defined above.
 tenant is the tenant_id defined above.
 Finally, it's possible to test these values work as expected by first logging in:
 $ az login --service-principal -u CLIENT_ID -p CLIENT_SECRET --tenant TENANT_ID
-
+export ARM_ACCESS_KEY=""
+export ARM_CLIENT_ID=""
+export ARM_CLIENT_SECRET=""
+export ARM_TENANT_ID=""
+export ARM_SUBSCRIPTION_ID=""
   - Antes de desplegar el entorno en Teraform debemos ejecutar storage_account.sh
   ```bash
   storage_account.sh
