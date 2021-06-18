@@ -1,7 +1,10 @@
 provider "azurerm" {
-  subscription_id = "fa4d5daf-6219-4ac5-8718-a1ff86d3fca7"
-  tenant_id       = "899789dc-202f-44b4-8472-a6d40f9eb440"
   features {}
+
+  subscription_id = "fa4d5daf-6219-4ac5-8718-a1ff86d3fca7"
+  client_id       = "9ab06884-6560-4241-9ab4-787a35c18f1f"
+  client_secret   = "79hWAEe4upqk-FD-zu8QKMcLN2VjGEFrgc"
+  tenant_id       = "899789dc-202f-44b4-8472-a6d40f9eb440"
 }
 
 # Create a resource group if it doesn't exist
@@ -23,7 +26,7 @@ terraform {
   }
   backend "azurerm" {
     resource_group_name   = "tstate"
-    storage_account_name  = "tstate18331"
+    storage_account_name  = "tstate28512"
     container_name        = "tstate"
     key                   = "terraform.tfstate"
   }
