@@ -23,8 +23,8 @@ function my_ip {
 }
 
 function validate_vars {
-  if [[ ! -a "terraform/config/correccion-vars.tfvars" ]]; then
-    echo -en "\n\nERROR: No existe el archivo de variables de terraform para continuar con el despliegue.\nDebe configurar las siguientes variable terraform/config/correccion-vars.tfvars como se lee a continuación:\n\n"
+  if [[ ! -a "terraform/correccion-vars.tf" ]]; then
+    echo -en "\n\nERROR: No existe el archivo de variables de terraform para continuar con el despliegue.\nDebe configurar las siguientes variable terraform/config/correccion-vars.tf como se lee a continuación:\n\n"
     echo "-----------------------------------------------------"
     echo "location         = \"Ubicación donde quiere desplegar la plataforma\""
     echo "ssh_user         = \"Nombre de usuario que se utilizará para conectarse a los servidores de Azure via SSH\""
@@ -82,7 +82,7 @@ case ${type} in
 
     cd terraform
     terraform init
-    terraform apply -var-file=config/correccion-vars.tfvars -auto-approve
+    terraform apply -auto-approve
     ;;
   deploy)
     cd terraform
@@ -104,7 +104,7 @@ case ${type} in
 
     if [[ ${?} -eq 0 ]]; then
       cd terraform
-      terraform destroy -var-file=config/correccion-vars.tfvars -auto-approve
+      terraform destroy -auto-approve
     fi
     ;;
   info)
