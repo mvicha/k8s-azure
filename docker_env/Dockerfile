@@ -46,6 +46,7 @@ RUN echo "source /etc/bash_completion" >> ~/.bashrc \
     && echo "source <(kubectl completion bash)" >> ~/.bashrc
 
 COPY .vimrc /root/.vimrc
+COPY ansible.cfg /etc/ansible.cfg
 
 RUN ln -s /SAFE_VOLUME /workdir
 

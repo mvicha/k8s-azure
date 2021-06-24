@@ -1,7 +1,7 @@
 # Create K8s Master virtual machine
 resource "azurerm_virtual_machine" "vm_k8s_master" {
   name                         = "vm_k8s_master"
-  location                     = "eastus"
+  location                     = azurerm_resource_group.rg_k8s.location
   resource_group_name          = azurerm_resource_group.rg_k8s.name
   primary_network_interface_id = azurerm_network_interface.nic_k8s_master.id
   network_interface_ids        = [azurerm_network_interface.nic_k8s_master.id]
@@ -34,12 +34,9 @@ resource "azurerm_virtual_machine" "vm_k8s_master" {
       path     = "/home/${var.ssh_user}/.ssh/authorized_keys"
       key_data = local.external_public_key_data
     }
-    ssh_keys {
-      path     = "/home/${var.ssh_user}/.ssh/authorized_keys"
-      key_data = local.internal_public_key_data
-    }
   }
 
+  # Asignamos permisos a la VM para que pueda conectarse a Key Vault y obtener los valores necesarios
   identity {
     type = "SystemAssigned"
   }
@@ -53,13 +50,17 @@ resource "azurerm_virtual_machine" "vm_k8s_master" {
     environment = "K8s"
     node        = "Master"
   }
+
+  depends_on = [
+    azurerm_network_interface.nic_k8s_master
+  ]
 }
 
 resource "azurerm_virtual_machine" "vm_k8s_node" {
   for_each = var.workers
 
   name                         = "vm_k8s_${each.key}"
-  location                     = "eastus"
+  location                     = azurerm_resource_group.rg_k8s.location
   resource_group_name          = azurerm_resource_group.rg_k8s.name
   primary_network_interface_id = azurerm_network_interface.nic_k8s_node[each.key].id
   network_interface_ids        = [azurerm_network_interface.nic_k8s_node[each.key].id]
@@ -103,4 +104,8 @@ resource "azurerm_virtual_machine" "vm_k8s_node" {
     environment = "K8s"
     node        = "Worker"
   }
+
+  depends_on = [
+    azurerm_network_interface.nic_k8s_master
+  ]
 }

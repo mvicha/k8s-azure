@@ -11,6 +11,8 @@
   community.general.modprobe:
     name: br_netfilter
     state: present
+  async: 10
+  poll: 2
 
 
 # Copy sysctl file
@@ -27,6 +29,8 @@
     name: net.bridge.bridge-nf-call-ip6tables
     value: 1
     reload: yes
+  async: 10
+  poll: 2
 
 - name: Make sure syctl entries are loaded
   become: true
@@ -34,6 +38,8 @@
     name: net.bridge.bridge-nf-call-iptables
     value: 1
     reload: yes
+  async: 10
+  poll: 2
 
 # Add apt key for kubernetes packages
 - name: Add apt key
@@ -41,6 +47,8 @@
   ansible.builtin.get_url:
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
     dest: /usr/share/keyrings/kubernetes-archive-keyring.gpg
+  async: 10
+  poll: 2
 
 # Copy apt list
 - name: Copy /etc/apt/sources.list.d/kubernetes.list
@@ -54,6 +62,8 @@
   become: true
   ansible.builtin.apt:
     update_cache: yes
+  async: 20
+  poll: 2
 
 # Install kubernetes packages
 - name: Install Kubernetes
@@ -65,6 +75,8 @@
     - kubelet
     - kubeadm
     - kubectl
+  async: 450
+  poll: 5
 
 # Mark kubernetes packas on hold to prevent upgrades
 - name: Hold kubeadm
@@ -76,9 +88,13 @@
     - kubelet
     - kubeadm
     - kubectl
+  async: 10
+  poll: 2
 
 # Enable bash completion for kubectl
 - name: Set bash completion for kubernetes
   become: true
   ansible.builtin.shell:
     cmd: kubectl completion bash > /etc/bash_completion.d/kubectl
+  async: 10
+  poll: 2

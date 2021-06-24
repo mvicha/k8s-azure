@@ -1,37 +1,112 @@
 ---
+# Configura Python3 como versión por defecto de Python
+# Instala aplicaciones de SO necesarias para kubernets:
+#   - apt-transport-https
+#   - bash-completion
+#   - ca-certificates
+#   - chrony
+#   - curl
+#   - git
+#   - net-tools
+#   - nfs-common
+#   - python3-pip
+#   - software-properties-common
+#   - vim
+# Instala dependencias de Python necesarias para Azure
+#   - azure-cli==2.11.1
+#   - azure.identity
+#   - azure-keyvault-secrets
+# Configura la zona horaria a Europa/Madrid
+# Se asegura de que Chrony esté habilitado y corriendo
 - hosts: all
-  gather_facts: true
+  gather_facts: false
+  strategy: free
   roles:
     - common
 
+# Crea punto de montaje para el disco de datos en /srv/nfs
+# Instala paquetes necesarios para el manejo del nuevo disco
+#   - lvm2
+#   - nfs-kernel-server
+#   - xfsprogs
+# Configura NFS para que escuche sólo en la dirección IP interna
+# Crea nueva partición en el disco de datos (sólo en caso de que no exista)
+# Crea volúmen lógico en el disco de datos
+# Inicializa el volúmen lógico con formato 
+# Configura fstab para manejar el disco de datos
+# Monta el disco de datos en /srv/nfs
+# Se asegura que el servicio de NFS está ejecutado y lo reinicia para tomar los nuevos cambios
+# Exporta /srv/nfs brindando acceso a las subred en la red privada
+# Crea la estructura de datos donde se guardará la información de la aplicación de Ghost /srv/nfs/mounts/ghost/data
 - hosts: nfs
-  gather_facts: true
+  gather_facts: false
+  strategy: free
   roles:
     - nfs
 
+# Configura todo lo necesario para que la máquina definida como deployer pueda desplegar todos los servicios necesarios
+# Crea el directorio $HOME/.kube donde se guardará la configuración de acceso al servidor de Kubernetes
+# Instala Helm
+# Instala las dependencias de Python necesarias para que Ansible pueda realizar los cambios apropiados
+#   - kubernetes-validate
+#   - openshift
+#   - PyMySQL
+#   - PyYAML
+# Copia un script para obtener las claves de Azure Key Vault
 - hosts: deployer
-  gather_facts: true
+  gather_facts: false
+  strategy: free
   roles:
     - deployment-tools
 
+# Instala Docker utilizando el paquete de instalación recomendado por Docker (https://get.docker.com) y se asegura que esté corriendo
+# Incluye al usuario en el grupo de docker para que pueda ejecutar docker sin restricciones
+# Configura módulos requeridos por kubernets
+# Configura instrucciones de kernel requeridas por kubernetes
+# Instala los paquetes necesarios de kubernetes para su funcionamiento tanto en Master como en Workers
+#   - kubelet
+#   - kubeadm
+#   - kubectl
+# Se asegura de que los paquetes de kubernetes instalados no se actualicen
+# Configura la extensión de bash_completion para Kubernetes
 - hosts: kubernetes
-  gather_facts: true
+  gather_facts: false
+  strategy: free
   roles:
     - docker
     - kubernetes
 
+# Verifica que Kubernetes no haya sido inicializado previamente
+# Inicializa Kubernetes
+# Copia la configuración de kubernetes en $HOME/.kube/config y /root/.kube/config y se asegura que sea accesible sólo para el usuario correspondiente
+# Obtiene la línea de comandos para hacer join al Master
+# Instala flannel. Importante destacar los pasos a seguir detallados para la instalación de flannel ya que otros CNI no funcionan adecuadamente con Azure:
+#   - Intalar RBAC
+#   - Utilizar el siguiente CIDR para la Red Virtual: 192.168.0.0/16
+#   - Utilizar el siguiente CIDR para la Subred privada: 192.168.1.0/24
+#   - Utilizar el siguiente CIDR para la red de pods: 10.244.0.0/16
+# Registra la lista de nodos que forman parte del cluster. Esta información es necesaria para el proceso de unión de los nodos Worker
 - hosts: kubemasters
   gather_facts: true
+  strategy: free
   roles:
     - kubemasters
 
+# Une los nodos al cluster
+# Crea el directorio para guardar la estructura de datos de MySQL en el nodo correspondiente
 - hosts: kubenodes
-  gather_facts: true
+  gather_facts: false
+  strategy: free
   roles:
     - kubenodes
 
+# Instala ingress-nginx-controller
+# Instala cert-manager para poder acceder via HTTPS a la URL de Ghost
+# Instala MySQL, dependencia de Ghost
+# Instala Ghost
 - hosts: deployer
   gather_facts: true
+  strategy: free
   roles:
     - ingress-nginx-controller
     - cert-manager

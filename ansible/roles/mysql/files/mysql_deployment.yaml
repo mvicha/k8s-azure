@@ -29,6 +29,39 @@ spec:
         - containerPort: 3306
           name: mysql-tcp
           protocol: TCP
+        livenessProbe:
+          exec:
+            command:
+            - bash
+            - "-c"
+            - |
+              /usr/bin/mysqladmin -u root -p"$(cat /tmp/mysql-root-password-file/password)" ping
+          initialDelaySeconds: 10
+          failureThreshold: 5
+          successThreshold: 1
+          periodSeconds: 10
+        readinessProbe:
+          exec:
+            command:
+            - bash
+            - "-c"
+            - |
+              /usr/bin/mysqladmin -u root -p"$(cat /tmp/mysql-root-password-file/password)" ping
+          initialDelaySeconds: 10
+          failureThreshold: 5
+          successThreshold: 1
+          periodSeconds: 10
+        startupProbe:
+          exec:
+            command:
+            - bash
+            - "-c"
+            - |
+              /usr/bin/mysqladmin -u root -p"$(cat /tmp/mysql-root-password-file/password)" ping
+          failureThreshold: 10
+          successThreshold: 1
+          initialDelaySeconds: 10
+          periodSeconds: 10
         securityContext:
           privileged: true
         volumeMounts:
@@ -36,6 +69,9 @@ spec:
           name: mysql-data-volume
         - mountPath: /tmp/mysql-root-password-file
           name: mysql-root-password-file
+        - mountPath: /usr/bin/add-mysql-user
+          name: add-mysql-user-configmap
+          subPath: add-mysql-user
       nodeSelector:
         mysql: server
       volumes:
@@ -45,3 +81,7 @@ spec:
       - name: mysql-root-password-file
         secret:
           secretName: mysql-password
+      - name: add-mysql-user-configmap
+        configMap:
+          name: add-mysql-user-configmap
+          defaultMode: 0755

@@ -27,7 +27,7 @@ resource "azurerm_public_ip" "pi_k8s" {
   resource_group_name = azurerm_resource_group.rg_k8s.name
   allocation_method   = "Static"
   sku                 = "Standard"
-  domain_name_label   = "ghostmvilla"
+  domain_name_label   = var.ghost_dns_alias
 
   tags = {
     environment = "K8s"
@@ -45,7 +45,7 @@ data "azurerm_public_ip" "pi_k8s" {
 
 # Create K8s master private network interface
 resource "azurerm_network_interface" "nic_k8s_master" {
-  name                 = "nic_k8s_master"
+  name                 = "Master"
   location             = azurerm_resource_group.rg_k8s.location
   resource_group_name  = azurerm_resource_group.rg_k8s.name
   enable_ip_forwarding = true
@@ -65,7 +65,7 @@ resource "azurerm_network_interface" "nic_k8s_master" {
 }
 
 
-# Create K8s node01 private network interface
+# Create K8s node private network interface
 resource "azurerm_network_interface" "nic_k8s_node" {
   for_each = var.workers
 
@@ -75,7 +75,6 @@ resource "azurerm_network_interface" "nic_k8s_node" {
   enable_ip_forwarding = true
 
   ip_configuration {
-    #name                          = "nic_config_node${count.index}"
     name                          = "nic_config_${each.key}"
     subnet_id                     = azurerm_subnet.sn_k8s_private.id
     private_ip_address_allocation = "Static"

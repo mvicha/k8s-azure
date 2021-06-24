@@ -57,5 +57,5 @@ output "WARNING" {
 
 # Ansible command line
 output "ansible_exec_command" {
-  value = "ansible-playbook -i ../ansible/hosts -e jump_host='${data.azurerm_public_ip.pi_k8s.ip_address}' -e admin_user='${var.ssh_user}' -e subnet_cidr_private='${azurerm_subnet.sn_k8s_private.address_prefixes[0]}' -e private_lan_master='${azurerm_network_interface.nic_k8s_master.private_ip_address}' -e private_lan_node01='${var.workers["Node01"].ip}' -e private_lan_node02='${var.workers["Node02"].ip}' -e internal_private_key_file='${local.internal_private_key_file}' -e external_private_key_file='${local.external_private_key_file}' -e ghost_url='${data.azurerm_public_ip.pi_k8s.fqdn}' ../ansible/playbook.yml"
+  value = "ansible-playbook -i ../ansible/hosts -e jump_host='${data.azurerm_public_ip.pi_k8s.ip_address}' -e admin_user='${var.ssh_user}' -e subnet_cidr_private='${azurerm_subnet.sn_k8s_private.address_prefixes[0]}' -e private_lan_master='${azurerm_network_interface.nic_k8s_master.private_ip_address}' -e private_lan_node01='${var.workers["Node01"].ip}' -e private_lan_node02='${var.workers["Node02"].ip}' -e internal_private_key_file='${local.internal_private_key_file}' -e external_private_key_file='${local.external_private_key_file}' -e ghost_url='${data.azurerm_public_ip.pi_k8s.fqdn}' -e prefix='${var.prefix}' ../ansible/playbook.yml"
 }

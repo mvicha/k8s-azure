@@ -20,7 +20,9 @@
   become: true
   ansible.builtin.shell:
     # cmd: kubeadm init --apiserver-advertise-address="{{ control_plane_endpoint }}" --node-name="master.k8smvilla.com" --pod-network-cidr="{{ pod_network_cidr }}"
-    cmd: kubeadm init --node-name="master.k8smvilla.com" --pod-network-cidr="{{ pod_network_cidr }}"
+    cmd: kubeadm init --node-name="master.{{ prefix }}.com" --pod-network-cidr="{{ pod_network_cidr }}"
+  async: 600
+  poll: 5
   when: kubernetes_init_debug.stderr | length > 0
 
 # Create $HOME/.kube directory for copying kubernetes config file
@@ -31,6 +33,18 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     state: directory
+  async: 10
+  poll: 2
+
+# Create /root/.kube directory for copying kubernetes config file
+- name: Make sure /root/.kube directory exists
+  become: true
+  ansible.builtin.file:
+    path: /root/.kube
+    state: directory
+    mode: "0700"
+  async: 10
+  poll: 2
 
 # Copy /etc/kubernetes/admin.conf to $HOME/.kube/config to use kubernetes
 - name: Copy k8s config
@@ -43,12 +57,14 @@
     mode: "0600"
     remote_src: yes
 
-- name: Copy k8s config to local .kube directory
+# Copy /etc/kubernetes/admin.conf to /root/.kube/config to use kubernetes
+- name: Copy k8s config to local /root/.kube directory
   become: true
-  ansible.builtin.fetch:
+  ansible.builtin.copy:
     src: /etc/kubernetes/admin.conf
     dest: /root/.kube/config
-    flat: yes
+    mode: "0600"
+    remote_src: yes
 
 - name: Get Join command
   ansible.builtin.shell:
@@ -68,26 +84,42 @@
     url: https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
     dest: /tmp/kube-flannel.yml
     mode: '0664'
+  async: 10
+  poll: 2
 
 - name: Apply flannel manifest to the cluster
   community.kubernetes.k8s:
     state: present
     src: /tmp/kube-flannel.yml
+    wait: yes
+    wait_sleep: 10
+    wait_timeout: 180
+    validate:
+      fail_on_error: yes
 
 - name: Apply RBAC
   community.kubernetes.k8s:
     state: present
     src: /tmp/rbac.yaml
+    wait: yes
+    wait_sleep: 10
+    wait_timeout: 180
+    validate:
+      fail_on_error: yes
 
 - name: Remove kube-flannel.yml manifest
   ansible.builtin.file:
     path: /tmp/kube-flannel.yml
     state: absent
+  async: 10
+  poll: 2
 
 - name: Remove RBAC
   ansible.builtin.file:
     path: /tmp/rbac.yaml
     state: absent
+  async: 10
+  poll: 2
 
 - name: Get clusterrolebinding
   ansible.builtin.shell:

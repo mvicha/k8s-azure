@@ -17,14 +17,18 @@ resource "azurerm_resource_group" "rg_k8s" {
   }
 }
 
+# Data block to reference Azure's client config
 data "azurerm_client_config" "current" {}
 
+# Data block to reference Azure's current subscription
 data "azurerm_subscription" "current" {}
 
+# Data block for setting Contributor policies
 data "azurerm_role_definition" "contributor" {
   name = "Contributor"
 }
 
+# Data block for setting Owner policies
 data "azurerm_role_definition" "owner" {
   name = "Owner"
 }

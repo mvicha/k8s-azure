@@ -1,4 +1,7 @@
 # Create Network Security Group and rule
+# Allow port 22 (SSH)
+# Allow port 80 (HTTP)
+# Allow port 443 (HTTPS)
 resource "azurerm_network_security_group" "nsg_k8s_external" {
   name                = "nsg_k8s_external"
   location            = azurerm_resource_group.rg_k8s.location
@@ -6,18 +9,20 @@ resource "azurerm_network_security_group" "nsg_k8s_external" {
 
   security_rule {
     name                       = "SSH"
+    description                = "Accept SSH connections only from specific address"
     priority                   = 1001
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "22"
-    source_address_prefix      = "*"
+    source_address_prefix      = var.my_ip
     destination_address_prefix = "*"
   }
 
   security_rule {
     name                       = "HTTP"
+    description                = "Accept HTTP connections from everyone"
     priority                   = 1011
     direction                  = "Inbound"
     access                     = "Allow"
@@ -30,7 +35,8 @@ resource "azurerm_network_security_group" "nsg_k8s_external" {
 
   security_rule {
     name                       = "HTTPS"
-    priority                   = 1022
+    description                = "Accept HTTPS connections from everyone"
+    priority                   = 1021
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
@@ -88,18 +94,31 @@ resource "local_file" "internal_pem" {
   file_permission      = "0400"
 }
 
+# Generate a random mysql-admin-password containing 18 characters from which: at least 2 are lower case, 2 are upper case, 2 are numerical and 2 are special characters
 resource "random_string" "mysql_admin_password" {
-  length      = 18
-  min_upper   = 2
-  min_lower   = 2
-  min_numeric = 2
-  min_special = 2
+  length           = 18
+  min_upper        = 2
+  min_lower        = 2
+  min_numeric      = 2
+  min_special      = 2
+  override_special = "/@-.,_"
 }
 
-resource "random_string" "mysql_ghost_password" {
-  length      = 18
+# Generate a random mysql-ghost-username containing 12 characters from which: at least 2 are lower case, 2 are upper case and 2 are numerical
+resource "random_string" "mysql_ghost_username" {
+  special     = false
+  length      = 8
   min_upper   = 2
   min_lower   = 2
   min_numeric = 2
-  min_special = 2
+}
+
+# Generate a random mysql-ghost-password containing 18 characters from which: at least 2 are lower case, 2 are upper case, 2 are numerical and 2 are special characters
+resource "random_string" "mysql_ghost_password" {
+  length           = 18
+  min_upper        = 2
+  min_lower        = 2
+  min_numeric      = 2
+  min_special      = 2
+  override_special = "/@-.,_"
 }

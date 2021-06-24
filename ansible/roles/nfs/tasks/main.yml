@@ -4,6 +4,8 @@
     path: /srv/nfs
     state: directory
     mode: '0755'
+  async: 10
+  poll: 2
 
 # Install LVM2
 - name: Install LVM and NFS packages
@@ -15,6 +17,8 @@
     - lvm2
     - nfs-kernel-server
     - xfsprogs
+  async: 450
+  poll: 5
 
 # Make NFS listen on specific address
 - name: Make NFS to run in private LAN only
@@ -25,6 +29,8 @@
     # line: "RPCNFSDOPTS=\"-N 2 -N 3 -H {{ ansible_host }}\""
     line: "RPCNFSDOPTS=\"-H {{ ansible_host }}\""
     state: present
+  async: 10
+  poll: 2
 
 # Check if partiton exists
 # https://docs.ansible.com/ansible/latest/collections/community/general/parted_module.html
@@ -32,6 +38,8 @@
   become: true
   community.general.parted: device=/dev/sdc unit=MiB
   register: sdc_info
+  async: 10
+  poll: 2
 
 # Create partition
 # https://docs.ansible.com/ansible/latest/collections/community/general/parted_module.html
@@ -41,12 +49,14 @@
   when:
     - sdc_info.partitions | length == 0
 
-- name: Create a new ext4 primary partition
+- name: Create a new primary partition
   become: true
   community.general.parted:
     device: /dev/sdc
     number: 1
     state: present
+  async: 300
+  poll: 5
   when: sdc_info.partitions | length == 0
   register: nfs_partition
 
@@ -59,6 +69,8 @@
     pvs: /dev/sdc1
     force: no
     state: present
+  async: 10
+  poll: 2
   when: nfs_partition.changed
 
 
@@ -70,6 +82,8 @@
     size: 100%FREE
     force: no
     state: present
+  async: 10
+  poll: 2
   when: nfs_partition.changed
 
 
@@ -79,15 +93,9 @@
     fstype: xfs
     dev: /dev/nfs-vg/nfs-lv
     force: yes
+  async: 300
+  poll: 5
   when: nfs_partition.changed
-
-- name: Make sure mount point exists
-  become: true
-  ansible.builtin.file:
-    path: /srv/nfs
-    state: directory
-    mode: '0755'
-
 
 # Check if mount point exists in fstab
 # https://stackoverflow.com/questions/25977410/adding-an-fstab-option-using-ansible
@@ -98,6 +106,8 @@
     backup: yes
     line: "/dev/nfs-vg/nfs-lv\t/srv/nfs\txfs\tdefaults\t0 0"
     state: present
+  async: 10
+  poll: 2
 
 # Mount volume
 # https://docs.ansible.com/ansible/latest/collections/ansible/posix/mount_module.html
@@ -108,6 +118,8 @@
     src: /dev/nfs-vg/nfs-lv
     fstype: xfs
     state: mounted
+  async: 10
+  poll: 2
 
 - name: Make sure exportfs accepts LAN
   become: true
@@ -118,6 +130,8 @@
     create: yes
     state: present
   register: exportfs
+  async: 10
+  poll: 2
 
 - name: Restart nfs-kernel-server.service 
   become: true
@@ -125,15 +139,21 @@
     daemon_reload: yes
     state: restarted
     name: nfs-kernel-server.service
+  async: 10
+  poll: 2
   when: exportfs.changed
 
 - name: Re-export the share
   become: true
   command: exportfs -ravs
   when: exportfs.changed
+  async: 10
+  poll: 2
 
 - name: Make sure fs structure for ghost data exists
   become: true
   ansible.builtin.file:
     path: /srv/nfs/mounts/ghost/data
     state: directory
+  async: 10
+  poll: 2

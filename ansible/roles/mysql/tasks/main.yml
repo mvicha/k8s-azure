@@ -26,6 +26,11 @@
     template:
       path: secrets.yaml.j2
 
+- name: Create MySQL configmap for adding users
+  community.kubernetes.k8s:
+    state: present
+    definition: "{{ lookup('file', 'add_mysql_user_configmap.yaml') | from_yaml }}"
+
 - name: Create MySQL service
   community.kubernetes.k8s:
     state: present

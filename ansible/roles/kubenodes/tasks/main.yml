@@ -6,6 +6,8 @@
   become: true
   ansible.builtin.shell:
     cmd: "{{ hostvars['Master']['kubernetes_join_command'] }}"
+  async: 600
+  poll: 5
   when: not inventory_hostname | lower in hostvars['Master']['kubernetes_node_list'] | lower
 
 - name: Create local file system where to store mysql databases
@@ -13,4 +15,6 @@
   ansible.builtin.file:
     path: /srv/mysql
     state: directory
+  async: 10
+  poll: 2
   when: nfs_server

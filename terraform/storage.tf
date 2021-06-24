@@ -23,6 +23,7 @@ resource "azurerm_storage_account" "sa_k8s" {
 }
 
 
+# Creamos un disco para utilizar como Persistant Storage de Nfs y MySQL
 resource "azurerm_managed_disk" "nfs" {
   count                = length(var.workers) > 0 ? 1 : 0
 
@@ -35,8 +36,9 @@ resource "azurerm_managed_disk" "nfs" {
 }
 
 
+# Asociamos el disco de Persistant Storage a Node01
 resource "azurerm_virtual_machine_data_disk_attachment" "nfs" {
-   count              = length(var.workers) > 0 ? 1 : 0
+  count              = length(var.workers) > 0 ? 1 : 0
 
   managed_disk_id    = azurerm_managed_disk.nfs.0.id
   virtual_machine_id = azurerm_virtual_machine.vm_k8s_node["Node01"].id

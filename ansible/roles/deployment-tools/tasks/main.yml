@@ -2,6 +2,8 @@
   ansible.builtin.file:
     path: /home/{{ ansible_user }}/.kube
     state: directory
+  async: 10
+  poll: 2
 
 - name: Uncompress helm
   ansible.builtin.unarchive:
@@ -21,6 +23,8 @@
   ansible.builtin.file:
     path: /tmp/linux-amd64
     state: absent
+  async: 10
+  poll: 2
 
 - name: Install pip files
   ansible.builtin.pip:
@@ -29,6 +33,8 @@
       - openshift
       - PyMySQL
       - PyYAML
+  async: 450
+  poll: 5
 
 - name: Create directory for secure storing get_keyvault_value script
   become: true
@@ -37,6 +43,8 @@
     state: directory
     owner: '{{ ansible_user }}'
     mode: '0700'
+  async: 10
+  poll: 2
 
 - name: Copy password obtainer
   ansible.builtin.copy:

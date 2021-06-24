@@ -4,15 +4,30 @@ metadata:
   name: ghost-ingress
   namespace: ghost
   annotations:
+    # Clase de controlador Ingress: nginx
     kubernetes.io/ingress.class: "nginx"
+    # Manejador de certificados letsencrypt-prod. Gracias a cert-manager y al issuer previamente desplegado (tls_issuer.yaml)
     cert-manager.io/issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 
+    # Aumentamos límites de timeout
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+
+    # Permitimos que el servicio responda en el puerto 80 sin redirigir al 443
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+
+    # Las llamadas SSL no pasan directamente al backend
+    ingress.kubernetes.io/ssl-passthrough: "false"
+  
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/secure-backends: "true"
+
+    # Seteamos cookies de afinidad de sesión
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "route"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
 
 spec:
   tls:
@@ -23,7 +38,7 @@ spec:
   - host: {{ ghost_url }}
     http:
       paths:
-      - path: /(.*)
+      - path: /
         pathType: Prefix
         backend:
           service:

@@ -1,13 +1,17 @@
 # SSH keys
 resources/id_rsa_*
 terraform/resources/*.pem
-**credentials.tf*
 
-# Terraform directory
+# Terraform
 .terraform*
+terraform/state.tf
+**credentials.tf*
 
 # Temp files
 *.swp
 
 # Output files
 *.out
+
+# Backup files
+**.bak*
