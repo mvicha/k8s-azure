@@ -1,0 +1,23 @@
+- name: Debug ansible_host
+  ansible.builtin.debug:
+    var: inventory_hostname
+
+- name: Remvoe node from Cluster
+  become: true
+  ansible.builtin.shell:
+    cmd: kubeadm reset -f
+  register: node_removal
+  async: 600
+  poll: 5
+  when: inventory_hostname | lower in hostvars['Master']['kubernetes_node_list'] | lower
+
+- name: Reset iptables rules
+  become: true
+  ansible.builtin.shell: iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
+  when: node_removal.changed
+
+- name: Reboot nodes
+  become: true
+  ansible.builtin.reboot:
+    post_reboot_delay: 20
+  when: node_removal.changed

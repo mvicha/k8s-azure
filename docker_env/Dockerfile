@@ -6,6 +6,7 @@ RUN apt-get update \
   && apt-get install -y \
       bash-completion \
       curl \
+      dnsutils \
       git \
       iputils-ping \
       jq \

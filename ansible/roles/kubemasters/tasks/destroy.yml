@@ -1,0 +1,99 @@
+- name: Download kube-flannel manifest
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+    dest: /tmp/kube-flannel.yml
+    mode: '0664'
+  async: 10
+  poll: 2
+  when: hostvars['Master']['kubernetes_masters']
+
+- name: Remove flannel manifest from the cluster
+  community.kubernetes.k8s:
+    state: absent
+    src: /tmp/kube-flannel.yml
+    validate:
+      fail_on_error: no
+
+# Copy rbac.yaml
+- name: Copy rbac.yaml to /tmp/rbac.yaml
+  ansible.builtin.copy:
+    src: rbac.yaml
+    dest: /tmp/rbac.yaml
+
+- name: Remove RBAC
+  community.kubernetes.k8s:
+    state: absent
+    src: /tmp/rbac.yaml
+    validate:
+      fail_on_error: no
+
+- name: Remove kube-flannel.yml manifest
+  ansible.builtin.file:
+    path: /tmp/kube-flannel.yml
+    state: absent
+  async: 10
+  poll: 2
+
+- name: Remove RBAC
+  ansible.builtin.file:
+    path: /tmp/rbac.yaml
+    state: absent
+  async: 10
+  poll: 2
+
+# Reset Kubernetes master
+- name: Reset K8s
+  become: true
+  ansible.builtin.shell:
+    cmd: kubeadm reset -f
+  register: master_removal
+  async: 600
+  poll: 5
+
+- name: Reset iptables rules
+  become: true
+  ansible.builtin.shell: iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
+  when: master_removal.changed
+
+
+# Remove /root/.kube/config
+- name: Remove k8s config from local /root/.kube directory
+  become: true
+  ansible.builtin.file:
+    path: /root/.kube/config
+    state: absent
+  async: 10
+  poll: 2
+
+# RemoveHOME/.kube/config
+- name: Remove k8s config
+  become: true
+  ansible.builtin.file:
+    path: /home/{{ ansible_user }}/.kube/config
+    state: absent
+  async: 10
+  poll: 2
+
+# Remove /root/.kube directory
+- name: Remove /root/.kube
+  become: true
+  ansible.builtin.file:
+    path: /root/.kube
+    state: absent
+  async: 10
+  poll: 2
+
+# Remove $HOME/.kube directory
+- name: Remove .kube directory
+  become: true
+  ansible.builtin.file:
+    path: /home/{{ ansible_user }}/.kube
+    state: absent
+  async: 10
+  poll: 2
+
+- name: Reboot nodes
+  become: true
+  ansible.builtin.reboot:
+    post_reboot_delay: 20
+  when: master_removal.changed

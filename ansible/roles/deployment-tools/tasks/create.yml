@@ -1,0 +1,55 @@
+- name: Create .kube diretory
+  ansible.builtin.file:
+    path: /home/{{ ansible_user }}/.kube
+    state: directory
+  async: 10
+  poll: 2
+
+- name: Uncompress helm
+  ansible.builtin.unarchive:
+    src: https://get.helm.sh/helm-v3.6.0-linux-amd64.tar.gz
+    dest: /tmp
+    remote_src: yes
+
+- name: Copy helm to /usr/local/bin/helm
+  become: true
+  ansible.builtin.copy:
+    src: /tmp/linux-amd64/helm
+    dest: /usr/local/bin/helm
+    mode: "0755"
+    remote_src: yes
+
+- name: Remove unarchived helm directory
+  ansible.builtin.file:
+    path: /tmp/linux-amd64
+    state: absent
+  async: 10
+  poll: 2
+
+- name: Install pip files
+  ansible.builtin.pip:
+    name:
+      - kubernetes-validate
+      - openshift
+      - PyMySQL
+      - PyYAML
+  async: 450
+  poll: 5
+
+- name: Create directory for secure storing get_keyvault_value script
+  become: true
+  ansible.builtin.file:
+    path: /opt/utils
+    state: directory
+    owner: '{{ ansible_user }}'
+    mode: '0700'
+  async: 10
+  poll: 2
+
+- name: Copy password obtainer
+  ansible.builtin.copy:
+    src: get_keyvault_value.py
+    dest: /opt/utils/get_keyvault_value.py
+    mode: "0700"
+    owner: '{{ ansible_user }}'
+

@@ -1,0 +1,99 @@
+---
+# Validamos que Kuberrnetes haya sido inicializado antes de proceder
+# Obtenemos una lista de nodos antes de proceder
+- hosts: kubemasters
+  gather_facts: true
+  strategy: free
+  vars:
+    action_mode: get_cluster_info
+  roles:
+    - kubemasters
+
+# Desinstala ingress-nginx-controller
+# Desinstala cert-manager para poder acceder via HTTPS a la URL de Ghost
+# Desinstala MySQL, dependencia de Ghost
+# Desinstala Ghost
+- hosts: deployer
+  gather_facts: true
+  strategy: free
+  vars:
+    action_mode: destroy
+  roles:
+    - ghost
+    - mysql
+    - cert-manager
+    - ingress-nginx-controller
+    
+# Elimina los nodos del cluster
+#### Elimina el directorio para guardar la estructura de datos de MySQL en el nodo correspondiente
+- hosts: kubenodes
+  gather_facts: false
+  strategy: free
+  vars:
+    action_mode: destroy
+  roles:
+    - kubenodes
+
+# Verifica que Kubernetes haya sido inicializado previamente
+# Desinicializa Kubernetes
+# Elimina la configuración de kubernetes en $HOME/.kube/config y /root/.kube/confi
+- hosts: kubemasters
+  gather_facts: true
+  strategy: free
+  vars:
+    action_mode: destroy
+  roles:
+    - kubemasters
+
+# Desinstala Docker utilizando el paquete de instalación recomendado por Docker (https://get.docker.com) y se asegura que esté corriendo
+# Elimina al usuario en el grupo de docker para que pueda ejecutar docker sin restricciones
+# Configura módulos requeridos por kubernees
+# Elimina instrucciones de kernel requeridas por kubernetes
+# Se asegura de que los paquetes de kubernetes instalados puedan eliminarse
+# Desinstala los paquetes necesarios de kubernetes para su funcionamiento tanto en Master como en Workers
+#   - kubelet
+#   - kubeadm
+#   - kubectl
+# Elimina la extensión de bash_completion para Kubernetes
+- hosts: kubernetes
+  gather_facts: false
+  strategy: free
+  vars:
+    action_mode: destroy
+  roles:
+    - kubernetes
+    - docker
+
+# Elimina el directorio $HOME/.kube donde se guardará la configuración de acceso al servidor de Kubernetes
+# Desinstala Helm
+# Desinstala las dependencias de Python necesarias para que Ansible pueda realizar los cambios apropiados
+#   - kubernetes-validate
+#   - openshift
+#   - PyMySQL
+#   - PyYAML
+# Elimina el script para obtener las claves de Azure Key Vault
+- hosts: deployer
+  gather_facts: false
+  strategy: free
+  vars:
+    action_mode: destroy
+  roles:
+    - deployment-tools
+
+# Desinstala aplicaciones de SO necesarias para kubernets:
+#   - apt-transport-https
+#   - bash-completion
+#   - nfs-common
+#   - software-properties-common
+# Desinstala dependencias de Python necesarias para Azure
+#   - azure-cli==2.11.1
+#   - azure.identity
+#   - azure-keyvault-secrets
+- hosts: all
+  gather_facts: false
+  strategy: free
+  vars:
+    action_mode: destroy
+  roles:
+    - common
+

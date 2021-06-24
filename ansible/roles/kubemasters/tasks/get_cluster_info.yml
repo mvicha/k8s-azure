@@ -1,0 +1,34 @@
+# Cuando no pueda conectarse al servidor, stderr tendrá una descripción del error, la que utilizaremos para saber si debemos iniciar el master o no
+- name: Debug kubernetes state before init
+  ansible.builtin.shell:
+    cmd: kubectl cluster-info dump
+  register: kubernetes_init_debug
+  ignore_errors: yes
+
+- name: Register kubernetes state to initialized
+  ansible.builtin.set_fact:
+    kubernetes_masters: true
+  when: not kubernetes_init_debug.stderr
+
+- name: Register kubernetes state to NOT initialized
+  ansible.builtin.set_fact:
+    kubernetes_masters: false
+  when: kubernetes_init_debug.stderr
+
+
+- name: Get kubernetes node list
+  ansible.builtin.shell:
+    cmd: kubectl get nodes
+  register: k8s_node_list
+  ignore_errors: yes
+  when: not kubernetes_init_debug.stderr
+
+- name: Register node list with node contents
+  ansible.builtin.set_fact:
+    kubernetes_node_list: "{{ k8s_node_list.stdout }}"
+  when: k8s_node_list.changed
+
+- name: Register node list empty as kubernetes has not been initialized
+  ansible.builtin.set_fact:
+    kubernetes_node_list: ""
+  when: kubernetes_init_debug.stderr | length > 0

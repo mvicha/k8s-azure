@@ -1,0 +1,41 @@
+- name: Remove password obtainer
+  become: true
+  ansible.builtin.file:
+    path: /opt/utils/get_keyvault_value.py
+    state: absent
+  async: 10
+  poll: 2
+
+- name: Remove directory for secure storing get_keyvault_value script
+  become: true
+  ansible.builtin.file:
+    path: /opt/utils
+    state: absent
+  async: 10
+  poll: 2
+
+- name: Remove pip files
+  ansible.builtin.pip:
+    name:
+      - kubernetes-validate
+      - openshift
+      - PyMySQL
+      - PyYAML
+    state: absent
+  async: 450
+  poll: 5
+
+- name: Remove helm from /usr/local/bin/helm
+  become: true
+  ansible.builtin.file:
+    path: /usr/local/bin/helm
+    state: absent
+  async: 10
+  poll: 2
+
+- name: Remove .kube diretory
+  ansible.builtin.file:
+    path: /home/{{ ansible_user }}/.kube
+    state: absent
+  async: 10
+  poll: 2

@@ -21,6 +21,8 @@
 - hosts: all
   gather_facts: false
   strategy: free
+  vars:
+    action_mode: create
   roles:
     - common
 
@@ -41,6 +43,8 @@
 - hosts: nfs
   gather_facts: false
   strategy: free
+  vars:
+    action_mode: create
   roles:
     - nfs
 
@@ -56,6 +60,8 @@
 - hosts: deployer
   gather_facts: false
   strategy: free
+  vars:
+    action_mode: create
   roles:
     - deployment-tools
 
@@ -72,6 +78,8 @@
 - hosts: kubernetes
   gather_facts: false
   strategy: free
+  vars:
+    action_mode: create
   roles:
     - docker
     - kubernetes
@@ -89,6 +97,8 @@
 - hosts: kubemasters
   gather_facts: true
   strategy: free
+  vars:
+    action_mode: create
   roles:
     - kubemasters
 
@@ -97,6 +107,8 @@
 - hosts: kubenodes
   gather_facts: false
   strategy: free
+  vars:
+    action_mode: create
   roles:
     - kubenodes
 
@@ -107,6 +119,8 @@
 - hosts: deployer
   gather_facts: true
   strategy: free
+  vars:
+    action_mode: create
   roles:
     - ingress-nginx-controller
     - cert-manager

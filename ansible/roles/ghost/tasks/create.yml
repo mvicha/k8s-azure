@@ -1,0 +1,119 @@
+# Create ghost namespace
+- name: Create a ghost namespace
+  community.kubernetes.k8s:
+    name: ghost
+    api_version: v1
+    kind: Namespace
+    state: present
+
+- name: Get ghost user secret
+  ansible.builtin.shell:
+    cmd: python3 /opt/utils/get_keyvault_value.py keyvaultk8s mysql-ghost-username
+  register: ghostuser
+
+- name: Get ghost password secret
+  ansible.builtin.shell:
+    cmd: python3 /opt/utils/get_keyvault_value.py keyvaultk8s mysql-ghost-password
+  register: ghostpassword
+
+- name: Get ghost database secret
+  ansible.builtin.shell:
+    cmd: python3 /opt/utils/get_keyvault_value.py keyvaultk8s mysql-ghost-database
+  register: ghostdb
+
+- name: Register ghost username
+  ansible.builtin.set_fact:
+    mysql_ghost_username: "{{ ghostuser.stdout }}"
+  when: ghostuser | length > 0
+
+- name: Register ghost user password
+  ansible.builtin.set_fact:
+    mysql_ghost_password: "{{ ghostpassword.stdout | string | b64encode }}"
+  when: ghostpassword | length > 0
+
+- name: Register ghost database
+  ansible.builtin.set_fact:
+    mysql_ghost_database: "{{ ghostdb.stdout }}"
+  when: ghostdb | length > 0
+
+- name: Look for MySQL pod name
+  community.kubernetes.k8s_info:
+    kind: Pod
+    namespace: mysql
+    label_selectors:
+      - "app = mysql"
+  register: mysqlpod
+
+- name: Register Pod name
+  ansible.builtin.set_fact:
+    mysql_pod_name: "{{ mysqlpod.resources.0.metadata.name }}"
+
+- name: Create Ghost mysql user/database/credentials
+  community.kubernetes.k8s_exec:
+    namespace: mysql
+    pod: '{{ mysql_pod_name }}'
+    command: /usr/bin/add-mysql-user '{{ ghostuser.stdout }}' '{{ ghostpassword.stdout }}' '{{ ghostdb.stdout }}'
+  register: createuser
+
+- name: Debug user creation
+  ansible.builtin.debug:
+    var: createuser
+
+- name: Create tls issuer
+  community.kubernetes.k8s:
+    state: present
+    template:
+      path: tls_issuer.yaml.j2
+
+- name: Deploy Ghost secrets
+  community.kubernetes.k8s:
+    state: present
+    template:
+      path: secrets.yaml.j2
+
+- name: Create Ghost service
+  community.kubernetes.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: ghost-svc
+        namespace: ghost
+        labels:
+          app: ghost
+      spec:
+        selector:
+          app: ghost
+        ports:
+        - protocol: TCP
+          name: mysql-tcp
+          port: 2368
+          targetPort: 2368
+
+- name: Create Ghost configmap
+  community.kubernetes.k8s:
+    state: present
+    template:
+      path: ghost_configmap.yaml.j2
+
+- name: Create Ghost deployment
+  community.kubernetes.k8s:
+    state: present
+    template:
+      path: ghost_deployment.yaml.j2
+    wait: yes
+    wait_sleep: 10
+    wait_timeout: 600
+    wait_condition:
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    validate:
+      fail_on_error: yes
+
+- name: Create Ghost ingress
+  community.kubernetes.k8s:
+    state: present
+    template:
+      path: ghost_ingress.yaml.j2

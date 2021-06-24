@@ -1,0 +1,97 @@
+- name: Get ghost user secret
+  ansible.builtin.shell:
+    cmd: python3 /opt/utils/get_keyvault_value.py keyvaultk8s mysql-ghost-username
+  register: ghostuser
+
+- name: Get ghost password secret
+  ansible.builtin.shell:
+    cmd: python3 /opt/utils/get_keyvault_value.py keyvaultk8s mysql-ghost-password
+  register: ghostpassword
+
+- name: Get ghost database secret
+  ansible.builtin.shell:
+    cmd: python3 /opt/utils/get_keyvault_value.py keyvaultk8s mysql-ghost-database
+  register: ghostdb
+
+- name: Register ghost username
+  ansible.builtin.set_fact:
+    mysql_ghost_username: "{{ ghostuser.stdout }}"
+  when: ghostuser | length > 0
+
+- name: Register ghost user password
+  ansible.builtin.set_fact:
+    mysql_ghost_password: "{{ ghostpassword.stdout | string | b64encode }}"
+  when: ghostpassword | length > 0
+
+- name: Register ghost database
+  ansible.builtin.set_fact:
+    mysql_ghost_database: "{{ ghostdb.stdout }}"
+  when: ghostdb | length > 0
+
+- name: Remove Ghost ingress
+  community.kubernetes.k8s:
+    state: absent
+    template:
+      path: ghost_ingress.yaml.j2
+    validate:
+      fail_on_error: no
+  when: hostvars['Master']['kubernetes_masters']
+
+- name: Remove Ghost deployment
+  community.kubernetes.k8s:
+    state: absent
+    template:
+      path: ghost_deployment.yaml.j2
+    validate:
+      fail_on_error: no
+  when: hostvars['Master']['kubernetes_masters']
+
+- name: Remove Ghost configmap
+  community.kubernetes.k8s:
+    state: absent
+    template:
+      path: ghost_configmap.yaml.j2
+    validate:
+      fail_on_error: no
+
+- name: Remove Ghost service
+  community.kubernetes.k8s:
+    state: absent
+    definition:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: ghost-svc
+        namespace: ghost
+        labels:
+          app: ghost
+    validate:
+      fail_on_error: no
+
+- name: Remove Ghost secrets
+  community.kubernetes.k8s:
+    state: absent
+    template:
+      path: secrets.yaml.j2
+    validate:
+      fail_on_error: no
+
+- name: Remove tls issuer
+  community.kubernetes.k8s:
+    state: absent
+    template:
+      path: tls_issuer.yaml.j2
+    validate:
+      fail_on_error: no
+      strict: no
+  ignore_errors: yes
+
+# Renove ghost namespace
+- name: Remove a ghost namespace
+  community.kubernetes.k8s:
+    name: ghost
+    api_version: v1
+    kind: Namespace
+    state: absent
+    validate:
+      fail_on_error: no

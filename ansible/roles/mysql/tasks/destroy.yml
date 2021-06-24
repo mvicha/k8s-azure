@@ -1,0 +1,59 @@
+- name: Remove MySQL deployment
+  community.kubernetes.k8s:
+    state: absent
+    definition: "{{ lookup('file', 'mysql_deployment.yaml') | from_yaml }}"
+    validate:
+      fail_on_error: no
+
+- name: Remove MySQL service
+  community.kubernetes.k8s:
+    state: absent
+    definition:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: mysql-svc
+        namespace: mysql
+        labels:
+          app: mysql
+    validate:
+      fail_on_error: no
+
+- name: Remove MySQL configmap for adding users
+  community.kubernetes.k8s:
+    state: absent
+    definition: "{{ lookup('file', 'add_mysql_user_configmap.yaml') | from_yaml }}"
+    validate:
+      fail_on_error: no
+
+- name: Get mysql secret
+  ansible.builtin.shell:
+    cmd: python3 /opt/utils/get_keyvault_value.py keyvaultk8s mysql-admin-password
+  register: mysqladmin
+
+- name: Register mysql admin password
+  ansible.builtin.set_fact:
+    mysql_admin_password: "{{ mysqladmin.stdout | string | b64encode }}"
+  when: mysqladmin | length > 0
+
+- name: Remove MySQL secrets
+  community.kubernetes.k8s:
+    state: absent
+    template:
+      path: secrets.yaml.j2
+    validate:
+      fail_on_error: no
+
+# Remove mysql namespace
+- name: Create a mysql namespace
+  community.kubernetes.k8s:
+    name: mysql
+    api_version: v1
+    kind: Namespace
+    state: absent
+    validate:
+      fail_on_error: no
+
+- name: Un-label node
+  ansible.builtin.shell:
+    cmd: kubectl label --overwrite node node01 mysql-

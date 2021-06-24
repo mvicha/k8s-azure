@@ -1,0 +1,142 @@
+# Copy rbac.yaml
+- name: Copy rbac.yaml to /tmp/rbac.yaml
+  ansible.builtin.copy:
+    src: rbac.yaml
+    dest: /tmp/rbac.yaml
+
+# Cuando no pueda conectarse al servidor, stderr tendrá una descripción del error, la que utilizaremos para saber si debemos iniciar el master o no
+- name: Debug kubernetes state before init
+  ansible.builtin.shell:
+    cmd: kubectl cluster-info dump
+  register: kubernetes_init_debug
+  ignore_errors: yes
+
+# - name: Print kubernetes state debug
+#   ansible.builtin.debug:
+#     var: kubernetes_debug
+
+# Init Kubernetes master
+- name: Init K8s
+  become: true
+  ansible.builtin.shell:
+    # cmd: kubeadm init --apiserver-advertise-address="{{ control_plane_endpoint }}" --node-name="master.k8smvilla.com" --pod-network-cidr="{{ pod_network_cidr }}"
+    cmd: kubeadm init --node-name="master.{{ prefix }}.com" --pod-network-cidr="{{ pod_network_cidr }}"
+  async: 600
+  poll: 5
+  when: kubernetes_init_debug.stderr | length > 0
+
+# Create $HOME/.kube directory for copying kubernetes config file
+- name: Create .kube directory
+  become: true
+  ansible.builtin.file:
+    path: /home/{{ ansible_user }}/.kube
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+  async: 10
+  poll: 2
+
+# Create /root/.kube directory for copying kubernetes config file
+- name: Make sure /root/.kube directory exists
+  become: true
+  ansible.builtin.file:
+    path: /root/.kube
+    state: directory
+    mode: "0700"
+  async: 10
+  poll: 2
+
+# Copy /etc/kubernetes/admin.conf to $HOME/.kube/config to use kubernetes
+- name: Copy k8s config
+  become: true
+  ansible.builtin.copy:
+    src: /etc/kubernetes/admin.conf
+    dest: /home/{{ ansible_user }}/.kube/config
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0600"
+    remote_src: yes
+
+# Copy /etc/kubernetes/admin.conf to /root/.kube/config to use kubernetes
+- name: Copy k8s config to local /root/.kube directory
+  become: true
+  ansible.builtin.copy:
+    src: /etc/kubernetes/admin.conf
+    dest: /root/.kube/config
+    mode: "0600"
+    remote_src: yes
+
+- name: Get Join command
+  ansible.builtin.shell:
+    cmd: kubeadm token create --print-join-command
+  register: k8sjc
+
+- name: Register Join command
+  ansible.builtin.set_fact:
+    kubernetes_join_command: "{{ k8sjc.stdout }}"
+
+- name: Debug join command
+  ansible.builtin.debug:
+    var: k8sjc.stdout
+
+- name: Download kube-flannel manifest
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+    dest: /tmp/kube-flannel.yml
+    mode: '0664'
+  async: 10
+  poll: 2
+
+- name: Apply flannel manifest to the cluster
+  community.kubernetes.k8s:
+    state: present
+    src: /tmp/kube-flannel.yml
+    wait: yes
+    wait_sleep: 10
+    wait_timeout: 180
+    validate:
+      fail_on_error: yes
+
+- name: Apply RBAC
+  community.kubernetes.k8s:
+    state: present
+    src: /tmp/rbac.yaml
+    wait: yes
+    wait_sleep: 10
+    wait_timeout: 180
+    validate:
+      fail_on_error: yes
+
+- name: Remove kube-flannel.yml manifest
+  ansible.builtin.file:
+    path: /tmp/kube-flannel.yml
+    state: absent
+  async: 10
+  poll: 2
+
+- name: Remove RBAC
+  ansible.builtin.file:
+    path: /tmp/rbac.yaml
+    state: absent
+  async: 10
+  poll: 2
+
+- name: Get clusterrolebinding
+  ansible.builtin.shell:
+    cmd: kubectl get clusterrolebindings
+  register: crb_dashboard
+
+- name: Create clusterrolebinding
+  ansible.builtin.shell:
+    cmd: kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
+  when: not "kubernetes-dashboard" in crb_dashboard.stdout
+
+- name: Get kubernetes node list
+  ansible.builtin.shell:
+    cmd: kubectl get nodes
+  register: k8s_node_list
+  ignore_errors: yes
+
+- name: Register node list
+  ansible.builtin.set_fact:
+    kubernetes_node_list: "{{ k8s_node_list.stdout }}"

@@ -1,0 +1,24 @@
+---
+- name: Remove pip packages
+  ansible.builtin.pip:
+    name:
+      - azure-cli==2.11.1
+      - azure.identity
+      - azure-keyvault-secrets
+    state: absent
+  async: 450
+  poll: 5
+
+- name: Uninstall Common packages
+  become: true
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+    state: absent
+  vars:
+    packages:
+    - apt-transport-https
+    - bash-completion
+    - nfs-common
+    - software-properties-common
+  async: 450
+  poll: 5

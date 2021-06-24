@@ -1,0 +1,20 @@
+# Download and apply manifest
+- name: Download cert-manager manifest to the cluster.
+  ansible.builtin.get_url:
+    url: https://github.com/jetstack/cert-manager/releases/download/v1.4.0/cert-manager.yaml
+    dest: /tmp/cert-manager.yaml
+    mode: '0664'
+
+- name: Remove cert-manager manifest to the cluster.
+  community.kubernetes.k8s:
+    state: absent
+    src: /tmp/cert-manager.yaml
+    validate:
+      fail_on_error: no
+
+- name: Remove cert-manager manifest from the cluster.
+  ansible.builtin.file:
+    path: /tmp/cert-manager.yaml
+    state: absent
+  async: 10
+  poll: 2

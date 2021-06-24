@@ -1,0 +1,71 @@
+# Enable bash completion for kubectl
+- name: Remove bash completion for kubernetes
+  become: true
+  ansible.builtin.file:
+    path: /etc/bash_completion.d/kubectl
+    state: absent
+  async: 10
+  poll: 2
+
+# Mark kubernetes packages on purge to allow removal
+- name: Unhold kubernetes packages
+  become: true
+  ansible.builtin.dpkg_selections:
+    name: "{{ item }}"
+    selection: purge
+  with_items:
+    - kubelet
+    - kubeadm
+    - kubectl
+  async: 10
+  poll: 2
+
+# Remove kubernetes packages
+- name: Remove Kubernetes
+  become: true
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+    state: absent
+  vars:
+    packages:
+    - kubelet
+    - kubeadm
+    - kubectl
+  async: 450
+  poll: 5
+
+# Renove apt list
+- name: Remove /etc/apt/sources.list.d/kubernetes.list
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/kubernetes.list
+    state: absent
+  async: 10
+  poll: 2
+
+# Remove apt key for kubernetes packages
+- name: Remove apt key
+  become: true
+  ansible.builtin.file:
+    path: /usr/share/keyrings/kubernetes-archive-keyring.gpg
+    state: absent
+  async: 10
+  poll: 2
+
+# Remove sysctl file
+- name: Remove /etc/sysctl.d/k8s.conf
+  become: true
+  ansible.builtin.file:
+    path: /etc/sysctl.d/k8s.conf
+    state: absent
+  async: 10
+  poll: 2
+
+# Remove modules file
+- name: Remove /etc/modprobe.d/k8s.conf
+  become: true
+  ansible.builtin.file:
+    path: /etc/modprobe.d/k8s.conf
+    state: absent
+  async: 10
+  poll: 2

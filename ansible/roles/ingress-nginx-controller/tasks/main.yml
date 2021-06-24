@@ -1,15 +1,5 @@
-- name: Add ingress-nginx repository
-  community.kubernetes.helm_repository:
-    name: ingress-nginx
-    repo_url: "https://kubernetes.github.io/ingress-nginx"
+- include_tasks: create.yml
+  when: action_mode == 'create'
 
-- name: Install ingress-nginx
-  community.kubernetes.helm:
-    name: controller
-    chart_ref: ingress-nginx/ingress-nginx
-    release_namespace: default
-    values: "{{ lookup('template', 'values.yaml.j2') | from_yaml }}"
-
-- name: Patch nginx-service
-  ansible.builtin.shell: |
-    kubectl patch service controller-ingress-nginx-controller -p '{"spec":{"externalIPs":["{{ private_lan_master }}"]},"loadBalancerIP": "{{ private_lan_master }}"}'
+- include_tasks: destroy.yml
+  when: action_mode == 'destroy' and hostvars['Master']['kubernetes_masters']
