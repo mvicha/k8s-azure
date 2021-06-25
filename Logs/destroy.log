@@ -1,0 +1,1925 @@
+root@02119e61dba1:/SAFE_VOLUME/infra# bin/run.sh destroy
+tls_private_key.external_ssh: Refreshing state... [id=c7ee6a8b17750660099a84405f957cd347efe686]
+tls_private_key.internal_ssh: Refreshing state... [id=d9dbd15172ed737fdc28bbfe3ac234da808766e8]
+random_string.mysql_ghost_password: Refreshing state... [id=7vL4@tMjEqf7oZ-Pqz]
+random_string.mysql_admin_password: Refreshing state... [id=b-ZzxZ7c7x,FBFA9xS]
+random_string.mysql_ghost_username: Refreshing state... [id=40FAhh8s]
+local_file.external_pem[0]: Refreshing state... [id=7a6bde4753c64e4bfed4bbc268dbce1b2e8b8732]
+local_file.internal_pem[0]: Refreshing state... [id=9fdf2b21acf53ff122900dc140d551512083407f]
+azurerm_resource_group.rg_k8s: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes]
+azurerm_public_ip.pi_k8s: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/publicIPAddresses/pi_k8s]
+random_id.randomId: Refreshing state... [id=30174M09MuE]
+azurerm_private_dns_zone.k8s_private_dns_zone: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com]
+azurerm_virtual_network.vn_k8s: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/virtualNetworks/vn_k8s]
+azurerm_storage_account.sa_k8s: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Storage/storageAccounts/mvillasa]
+azurerm_network_security_group.nsg_k8s_external: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkSecurityGroups/nsg_k8s_external]
+azurerm_key_vault.keyvault_k8s: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s]
+azurerm_subnet.sn_k8s_private: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/virtualNetworks/vn_k8s/subnets/sn_k8s_private]
+azurerm_network_interface.nic_k8s_master: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Master]
+azurerm_network_interface.nic_k8s_node["Node01"]: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Node01]
+azurerm_network_interface.nic_k8s_node["Node02"]: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Node02]
+azurerm_private_dns_a_record.node["Node01"]: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/A/node01]
+azurerm_private_dns_zone_virtual_network_link.vn_dns_link: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/virtualNetworkLinks/vn_dns_link]
+azurerm_private_dns_a_record.node["Node02"]: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/A/node02]
+azurerm_private_dns_a_record.master: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/A/master]
+azurerm_network_interface_security_group_association.nic_nsg_external: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Master|/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkSecurityGroups/nsg_k8s_external]
+azurerm_private_dns_cname_record.nfs[0]: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/CNAME/nfs]
+azurerm_key_vault_access_policy.keyvault_k8s_rw: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s/objectId/af6b03e0-8970-4010-a204-ed0b33702065]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_Node01]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_Node02]
+azurerm_virtual_machine.vm_k8s_master: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_master]
+azurerm_key_vault_access_policy.keyvault_k8s_ro: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s/objectId/05c98608-4638-4104-bd5e-a04f0593eb93]
+azurerm_managed_disk.nfs[0]: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/disks/vm_k8s_Node01-data]
+azurerm_key_vault_secret.mysql_ghost_username: Refreshing state... [id=https://keyvaultk8s.vault.azure.net/secrets/mysql-ghost-username/69fe10e288a243d381dbd028bb910d88]
+azurerm_key_vault_secret.mysql_ghost_password: Refreshing state... [id=https://keyvaultk8s.vault.azure.net/secrets/mysql-ghost-password/ef418e72d3e846c4863a8dff60761402]
+azurerm_key_vault_secret.mysql_ghost_database: Refreshing state... [id=https://keyvaultk8s.vault.azure.net/secrets/mysql-ghost-database/98cba0912c6f430d87c3733c75dd0fab]
+azurerm_key_vault_secret.mysql_admin_password: Refreshing state... [id=https://keyvaultk8s.vault.azure.net/secrets/mysql-admin-password/b7545ea635784e84a58b5d380d151aa8]
+azurerm_virtual_machine_data_disk_attachment.nfs[0]: Refreshing state... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_Node01/dataDisks/vm_k8s_Node01-data]
+null_resource.ansible: Refreshing state... [id=6460797351548999677]
+
+Note: Objects have changed outside of Terraform
+
+Terraform detected the following changes made outside of Terraform since the last "terraform apply":
+
+  # azurerm_key_vault_secret.mysql_ghost_username has been changed
+  ~ resource "azurerm_key_vault_secret" "mysql_ghost_username" {
+        id             = "https://keyvaultk8s.vault.azure.net/secrets/mysql-ghost-username/69fe10e288a243d381dbd028bb910d88"
+        name           = "mysql-ghost-username"
+      + tags           = {}
+        # (4 unchanged attributes hidden)
+    }
+  # azurerm_key_vault_secret.mysql_ghost_password has been changed
+  ~ resource "azurerm_key_vault_secret" "mysql_ghost_password" {
+        id             = "https://keyvaultk8s.vault.azure.net/secrets/mysql-ghost-password/ef418e72d3e846c4863a8dff60761402"
+        name           = "mysql-ghost-password"
+      + tags           = {}
+        # (4 unchanged attributes hidden)
+    }
+  # azurerm_key_vault_secret.mysql_admin_password has been changed
+  ~ resource "azurerm_key_vault_secret" "mysql_admin_password" {
+        id             = "https://keyvaultk8s.vault.azure.net/secrets/mysql-admin-password/b7545ea635784e84a58b5d380d151aa8"
+        name           = "mysql-admin-password"
+      + tags           = {}
+        # (4 unchanged attributes hidden)
+    }
+  # azurerm_private_dns_zone.k8s_private_dns_zone has been changed
+  ~ resource "azurerm_private_dns_zone" "k8s_private_dns_zone" {
+        id                                                    = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com"
+        name                                                  = "mfvilla.com"
+      ~ number_of_record_sets                                 = 1 -> 5
+      + tags                                                  = {}
+        # (4 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+  # azurerm_managed_disk.nfs[0] has been changed
+  ~ resource "azurerm_managed_disk" "nfs" {
+        id                   = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/disks/vm_k8s_Node01-data"
+        name                 = "vm_k8s_Node01-data"
+      + tags                 = {}
+      + zones                = []
+        # (7 unchanged attributes hidden)
+    }
+  # azurerm_network_interface.nic_k8s_node["Node02"] has been changed
+  ~ resource "azurerm_network_interface" "nic_k8s_node" {
+        id                            = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Node02"
+      + mac_address                   = "00-0D-3A-A9-F9-16"
+        name                          = "Node02"
+        tags                          = {
+            "environment" = "K8s"
+            "node"        = "Worker"
+        }
+      + virtual_machine_id            = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_Node02"
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+  # azurerm_network_interface.nic_k8s_node["Node01"] has been changed
+  ~ resource "azurerm_network_interface" "nic_k8s_node" {
+        id                            = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Node01"
+      + mac_address                   = "00-0D-3A-BE-7B-2D"
+        name                          = "Node01"
+        tags                          = {
+            "environment" = "K8s"
+            "node"        = "Worker"
+        }
+      + virtual_machine_id            = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_Node01"
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+  # azurerm_key_vault_access_policy.keyvault_k8s_rw has been changed
+  ~ resource "azurerm_key_vault_access_policy" "keyvault_k8s_rw" {
+      ~ certificate_permissions = [
+          - "create",
+          - "delete",
+          - "deleteissuers",
+          - "get",
+          - "getissuers",
+          - "import",
+          - "list",
+          - "listissuers",
+          - "managecontacts",
+          - "manageissuers",
+          - "purge",
+          - "recover",
+          - "setissuers",
+          - "update",
+          - "backup",
+          - "restore",
+          + "Create",
+          + "Delete",
+          + "DeleteIssuers",
+          + "Get",
+          + "GetIssuers",
+          + "Import",
+          + "List",
+          + "ListIssuers",
+          + "ManageContacts",
+          + "ManageIssuers",
+          + "Purge",
+          + "Recover",
+          + "SetIssuers",
+          + "Update",
+          + "Backup",
+          + "Restore",
+        ]
+        id                      = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s/objectId/af6b03e0-8970-4010-a204-ed0b33702065"
+      ~ key_permissions         = [
+          - "backup",
+          - "create",
+          - "decrypt",
+          - "delete",
+          - "encrypt",
+          - "get",
+          - "import",
+          - "list",
+          - "purge",
+          - "recover",
+          - "restore",
+          - "sign",
+          - "unwrapKey",
+          - "update",
+          - "verify",
+          - "wrapKey",
+          + "Backup",
+          + "Create",
+          + "Decrypt",
+          + "Delete",
+          + "Encrypt",
+          + "Get",
+          + "Import",
+          + "List",
+          + "Purge",
+          + "Recover",
+          + "Restore",
+          + "Sign",
+          + "UnwrapKey",
+          + "Update",
+          + "Verify",
+          + "WrapKey",
+        ]
+      ~ secret_permissions      = [
+          - "backup",
+          - "delete",
+          - "get",
+          - "list",
+          - "purge",
+          - "recover",
+          - "restore",
+          - "set",
+          + "Backup",
+          + "Delete",
+          + "Get",
+          + "List",
+          + "Purge",
+          + "Recover",
+          + "Restore",
+          + "Set",
+        ]
+      ~ storage_permissions     = [
+          - "backup",
+          - "delete",
+          - "deletesas",
+          - "get",
+          - "getsas",
+          - "list",
+          - "listsas",
+          - "purge",
+          - "recover",
+          - "regeneratekey",
+          - "restore",
+          - "set",
+          - "setsas",
+          - "update",
+          + "Backup",
+          + "Delete",
+          + "DeleteSAS",
+          + "Get",
+          + "GetSAS",
+          + "List",
+          + "ListSAS",
+          + "Purge",
+          + "Recover",
+          + "RegenerateKey",
+          + "Restore",
+          + "Set",
+          + "SetSAS",
+          + "Update",
+        ]
+        # (3 unchanged attributes hidden)
+    }
+  # azurerm_virtual_machine.vm_k8s_master has been changed
+  ~ resource "azurerm_virtual_machine" "vm_k8s_master" {
+        id                               = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_master"
+        name                             = "vm_k8s_master"
+        tags                             = {
+            "environment" = "K8s"
+            "node"        = "Master"
+        }
+      + zones                            = []
+        # (7 unchanged attributes hidden)
+
+
+      ~ identity {
+          + identity_ids = []
+            # (2 unchanged attributes hidden)
+        }
+
+
+
+
+        # (5 unchanged blocks hidden)
+    }
+  # azurerm_virtual_machine.vm_k8s_node["Node02"] has been changed
+  ~ resource "azurerm_virtual_machine" "vm_k8s_node" {
+        id                               = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_Node02"
+        name                             = "vm_k8s_Node02"
+        tags                             = {
+            "environment" = "K8s"
+            "node"        = "Worker"
+        }
+      + zones                            = []
+        # (7 unchanged attributes hidden)
+
+
+
+
+
+        # (5 unchanged blocks hidden)
+    }
+  # azurerm_virtual_machine.vm_k8s_node["Node01"] has been changed
+  ~ resource "azurerm_virtual_machine" "vm_k8s_node" {
+        id                               = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_Node01"
+        name                             = "vm_k8s_Node01"
+        tags                             = {
+            "environment" = "K8s"
+            "node"        = "Worker"
+        }
+      + zones                            = []
+        # (7 unchanged attributes hidden)
+
+
+
+
+      + storage_data_disk {
+          + caching                   = "ReadWrite"
+          + create_option             = "Attach"
+          + disk_size_gb              = 10
+          + lun                       = 10
+          + managed_disk_id           = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/disks/vm_k8s_Node01-data"
+          + managed_disk_type         = "Standard_LRS"
+          + name                      = "vm_k8s_Node01-data"
+          + write_accelerator_enabled = false
+        }
+
+
+        # (5 unchanged blocks hidden)
+    }
+  # azurerm_subnet.sn_k8s_private has been changed
+  ~ resource "azurerm_subnet" "sn_k8s_private" {
+        id                                             = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/virtualNetworks/vn_k8s/subnets/sn_k8s_private"
+        name                                           = "sn_k8s_private"
+      + service_endpoint_policy_ids                    = []
+      + service_endpoints                              = []
+        # (6 unchanged attributes hidden)
+    }
+  # azurerm_key_vault.keyvault_k8s has been changed
+  ~ resource "azurerm_key_vault" "keyvault_k8s" {
+      ~ access_policy                   = [
+          + {
+              + application_id          = ""
+              + certificate_permissions = [
+                  + "Create",
+                  + "Delete",
+                  + "DeleteIssuers",
+                  + "Get",
+                  + "GetIssuers",
+                  + "Import",
+                  + "List",
+                  + "ListIssuers",
+                  + "ManageContacts",
+                  + "ManageIssuers",
+                  + "Purge",
+                  + "Recover",
+                  + "SetIssuers",
+                  + "Update",
+                  + "Backup",
+                  + "Restore",
+                ]
+              + key_permissions         = [
+                  + "Backup",
+                  + "Create",
+                  + "Decrypt",
+                  + "Delete",
+                  + "Encrypt",
+                  + "Get",
+                  + "Import",
+                  + "List",
+                  + "Purge",
+                  + "Recover",
+                  + "Restore",
+                  + "Sign",
+                  + "UnwrapKey",
+                  + "Update",
+                  + "Verify",
+                  + "WrapKey",
+                ]
+              + object_id               = "af6b03e0-8970-4010-a204-ed0b33702065"
+              + secret_permissions      = [
+                  + "Backup",
+                  + "Delete",
+                  + "Get",
+                  + "List",
+                  + "Purge",
+                  + "Recover",
+                  + "Restore",
+                  + "Set",
+                ]
+              + storage_permissions     = [
+                  + "Backup",
+                  + "Delete",
+                  + "DeleteSAS",
+                  + "Get",
+                  + "GetSAS",
+                  + "List",
+                  + "ListSAS",
+                  + "Purge",
+                  + "Recover",
+                  + "RegenerateKey",
+                  + "Restore",
+                  + "Set",
+                  + "SetSAS",
+                  + "Update",
+                ]
+              + tenant_id               = "899789dc-202f-44b4-8472-a6d40f9eb440"
+            },
+          + {
+              + application_id          = ""
+              + certificate_permissions = [
+                  + "Get",
+                  + "GetIssuers",
+                  + "List",
+                  + "ListIssuers",
+                ]
+              + key_permissions         = [
+                  + "Get",
+                  + "List",
+                ]
+              + object_id               = "05c98608-4638-4104-bd5e-a04f0593eb93"
+              + secret_permissions      = [
+                  + "Get",
+                  + "List",
+                ]
+              + storage_permissions     = [
+                  + "Get",
+                  + "GetSAS",
+                  + "List",
+                  + "ListSAS",
+                ]
+              + tenant_id               = "899789dc-202f-44b4-8472-a6d40f9eb440"
+            },
+        ]
+        id                              = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s"
+        name                            = "keyvaultk8s"
+      + tags                            = {}
+        # (12 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+  # azurerm_network_interface.nic_k8s_master has been changed
+  ~ resource "azurerm_network_interface" "nic_k8s_master" {
+        id                            = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Master"
+      + mac_address                   = "00-0D-3A-AF-3C-69"
+        name                          = "Master"
+        tags                          = {
+            "environment" = "K8s"
+            "node"        = "Master"
+        }
+      + virtual_machine_id            = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_master"
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+  # azurerm_public_ip.pi_k8s has been changed
+  ~ resource "azurerm_public_ip" "pi_k8s" {
+        id                      = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/publicIPAddresses/pi_k8s"
+      + ip_tags                 = {}
+        name                    = "pi_k8s"
+        tags                    = {
+            "environment" = "K8s"
+        }
+        # (11 unchanged attributes hidden)
+    }
+  # azurerm_virtual_network.vn_k8s has been changed
+  ~ resource "azurerm_virtual_network" "vn_k8s" {
+      + dns_servers           = []
+        id                    = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/virtualNetworks/vn_k8s"
+        name                  = "vn_k8s"
+      ~ subnet                = [
+          + {
+              + address_prefix = "192.168.1.0/24"
+              + id             = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/virtualNetworks/vn_k8s/subnets/sn_k8s_private"
+              + name           = "sn_k8s_private"
+              + security_group = ""
+            },
+        ]
+        tags                  = {
+            "environment" = "K8s"
+        }
+        # (5 unchanged attributes hidden)
+    }
+  # azurerm_private_dns_a_record.master has been changed
+  ~ resource "azurerm_private_dns_a_record" "master" {
+        id                  = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/A/master"
+        name                = "master"
+      + tags                = {}
+        # (5 unchanged attributes hidden)
+    }
+  # azurerm_private_dns_a_record.node["Node01"] has been changed
+  ~ resource "azurerm_private_dns_a_record" "node" {
+        id                  = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/A/node01"
+        name                = "node01"
+      + tags                = {}
+        # (5 unchanged attributes hidden)
+    }
+  # azurerm_private_dns_a_record.node["Node02"] has been changed
+  ~ resource "azurerm_private_dns_a_record" "node" {
+        id                  = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/A/node02"
+        name                = "node02"
+      + tags                = {}
+        # (5 unchanged attributes hidden)
+    }
+  # azurerm_key_vault_secret.mysql_ghost_database has been changed
+  ~ resource "azurerm_key_vault_secret" "mysql_ghost_database" {
+        id             = "https://keyvaultk8s.vault.azure.net/secrets/mysql-ghost-database/98cba0912c6f430d87c3733c75dd0fab"
+        name           = "mysql-ghost-database"
+      + tags           = {}
+        # (4 unchanged attributes hidden)
+    }
+  # azurerm_key_vault_access_policy.keyvault_k8s_ro has been changed
+  ~ resource "azurerm_key_vault_access_policy" "keyvault_k8s_ro" {
+      ~ certificate_permissions = [
+          - "get",
+          - "getissuers",
+          - "list",
+          - "listissuers",
+          + "Get",
+          + "GetIssuers",
+          + "List",
+          + "ListIssuers",
+        ]
+        id                      = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s/objectId/05c98608-4638-4104-bd5e-a04f0593eb93"
+      ~ key_permissions         = [
+          - "get",
+          - "list",
+          + "Get",
+          + "List",
+        ]
+      ~ secret_permissions      = [
+          - "get",
+          - "list",
+          + "Get",
+          + "List",
+        ]
+      ~ storage_permissions     = [
+          - "get",
+          - "getsas",
+          - "list",
+          - "listsas",
+          + "Get",
+          + "GetSAS",
+          + "List",
+          + "ListSAS",
+        ]
+        # (3 unchanged attributes hidden)
+    }
+  # azurerm_private_dns_zone_virtual_network_link.vn_dns_link has been changed
+  ~ resource "azurerm_private_dns_zone_virtual_network_link" "vn_dns_link" {
+        id                    = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/virtualNetworkLinks/vn_dns_link"
+        name                  = "vn_dns_link"
+      + tags                  = {}
+        # (4 unchanged attributes hidden)
+    }
+  # azurerm_private_dns_cname_record.nfs[0] has been changed
+  ~ resource "azurerm_private_dns_cname_record" "nfs" {
+        id                  = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/CNAME/nfs"
+        name                = "nfs"
+      + tags                = {}
+        # (5 unchanged attributes hidden)
+    }
+
+Unless you have made equivalent changes to your configuration, or ignored the relevant attributes using ignore_changes, the following plan may include actions to undo or respond to these changes.
+
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # azurerm_key_vault.keyvault_k8s will be destroyed
+  - resource "azurerm_key_vault" "keyvault_k8s" {
+      - access_policy                   = [
+          - {
+              - application_id          = ""
+              - certificate_permissions = [
+                  - "Create",
+                  - "Delete",
+                  - "DeleteIssuers",
+                  - "Get",
+                  - "GetIssuers",
+                  - "Import",
+                  - "List",
+                  - "ListIssuers",
+                  - "ManageContacts",
+                  - "ManageIssuers",
+                  - "Purge",
+                  - "Recover",
+                  - "SetIssuers",
+                  - "Update",
+                  - "Backup",
+                  - "Restore",
+                ]
+              - key_permissions         = [
+                  - "Backup",
+                  - "Create",
+                  - "Decrypt",
+                  - "Delete",
+                  - "Encrypt",
+                  - "Get",
+                  - "Import",
+                  - "List",
+                  - "Purge",
+                  - "Recover",
+                  - "Restore",
+                  - "Sign",
+                  - "UnwrapKey",
+                  - "Update",
+                  - "Verify",
+                  - "WrapKey",
+                ]
+              - object_id               = "af6b03e0-8970-4010-a204-ed0b33702065"
+              - secret_permissions      = [
+                  - "Backup",
+                  - "Delete",
+                  - "Get",
+                  - "List",
+                  - "Purge",
+                  - "Recover",
+                  - "Restore",
+                  - "Set",
+                ]
+              - storage_permissions     = [
+                  - "Backup",
+                  - "Delete",
+                  - "DeleteSAS",
+                  - "Get",
+                  - "GetSAS",
+                  - "List",
+                  - "ListSAS",
+                  - "Purge",
+                  - "Recover",
+                  - "RegenerateKey",
+                  - "Restore",
+                  - "Set",
+                  - "SetSAS",
+                  - "Update",
+                ]
+              - tenant_id               = "899789dc-202f-44b4-8472-a6d40f9eb440"
+            },
+          - {
+              - application_id          = ""
+              - certificate_permissions = [
+                  - "Get",
+                  - "GetIssuers",
+                  - "List",
+                  - "ListIssuers",
+                ]
+              - key_permissions         = [
+                  - "Get",
+                  - "List",
+                ]
+              - object_id               = "05c98608-4638-4104-bd5e-a04f0593eb93"
+              - secret_permissions      = [
+                  - "Get",
+                  - "List",
+                ]
+              - storage_permissions     = [
+                  - "Get",
+                  - "GetSAS",
+                  - "List",
+                  - "ListSAS",
+                ]
+              - tenant_id               = "899789dc-202f-44b4-8472-a6d40f9eb440"
+            },
+        ] -> null
+      - enable_rbac_authorization       = false -> null
+      - enabled_for_deployment          = false -> null
+      - enabled_for_disk_encryption     = false -> null
+      - enabled_for_template_deployment = false -> null
+      - id                              = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s" -> null
+      - location                        = "westeurope" -> null
+      - name                            = "keyvaultk8s" -> null
+      - purge_protection_enabled        = false -> null
+      - resource_group_name             = "RG_Kubernetes" -> null
+      - sku_name                        = "standard" -> null
+      - soft_delete_enabled             = true -> null
+      - soft_delete_retention_days      = 7 -> null
+      - tags                            = {} -> null
+      - tenant_id                       = "899789dc-202f-44b4-8472-a6d40f9eb440" -> null
+      - vault_uri                       = "https://keyvaultk8s.vault.azure.net/" -> null
+
+      - network_acls {
+          - bypass                     = "AzureServices" -> null
+          - default_action             = "Allow" -> null
+          - ip_rules                   = [] -> null
+          - virtual_network_subnet_ids = [] -> null
+        }
+    }
+
+  # azurerm_key_vault_access_policy.keyvault_k8s_ro will be destroyed
+  - resource "azurerm_key_vault_access_policy" "keyvault_k8s_ro" {
+      - certificate_permissions = [
+          - "Get",
+          - "GetIssuers",
+          - "List",
+          - "ListIssuers",
+        ] -> null
+      - id                      = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s/objectId/05c98608-4638-4104-bd5e-a04f0593eb93" -> null
+      - key_permissions         = [
+          - "Get",
+          - "List",
+        ] -> null
+      - key_vault_id            = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s" -> null
+      - object_id               = "05c98608-4638-4104-bd5e-a04f0593eb93" -> null
+      - secret_permissions      = [
+          - "Get",
+          - "List",
+        ] -> null
+      - storage_permissions     = [
+          - "Get",
+          - "GetSAS",
+          - "List",
+          - "ListSAS",
+        ] -> null
+      - tenant_id               = "899789dc-202f-44b4-8472-a6d40f9eb440" -> null
+    }
+
+  # azurerm_key_vault_access_policy.keyvault_k8s_rw will be destroyed
+  - resource "azurerm_key_vault_access_policy" "keyvault_k8s_rw" {
+      - certificate_permissions = [
+          - "Create",
+          - "Delete",
+          - "DeleteIssuers",
+          - "Get",
+          - "GetIssuers",
+          - "Import",
+          - "List",
+          - "ListIssuers",
+          - "ManageContacts",
+          - "ManageIssuers",
+          - "Purge",
+          - "Recover",
+          - "SetIssuers",
+          - "Update",
+          - "Backup",
+          - "Restore",
+        ] -> null
+      - id                      = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s/objectId/af6b03e0-8970-4010-a204-ed0b33702065" -> null
+      - key_permissions         = [
+          - "Backup",
+          - "Create",
+          - "Decrypt",
+          - "Delete",
+          - "Encrypt",
+          - "Get",
+          - "Import",
+          - "List",
+          - "Purge",
+          - "Recover",
+          - "Restore",
+          - "Sign",
+          - "UnwrapKey",
+          - "Update",
+          - "Verify",
+          - "WrapKey",
+        ] -> null
+      - key_vault_id            = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s" -> null
+      - object_id               = "af6b03e0-8970-4010-a204-ed0b33702065" -> null
+      - secret_permissions      = [
+          - "Backup",
+          - "Delete",
+          - "Get",
+          - "List",
+          - "Purge",
+          - "Recover",
+          - "Restore",
+          - "Set",
+        ] -> null
+      - storage_permissions     = [
+          - "Backup",
+          - "Delete",
+          - "DeleteSAS",
+          - "Get",
+          - "GetSAS",
+          - "List",
+          - "ListSAS",
+          - "Purge",
+          - "Recover",
+          - "RegenerateKey",
+          - "Restore",
+          - "Set",
+          - "SetSAS",
+          - "Update",
+        ] -> null
+      - tenant_id               = "899789dc-202f-44b4-8472-a6d40f9eb440" -> null
+    }
+
+  # azurerm_key_vault_secret.mysql_admin_password will be destroyed
+  - resource "azurerm_key_vault_secret" "mysql_admin_password" {
+      - id             = "https://keyvaultk8s.vault.azure.net/secrets/mysql-admin-password/b7545ea635784e84a58b5d380d151aa8" -> null
+      - key_vault_id   = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s" -> null
+      - name           = "mysql-admin-password" -> null
+      - tags           = {} -> null
+      - value          = (sensitive value)
+      - version        = "b7545ea635784e84a58b5d380d151aa8" -> null
+      - versionless_id = "https://keyvaultk8s.vault.azure.net/secrets/mysql-admin-password" -> null
+    }
+
+  # azurerm_key_vault_secret.mysql_ghost_database will be destroyed
+  - resource "azurerm_key_vault_secret" "mysql_ghost_database" {
+      - id             = "https://keyvaultk8s.vault.azure.net/secrets/mysql-ghost-database/98cba0912c6f430d87c3733c75dd0fab" -> null
+      - key_vault_id   = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s" -> null
+      - name           = "mysql-ghost-database" -> null
+      - tags           = {} -> null
+      - value          = (sensitive value)
+      - version        = "98cba0912c6f430d87c3733c75dd0fab" -> null
+      - versionless_id = "https://keyvaultk8s.vault.azure.net/secrets/mysql-ghost-database" -> null
+    }
+
+  # azurerm_key_vault_secret.mysql_ghost_password will be destroyed
+  - resource "azurerm_key_vault_secret" "mysql_ghost_password" {
+      - id             = "https://keyvaultk8s.vault.azure.net/secrets/mysql-ghost-password/ef418e72d3e846c4863a8dff60761402" -> null
+      - key_vault_id   = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s" -> null
+      - name           = "mysql-ghost-password" -> null
+      - tags           = {} -> null
+      - value          = (sensitive value)
+      - version        = "ef418e72d3e846c4863a8dff60761402" -> null
+      - versionless_id = "https://keyvaultk8s.vault.azure.net/secrets/mysql-ghost-password" -> null
+    }
+
+  # azurerm_key_vault_secret.mysql_ghost_username will be destroyed
+  - resource "azurerm_key_vault_secret" "mysql_ghost_username" {
+      - id             = "https://keyvaultk8s.vault.azure.net/secrets/mysql-ghost-username/69fe10e288a243d381dbd028bb910d88" -> null
+      - key_vault_id   = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s" -> null
+      - name           = "mysql-ghost-username" -> null
+      - tags           = {} -> null
+      - value          = (sensitive value)
+      - version        = "69fe10e288a243d381dbd028bb910d88" -> null
+      - versionless_id = "https://keyvaultk8s.vault.azure.net/secrets/mysql-ghost-username" -> null
+    }
+
+  # azurerm_managed_disk.nfs[0] will be destroyed
+  - resource "azurerm_managed_disk" "nfs" {
+      - create_option        = "Empty" -> null
+      - disk_iops_read_write = 500 -> null
+      - disk_mbps_read_write = 60 -> null
+      - disk_size_gb         = 10 -> null
+      - id                   = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/disks/vm_k8s_Node01-data" -> null
+      - location             = "westeurope" -> null
+      - name                 = "vm_k8s_Node01-data" -> null
+      - resource_group_name  = "RG_Kubernetes" -> null
+      - storage_account_type = "Standard_LRS" -> null
+      - tags                 = {} -> null
+      - zones                = [] -> null
+    }
+
+  # azurerm_network_interface.nic_k8s_master will be destroyed
+  - resource "azurerm_network_interface" "nic_k8s_master" {
+      - applied_dns_servers           = [] -> null
+      - dns_servers                   = [] -> null
+      - enable_accelerated_networking = false -> null
+      - enable_ip_forwarding          = true -> null
+      - id                            = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Master" -> null
+      - internal_domain_name_suffix   = "mhg5v3p5qh0ujf3uiz2t5vgzbh.ax.internal.cloudapp.net" -> null
+      - location                      = "westeurope" -> null
+      - mac_address                   = "00-0D-3A-AF-3C-69" -> null
+      - name                          = "Master" -> null
+      - private_ip_address            = "192.168.1.100" -> null
+      - private_ip_addresses          = [
+          - "192.168.1.100",
+        ] -> null
+      - resource_group_name           = "RG_Kubernetes" -> null
+      - tags                          = {
+          - "environment" = "K8s"
+          - "node"        = "Master"
+        } -> null
+      - virtual_machine_id            = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_master" -> null
+
+      - ip_configuration {
+          - name                          = "nic_config_master" -> null
+          - primary                       = true -> null
+          - private_ip_address            = "192.168.1.100" -> null
+          - private_ip_address_allocation = "Static" -> null
+          - private_ip_address_version    = "IPv4" -> null
+          - public_ip_address_id          = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/publicIPAddresses/pi_k8s" -> null
+          - subnet_id                     = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/virtualNetworks/vn_k8s/subnets/sn_k8s_private" -> null
+        }
+    }
+
+  # azurerm_network_interface.nic_k8s_node["Node01"] will be destroyed
+  - resource "azurerm_network_interface" "nic_k8s_node" {
+      - applied_dns_servers           = [] -> null
+      - dns_servers                   = [] -> null
+      - enable_accelerated_networking = false -> null
+      - enable_ip_forwarding          = true -> null
+      - id                            = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Node01" -> null
+      - internal_domain_name_suffix   = "mhg5v3p5qh0ujf3uiz2t5vgzbh.ax.internal.cloudapp.net" -> null
+      - location                      = "westeurope" -> null
+      - mac_address                   = "00-0D-3A-BE-7B-2D" -> null
+      - name                          = "Node01" -> null
+      - private_ip_address            = "192.168.1.101" -> null
+      - private_ip_addresses          = [
+          - "192.168.1.101",
+        ] -> null
+      - resource_group_name           = "RG_Kubernetes" -> null
+      - tags                          = {
+          - "environment" = "K8s"
+          - "node"        = "Worker"
+        } -> null
+      - virtual_machine_id            = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_Node01" -> null
+
+      - ip_configuration {
+          - name                          = "nic_config_Node01" -> null
+          - primary                       = true -> null
+          - private_ip_address            = "192.168.1.101" -> null
+          - private_ip_address_allocation = "Static" -> null
+          - private_ip_address_version    = "IPv4" -> null
+          - subnet_id                     = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/virtualNetworks/vn_k8s/subnets/sn_k8s_private" -> null
+        }
+    }
+
+  # azurerm_network_interface.nic_k8s_node["Node02"] will be destroyed
+  - resource "azurerm_network_interface" "nic_k8s_node" {
+      - applied_dns_servers           = [] -> null
+      - dns_servers                   = [] -> null
+      - enable_accelerated_networking = false -> null
+      - enable_ip_forwarding          = true -> null
+      - id                            = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Node02" -> null
+      - internal_domain_name_suffix   = "mhg5v3p5qh0ujf3uiz2t5vgzbh.ax.internal.cloudapp.net" -> null
+      - location                      = "westeurope" -> null
+      - mac_address                   = "00-0D-3A-A9-F9-16" -> null
+      - name                          = "Node02" -> null
+      - private_ip_address            = "192.168.1.102" -> null
+      - private_ip_addresses          = [
+          - "192.168.1.102",
+        ] -> null
+      - resource_group_name           = "RG_Kubernetes" -> null
+      - tags                          = {
+          - "environment" = "K8s"
+          - "node"        = "Worker"
+        } -> null
+      - virtual_machine_id            = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_Node02" -> null
+
+      - ip_configuration {
+          - name                          = "nic_config_Node02" -> null
+          - primary                       = true -> null
+          - private_ip_address            = "192.168.1.102" -> null
+          - private_ip_address_allocation = "Static" -> null
+          - private_ip_address_version    = "IPv4" -> null
+          - subnet_id                     = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/virtualNetworks/vn_k8s/subnets/sn_k8s_private" -> null
+        }
+    }
+
+  # azurerm_network_interface_security_group_association.nic_nsg_external will be destroyed
+  - resource "azurerm_network_interface_security_group_association" "nic_nsg_external" {
+      - id                        = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Master|/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkSecurityGroups/nsg_k8s_external" -> null
+      - network_interface_id      = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Master" -> null
+      - network_security_group_id = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkSecurityGroups/nsg_k8s_external" -> null
+    }
+
+  # azurerm_network_security_group.nsg_k8s_external will be destroyed
+  - resource "azurerm_network_security_group" "nsg_k8s_external" {
+      - id                  = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkSecurityGroups/nsg_k8s_external" -> null
+      - location            = "westeurope" -> null
+      - name                = "nsg_k8s_external" -> null
+      - resource_group_name = "RG_Kubernetes" -> null
+      - security_rule       = [
+          - {
+              - access                                     = "Allow"
+              - description                                = "Accept HTTP connections from everyone"
+              - destination_address_prefix                 = "*"
+              - destination_address_prefixes               = []
+              - destination_application_security_group_ids = []
+              - destination_port_range                     = "80"
+              - destination_port_ranges                    = []
+              - direction                                  = "Inbound"
+              - name                                       = "HTTP"
+              - priority                                   = 1011
+              - protocol                                   = "Tcp"
+              - source_address_prefix                      = "*"
+              - source_address_prefixes                    = []
+              - source_application_security_group_ids      = []
+              - source_port_range                          = "*"
+              - source_port_ranges                         = []
+            },
+          - {
+              - access                                     = "Allow"
+              - description                                = "Accept HTTPS connections from everyone"
+              - destination_address_prefix                 = "*"
+              - destination_address_prefixes               = []
+              - destination_application_security_group_ids = []
+              - destination_port_range                     = "443"
+              - destination_port_ranges                    = []
+              - direction                                  = "Inbound"
+              - name                                       = "HTTPS"
+              - priority                                   = 1021
+              - protocol                                   = "Tcp"
+              - source_address_prefix                      = "*"
+              - source_address_prefixes                    = []
+              - source_application_security_group_ids      = []
+              - source_port_range                          = "*"
+              - source_port_ranges                         = []
+            },
+          - {
+              - access                                     = "Allow"
+              - description                                = "Accept SSH connections only from specific address"
+              - destination_address_prefix                 = "*"
+              - destination_address_prefixes               = []
+              - destination_application_security_group_ids = []
+              - destination_port_range                     = "22"
+              - destination_port_ranges                    = []
+              - direction                                  = "Inbound"
+              - name                                       = "SSH"
+              - priority                                   = 1001
+              - protocol                                   = "Tcp"
+              - source_address_prefix                      = "149.91.115.233/32"
+              - source_address_prefixes                    = []
+              - source_application_security_group_ids      = []
+              - source_port_range                          = "*"
+              - source_port_ranges                         = []
+            },
+        ] -> null
+      - tags                = {
+          - "environment" = "K8s"
+        } -> null
+    }
+
+  # azurerm_private_dns_a_record.master will be destroyed
+  - resource "azurerm_private_dns_a_record" "master" {
+      - fqdn                = "master.mfvilla.com." -> null
+      - id                  = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/A/master" -> null
+      - name                = "master" -> null
+      - records             = [
+          - "192.168.1.100",
+        ] -> null
+      - resource_group_name = "RG_Kubernetes" -> null
+      - tags                = {} -> null
+      - ttl                 = 300 -> null
+      - zone_name           = "mfvilla.com" -> null
+    }
+
+  # azurerm_private_dns_a_record.node["Node01"] will be destroyed
+  - resource "azurerm_private_dns_a_record" "node" {
+      - fqdn                = "node01.mfvilla.com." -> null
+      - id                  = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/A/node01" -> null
+      - name                = "node01" -> null
+      - records             = [
+          - "192.168.1.101",
+        ] -> null
+      - resource_group_name = "RG_Kubernetes" -> null
+      - tags                = {} -> null
+      - ttl                 = 300 -> null
+      - zone_name           = "mfvilla.com" -> null
+    }
+
+  # azurerm_private_dns_a_record.node["Node02"] will be destroyed
+  - resource "azurerm_private_dns_a_record" "node" {
+      - fqdn                = "node02.mfvilla.com." -> null
+      - id                  = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/A/node02" -> null
+      - name                = "node02" -> null
+      - records             = [
+          - "192.168.1.102",
+        ] -> null
+      - resource_group_name = "RG_Kubernetes" -> null
+      - tags                = {} -> null
+      - ttl                 = 300 -> null
+      - zone_name           = "mfvilla.com" -> null
+    }
+
+  # azurerm_private_dns_cname_record.nfs[0] will be destroyed
+  - resource "azurerm_private_dns_cname_record" "nfs" {
+      - fqdn                = "nfs.mfvilla.com." -> null
+      - id                  = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/CNAME/nfs" -> null
+      - name                = "nfs" -> null
+      - record              = "node01.mfvilla.com." -> null
+      - resource_group_name = "RG_Kubernetes" -> null
+      - tags                = {} -> null
+      - ttl                 = 300 -> null
+      - zone_name           = "mfvilla.com" -> null
+    }
+
+  # azurerm_private_dns_zone.k8s_private_dns_zone will be destroyed
+  - resource "azurerm_private_dns_zone" "k8s_private_dns_zone" {
+      - id                                                    = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com" -> null
+      - max_number_of_record_sets                             = 25000 -> null
+      - max_number_of_virtual_network_links                   = 1000 -> null
+      - max_number_of_virtual_network_links_with_registration = 100 -> null
+      - name                                                  = "mfvilla.com" -> null
+      - number_of_record_sets                                 = 5 -> null
+      - resource_group_name                                   = "RG_Kubernetes" -> null
+      - tags                                                  = {} -> null
+
+      - soa_record {
+          - email         = "azureprivatedns-host.microsoft.com" -> null
+          - expire_time   = 2419200 -> null
+          - fqdn          = "mfvilla.com." -> null
+          - host_name     = "azureprivatedns.net" -> null
+          - minimum_ttl   = 10 -> null
+          - refresh_time  = 3600 -> null
+          - retry_time    = 300 -> null
+          - serial_number = 1 -> null
+          - tags          = {} -> null
+          - ttl           = 3600 -> null
+        }
+    }
+
+  # azurerm_private_dns_zone_virtual_network_link.vn_dns_link will be destroyed
+  - resource "azurerm_private_dns_zone_virtual_network_link" "vn_dns_link" {
+      - id                    = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/virtualNetworkLinks/vn_dns_link" -> null
+      - name                  = "vn_dns_link" -> null
+      - private_dns_zone_name = "mfvilla.com" -> null
+      - registration_enabled  = false -> null
+      - resource_group_name   = "RG_Kubernetes" -> null
+      - tags                  = {} -> null
+      - virtual_network_id    = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/virtualNetworks/vn_k8s" -> null
+    }
+
+  # azurerm_public_ip.pi_k8s will be destroyed
+  - resource "azurerm_public_ip" "pi_k8s" {
+      - allocation_method       = "Static" -> null
+      - availability_zone       = "Zone-Redundant" -> null
+      - domain_name_label       = "ghosthope" -> null
+      - fqdn                    = "ghosthope.westeurope.cloudapp.azure.com" -> null
+      - id                      = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/publicIPAddresses/pi_k8s" -> null
+      - idle_timeout_in_minutes = 4 -> null
+      - ip_address              = "20.86.240.158" -> null
+      - ip_tags                 = {} -> null
+      - ip_version              = "IPv4" -> null
+      - location                = "westeurope" -> null
+      - name                    = "pi_k8s" -> null
+      - resource_group_name     = "RG_Kubernetes" -> null
+      - sku                     = "Standard" -> null
+      - tags                    = {
+          - "environment" = "K8s"
+        } -> null
+      - zones                   = [] -> null
+    }
+
+  # azurerm_resource_group.rg_k8s will be destroyed
+  - resource "azurerm_resource_group" "rg_k8s" {
+      - id       = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes" -> null
+      - location = "westeurope" -> null
+      - name     = "RG_Kubernetes" -> null
+      - tags     = {
+          - "environment" = "K8s"
+        } -> null
+    }
+
+  # azurerm_storage_account.sa_k8s will be destroyed
+  - resource "azurerm_storage_account" "sa_k8s" {
+      - access_tier                    = "Hot" -> null
+      - account_kind                   = "StorageV2" -> null
+      - account_replication_type       = "LRS" -> null
+      - account_tier                   = "Standard" -> null
+      - allow_blob_public_access       = false -> null
+      - enable_https_traffic_only      = true -> null
+      - id                             = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Storage/storageAccounts/mvillasa" -> null
+      - is_hns_enabled                 = false -> null
+      - location                       = "westeurope" -> null
+      - min_tls_version                = "TLS1_0" -> null
+      - name                           = "mvillasa" -> null
+      - nfsv3_enabled                  = false -> null
+      - primary_access_key             = (sensitive value)
+      - primary_blob_connection_string = (sensitive value)
+      - primary_blob_endpoint          = "https://mvillasa.blob.core.windows.net/" -> null
+      - primary_blob_host              = "mvillasa.blob.core.windows.net" -> null
+      - primary_connection_string      = (sensitive value)
+      - primary_dfs_endpoint           = "https://mvillasa.dfs.core.windows.net/" -> null
+      - primary_dfs_host               = "mvillasa.dfs.core.windows.net" -> null
+      - primary_file_endpoint          = "https://mvillasa.file.core.windows.net/" -> null
+      - primary_file_host              = "mvillasa.file.core.windows.net" -> null
+      - primary_location               = "westeurope" -> null
+      - primary_queue_endpoint         = "https://mvillasa.queue.core.windows.net/" -> null
+      - primary_queue_host             = "mvillasa.queue.core.windows.net" -> null
+      - primary_table_endpoint         = "https://mvillasa.table.core.windows.net/" -> null
+      - primary_table_host             = "mvillasa.table.core.windows.net" -> null
+      - primary_web_endpoint           = "https://mvillasa.z6.web.core.windows.net/" -> null
+      - primary_web_host               = "mvillasa.z6.web.core.windows.net" -> null
+      - resource_group_name            = "RG_Kubernetes" -> null
+      - secondary_access_key           = (sensitive value)
+      - secondary_connection_string    = (sensitive value)
+      - tags                           = {
+          - "environment" = "K8s"
+        } -> null
+
+      - blob_properties {
+          - change_feed_enabled      = false -> null
+          - last_access_time_enabled = false -> null
+          - versioning_enabled       = false -> null
+        }
+
+      - network_rules {
+          - bypass                     = [
+              - "AzureServices",
+            ] -> null
+          - default_action             = "Allow" -> null
+          - ip_rules                   = [] -> null
+          - virtual_network_subnet_ids = [] -> null
+        }
+
+      - queue_properties {
+
+          - hour_metrics {
+              - enabled               = true -> null
+              - include_apis          = true -> null
+              - retention_policy_days = 7 -> null
+              - version               = "1.0" -> null
+            }
+
+          - logging {
+              - delete                = false -> null
+              - read                  = false -> null
+              - retention_policy_days = 0 -> null
+              - version               = "1.0" -> null
+              - write                 = false -> null
+            }
+
+          - minute_metrics {
+              - enabled               = false -> null
+              - include_apis          = false -> null
+              - retention_policy_days = 0 -> null
+              - version               = "1.0" -> null
+            }
+        }
+
+      - share_properties {
+
+          - retention_policy {
+              - days = 7 -> null
+            }
+        }
+    }
+
+  # azurerm_subnet.sn_k8s_private will be destroyed
+  - resource "azurerm_subnet" "sn_k8s_private" {
+      - address_prefix                                 = "192.168.1.0/24" -> null
+      - address_prefixes                               = [
+          - "192.168.1.0/24",
+        ] -> null
+      - enforce_private_link_endpoint_network_policies = false -> null
+      - enforce_private_link_service_network_policies  = false -> null
+      - id                                             = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/virtualNetworks/vn_k8s/subnets/sn_k8s_private" -> null
+      - name                                           = "sn_k8s_private" -> null
+      - resource_group_name                            = "RG_Kubernetes" -> null
+      - service_endpoint_policy_ids                    = [] -> null
+      - service_endpoints                              = [] -> null
+      - virtual_network_name                           = "vn_k8s" -> null
+    }
+
+  # azurerm_virtual_machine.vm_k8s_master will be destroyed
+  - resource "azurerm_virtual_machine" "vm_k8s_master" {
+      - delete_data_disks_on_termination = false -> null
+      - delete_os_disk_on_termination    = true -> null
+      - id                               = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_master" -> null
+      - location                         = "westeurope" -> null
+      - name                             = "vm_k8s_master" -> null
+      - network_interface_ids            = [
+          - "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Master",
+        ] -> null
+      - primary_network_interface_id     = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Master" -> null
+      - resource_group_name              = "RG_Kubernetes" -> null
+      - tags                             = {
+          - "environment" = "K8s"
+          - "node"        = "Master"
+        } -> null
+      - vm_size                          = "Standard_A2_v2" -> null
+      - zones                            = [] -> null
+
+      - boot_diagnostics {
+          - enabled     = true -> null
+          - storage_uri = "https://mvillasa.blob.core.windows.net/" -> null
+        }
+
+      - identity {
+          - identity_ids = [] -> null
+          - principal_id = "05c98608-4638-4104-bd5e-a04f0593eb93" -> null
+          - type         = "SystemAssigned" -> null
+        }
+
+      - os_profile {
+          - admin_username = "azureuser" -> null
+          - computer_name  = "Master" -> null
+        }
+
+      - os_profile_linux_config {
+          - disable_password_authentication = true -> null
+
+          - ssh_keys {
+              - key_data = <<-EOT
+                    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDE4tdiLe9KAejyMu0C1gOs8mHNImC54W2g+dqTFxdE+Dy+b9W2qZ/BLRELausP+0M1oG84I0MVVtdigLL5MAKKVej4saRch+uBvQwfjPULBdLx94d35nysnKhgc5P2JEkU41dhz9C/iWVCqy0il1RQGFdQEk88C5YYKXHGV19b2/dDq4ZKBCsatWcQ8qNs6iwyopa7vf1ARoOy3ipQ1g81NhDb72d24beLLPYyEDRBxv85tgHnQ7XAZHadJgFn9R9QeP99SU1dGRvnvn3EzGAMrepkxrsWHH/5t43wJJQMqFANDuRYxF3X2zE3NqX/jrjIuNV03nZb3qki4CMCijR615a1n/vmFB0abV+jC3XpGJ2qefr6dd8jOkrS4vIVE9WDLCoAfzkG+8tAGRJqGkVYIRD+BHEfF4I868AZv4xSOduwk/DYoVNitlniOSp+93BRFAghVrndEX+xYKMW+QkBncgr29HpOu9RkJK6mbRXITALrs/43FzXkXaCumqyOOMr47XUyR0TGU9mACFpoAOBNkUivUzoF/I2PBPwu/nCHKN1oCIR5TIskMsr24j/ExV9PXd1eOqEwAlW0pNgtO6ZJQH1Fwf9NEKUpjipsrf0KUPtIBe+WxYOEPZSvEwJ+JT0UA6uo40Iek0Uvpvy/eL69DoMF6zRq2syViHpZ8GtDQ==
+                EOT -> null
+              - path     = "/home/azureuser/.ssh/authorized_keys" -> null
+            }
+        }
+
+      - storage_image_reference {
+          - offer     = "debian-10" -> null
+          - publisher = "Debian" -> null
+          - sku       = "10" -> null
+          - version   = "latest" -> null
+        }
+
+      - storage_os_disk {
+          - caching                   = "ReadWrite" -> null
+          - create_option             = "FromImage" -> null
+          - disk_size_gb              = 30 -> null
+          - managed_disk_id           = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/disks/K8s_Master_OS" -> null
+          - managed_disk_type         = "Standard_LRS" -> null
+          - name                      = "K8s_Master_OS" -> null
+          - os_type                   = "Linux" -> null
+          - write_accelerator_enabled = false -> null
+        }
+    }
+
+  # azurerm_virtual_machine.vm_k8s_node["Node01"] will be destroyed
+  - resource "azurerm_virtual_machine" "vm_k8s_node" {
+      - delete_data_disks_on_termination = false -> null
+      - delete_os_disk_on_termination    = true -> null
+      - id                               = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_Node01" -> null
+      - location                         = "westeurope" -> null
+      - name                             = "vm_k8s_Node01" -> null
+      - network_interface_ids            = [
+          - "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Node01",
+        ] -> null
+      - primary_network_interface_id     = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Node01" -> null
+      - resource_group_name              = "RG_Kubernetes" -> null
+      - tags                             = {
+          - "environment" = "K8s"
+          - "node"        = "Worker"
+        } -> null
+      - vm_size                          = "Standard_A1_v2" -> null
+      - zones                            = [] -> null
+
+      - boot_diagnostics {
+          - enabled     = true -> null
+          - storage_uri = "https://mvillasa.blob.core.windows.net/" -> null
+        }
+
+      - os_profile {
+          - admin_username = "azureuser" -> null
+          - computer_name  = "Node01" -> null
+        }
+
+      - os_profile_linux_config {
+          - disable_password_authentication = true -> null
+
+          - ssh_keys {
+              - key_data = <<-EOT
+                    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJH4I9yZJsUfSrLNt34fFnmyhyvv+zYWvzuW87si9kvAKVyTVxIK1W2LUjC5HF5EkYAkUGjMJTl8qi7W0Dj01gKqU6v6zrA625w71uzDz+MKgda8nR4e6qGUwOXomLuB0F04+o5c5h7rjBjYdUbjbeWvJXwSDx26+juX1h7f41n590ZPJRajT+NkZufOdMFG67VjccWA8ZPaQb05bZckLMyiIk9zRYKaqPunEW/YLnc+2lOE4Kf6Vj9Jkhg09YhkQ766b8TWMQtQK/lJW/clEEnJIuZz8DquYb0HF/AjV0LWTQmlfbJwiUdKf7MHrHSC6ZO59PBAAsYnZUlAWqvM48MIrqDRb7tqAqHz/xYKiTaG5nF9bV5kkYzvJl78sYxliO7vEX++3deDZ6jwZd+NKLiM5CqEtnG8sd6sXrecvZzVcdECRfBbIJq3qDJ76omOkO2EMk1R+blgzLiFQ8poFdxo81RI5n/XcSAFRz9y5ap7uLap4BNaHcSPUSqVj3C9UhqxZTNqYulyi7/xoUMUPHcrlUF1Dzt7jOqyRHYaKI3uVOnbkVIA5Xcj53FWisCO1Ctg2OTIdPwSFm4dhfSjpX6fITyoktOp14V+m9s/Rx+67bUY2WZSxTvZkTlTBQesZ0AiKnKDa0+YDpqhi6Hcw5LFFd48K5jmV8/9VHQPs/zw==
+                EOT -> null
+              - path     = "/home/azureuser/.ssh/authorized_keys" -> null
+            }
+        }
+
+      - storage_data_disk {
+          - caching                   = "ReadWrite" -> null
+          - create_option             = "Attach" -> null
+          - disk_size_gb              = 10 -> null
+          - lun                       = 10 -> null
+          - managed_disk_id           = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/disks/vm_k8s_Node01-data" -> null
+          - managed_disk_type         = "Standard_LRS" -> null
+          - name                      = "vm_k8s_Node01-data" -> null
+          - write_accelerator_enabled = false -> null
+        }
+
+      - storage_image_reference {
+          - offer     = "debian-10" -> null
+          - publisher = "Debian" -> null
+          - sku       = "10" -> null
+          - version   = "latest" -> null
+        }
+
+      - storage_os_disk {
+          - caching                   = "ReadWrite" -> null
+          - create_option             = "FromImage" -> null
+          - disk_size_gb              = 30 -> null
+          - managed_disk_id           = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/disks/K8s_Node01_OS" -> null
+          - managed_disk_type         = "Standard_LRS" -> null
+          - name                      = "K8s_Node01_OS" -> null
+          - os_type                   = "Linux" -> null
+          - write_accelerator_enabled = false -> null
+        }
+    }
+
+  # azurerm_virtual_machine.vm_k8s_node["Node02"] will be destroyed
+  - resource "azurerm_virtual_machine" "vm_k8s_node" {
+      - delete_data_disks_on_termination = false -> null
+      - delete_os_disk_on_termination    = true -> null
+      - id                               = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_Node02" -> null
+      - location                         = "westeurope" -> null
+      - name                             = "vm_k8s_Node02" -> null
+      - network_interface_ids            = [
+          - "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Node02",
+        ] -> null
+      - primary_network_interface_id     = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Node02" -> null
+      - resource_group_name              = "RG_Kubernetes" -> null
+      - tags                             = {
+          - "environment" = "K8s"
+          - "node"        = "Worker"
+        } -> null
+      - vm_size                          = "Standard_A1_v2" -> null
+      - zones                            = [] -> null
+
+      - boot_diagnostics {
+          - enabled     = true -> null
+          - storage_uri = "https://mvillasa.blob.core.windows.net/" -> null
+        }
+
+      - os_profile {
+          - admin_username = "azureuser" -> null
+          - computer_name  = "Node02" -> null
+        }
+
+      - os_profile_linux_config {
+          - disable_password_authentication = true -> null
+
+          - ssh_keys {
+              - key_data = <<-EOT
+                    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJH4I9yZJsUfSrLNt34fFnmyhyvv+zYWvzuW87si9kvAKVyTVxIK1W2LUjC5HF5EkYAkUGjMJTl8qi7W0Dj01gKqU6v6zrA625w71uzDz+MKgda8nR4e6qGUwOXomLuB0F04+o5c5h7rjBjYdUbjbeWvJXwSDx26+juX1h7f41n590ZPJRajT+NkZufOdMFG67VjccWA8ZPaQb05bZckLMyiIk9zRYKaqPunEW/YLnc+2lOE4Kf6Vj9Jkhg09YhkQ766b8TWMQtQK/lJW/clEEnJIuZz8DquYb0HF/AjV0LWTQmlfbJwiUdKf7MHrHSC6ZO59PBAAsYnZUlAWqvM48MIrqDRb7tqAqHz/xYKiTaG5nF9bV5kkYzvJl78sYxliO7vEX++3deDZ6jwZd+NKLiM5CqEtnG8sd6sXrecvZzVcdECRfBbIJq3qDJ76omOkO2EMk1R+blgzLiFQ8poFdxo81RI5n/XcSAFRz9y5ap7uLap4BNaHcSPUSqVj3C9UhqxZTNqYulyi7/xoUMUPHcrlUF1Dzt7jOqyRHYaKI3uVOnbkVIA5Xcj53FWisCO1Ctg2OTIdPwSFm4dhfSjpX6fITyoktOp14V+m9s/Rx+67bUY2WZSxTvZkTlTBQesZ0AiKnKDa0+YDpqhi6Hcw5LFFd48K5jmV8/9VHQPs/zw==
+                EOT -> null
+              - path     = "/home/azureuser/.ssh/authorized_keys" -> null
+            }
+        }
+
+      - storage_image_reference {
+          - offer     = "debian-10" -> null
+          - publisher = "Debian" -> null
+          - sku       = "10" -> null
+          - version   = "latest" -> null
+        }
+
+      - storage_os_disk {
+          - caching                   = "ReadWrite" -> null
+          - create_option             = "FromImage" -> null
+          - disk_size_gb              = 30 -> null
+          - managed_disk_id           = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/disks/K8s_Node02_OS" -> null
+          - managed_disk_type         = "Standard_LRS" -> null
+          - name                      = "K8s_Node02_OS" -> null
+          - os_type                   = "Linux" -> null
+          - write_accelerator_enabled = false -> null
+        }
+    }
+
+  # azurerm_virtual_machine_data_disk_attachment.nfs[0] will be destroyed
+  - resource "azurerm_virtual_machine_data_disk_attachment" "nfs" {
+      - caching                   = "ReadWrite" -> null
+      - create_option             = "Attach" -> null
+      - id                        = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_Node01/dataDisks/vm_k8s_Node01-data" -> null
+      - lun                       = 10 -> null
+      - managed_disk_id           = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/disks/vm_k8s_Node01-data" -> null
+      - virtual_machine_id        = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_Node01" -> null
+      - write_accelerator_enabled = false -> null
+    }
+
+  # azurerm_virtual_network.vn_k8s will be destroyed
+  - resource "azurerm_virtual_network" "vn_k8s" {
+      - address_space         = [
+          - "192.168.0.0/16",
+        ] -> null
+      - dns_servers           = [] -> null
+      - guid                  = "f5facd61-81ff-44f5-97b4-46793fd4d90f" -> null
+      - id                    = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/virtualNetworks/vn_k8s" -> null
+      - location              = "westeurope" -> null
+      - name                  = "vn_k8s" -> null
+      - resource_group_name   = "RG_Kubernetes" -> null
+      - subnet                = [
+          - {
+              - address_prefix = "192.168.1.0/24"
+              - id             = "/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/virtualNetworks/vn_k8s/subnets/sn_k8s_private"
+              - name           = "sn_k8s_private"
+              - security_group = ""
+            },
+        ] -> null
+      - tags                  = {
+          - "environment" = "K8s"
+        } -> null
+      - vm_protection_enabled = false -> null
+    }
+
+  # local_file.external_pem[0] will be destroyed
+  - resource "local_file" "external_pem" {
+      - content              = (sensitive) -> null
+      - directory_permission = "0700" -> null
+      - file_permission      = "0400" -> null
+      - filename             = "./resources/external.pem" -> null
+      - id                   = "7a6bde4753c64e4bfed4bbc268dbce1b2e8b8732" -> null
+    }
+
+  # local_file.internal_pem[0] will be destroyed
+  - resource "local_file" "internal_pem" {
+      - content              = (sensitive) -> null
+      - directory_permission = "0700" -> null
+      - file_permission      = "0400" -> null
+      - filename             = "./resources/internal.pem" -> null
+      - id                   = "9fdf2b21acf53ff122900dc140d551512083407f" -> null
+    }
+
+  # null_resource.ansible will be destroyed
+  - resource "null_resource" "ansible" {
+      - id = "6460797351548999677" -> null
+    }
+
+  # random_id.randomId will be destroyed
+  - resource "random_id" "randomId" {
+      - b64_std     = "30174M09MuE=" -> null
+      - b64_url     = "30174M09MuE" -> null
+      - byte_length = 8 -> null
+      - dec         = "16090653249110880993" -> null
+      - hex         = "df4d7be0cd3d32e1" -> null
+      - id          = "30174M09MuE" -> null
+      - keepers     = {
+          - "resource_group" = "RG_Kubernetes"
+        } -> null
+    }
+
+  # random_string.mysql_admin_password will be destroyed
+  - resource "random_string" "mysql_admin_password" {
+      - id               = "b-ZzxZ7c7x,FBFA9xS" -> null
+      - length           = 18 -> null
+      - lower            = true -> null
+      - min_lower        = 2 -> null
+      - min_numeric      = 2 -> null
+      - min_special      = 2 -> null
+      - min_upper        = 2 -> null
+      - number           = true -> null
+      - override_special = "/@-.,_" -> null
+      - result           = "b-ZzxZ7c7x,FBFA9xS" -> null
+      - special          = true -> null
+      - upper            = true -> null
+    }
+
+  # random_string.mysql_ghost_password will be destroyed
+  - resource "random_string" "mysql_ghost_password" {
+      - id               = "7vL4@tMjEqf7oZ-Pqz" -> null
+      - length           = 18 -> null
+      - lower            = true -> null
+      - min_lower        = 2 -> null
+      - min_numeric      = 2 -> null
+      - min_special      = 2 -> null
+      - min_upper        = 2 -> null
+      - number           = true -> null
+      - override_special = "/@-.,_" -> null
+      - result           = "7vL4@tMjEqf7oZ-Pqz" -> null
+      - special          = true -> null
+      - upper            = true -> null
+    }
+
+  # random_string.mysql_ghost_username will be destroyed
+  - resource "random_string" "mysql_ghost_username" {
+      - id          = "40FAhh8s" -> null
+      - length      = 8 -> null
+      - lower       = true -> null
+      - min_lower   = 2 -> null
+      - min_numeric = 2 -> null
+      - min_special = 0 -> null
+      - min_upper   = 2 -> null
+      - number      = true -> null
+      - result      = "40FAhh8s" -> null
+      - special     = false -> null
+      - upper       = true -> null
+    }
+
+  # tls_private_key.external_ssh will be destroyed
+  - resource "tls_private_key" "external_ssh" {
+      - algorithm                  = "RSA" -> null
+      - ecdsa_curve                = "P224" -> null
+      - id                         = "c7ee6a8b17750660099a84405f957cd347efe686" -> null
+      - private_key_pem            = (sensitive value)
+      - public_key_fingerprint_md5 = "74:73:bd:99:0d:fd:9e:10:12:b0:68:26:cf:21:75:f8" -> null
+      - public_key_openssh         = <<-EOT
+            ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDE4tdiLe9KAejyMu0C1gOs8mHNImC54W2g+dqTFxdE+Dy+b9W2qZ/BLRELausP+0M1oG84I0MVVtdigLL5MAKKVej4saRch+uBvQwfjPULBdLx94d35nysnKhgc5P2JEkU41dhz9C/iWVCqy0il1RQGFdQEk88C5YYKXHGV19b2/dDq4ZKBCsatWcQ8qNs6iwyopa7vf1ARoOy3ipQ1g81NhDb72d24beLLPYyEDRBxv85tgHnQ7XAZHadJgFn9R9QeP99SU1dGRvnvn3EzGAMrepkxrsWHH/5t43wJJQMqFANDuRYxF3X2zE3NqX/jrjIuNV03nZb3qki4CMCijR615a1n/vmFB0abV+jC3XpGJ2qefr6dd8jOkrS4vIVE9WDLCoAfzkG+8tAGRJqGkVYIRD+BHEfF4I868AZv4xSOduwk/DYoVNitlniOSp+93BRFAghVrndEX+xYKMW+QkBncgr29HpOu9RkJK6mbRXITALrs/43FzXkXaCumqyOOMr47XUyR0TGU9mACFpoAOBNkUivUzoF/I2PBPwu/nCHKN1oCIR5TIskMsr24j/ExV9PXd1eOqEwAlW0pNgtO6ZJQH1Fwf9NEKUpjipsrf0KUPtIBe+WxYOEPZSvEwJ+JT0UA6uo40Iek0Uvpvy/eL69DoMF6zRq2syViHpZ8GtDQ==
+        EOT -> null
+      - public_key_pem             = <<-EOT
+            -----BEGIN PUBLIC KEY-----
+            MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAxOLXYi3vSgHo8jLtAtYD
+            rPJhzSJgueFtoPnakxcXRPg8vm/VtqmfwS0RC2rrD/tDNaBvOCNDFVbXYoCy+TAC
+            ilXo+LGkXIfrgb0MH4z1CwXS8feHd+Z8rJyoYHOT9iRJFONXYc/Qv4llQqstIpdU
+            UBhXUBJPPAuWGClxxldfW9v3Q6uGSgQrGrVnEPKjbOosMqKWu739QEaDst4qUNYP
+            NTYQ2+9nduG3iyz2MhA0Qcb/ObYB50O1wGR2nSYBZ/UfUHj/fUlNXRkb5759xMxg
+            DK3qZMa7Fhx/+beN8CSUDKhQDQ7kWMRd19sxNzal/464yLjVdN52W96pIuAjAoo0
+            eteWtZ/75hQdGm1fowt16Ridqnn6+nXfIzpK0uLyFRPVgywqAH85BvvLQBkSahpF
+            WCEQ/gRxHxeCPOvAGb+MUjnbsJPw2KFTYrZZ4jkqfvdwURQIIVa53RF/sWCjFvkJ
+            AZ3IK9vR6TrvUZCSupm0VyEwC67P+Nxc15F2grpqsjjjK+O11MkdExlPZgAhaaAD
+            gTZFIr1M6BfyNjwT8Lv5whyjdaAiEeUyLJDLK9uI/xMVfT13dXjqhMAJVtKTYLTu
+            mSUB9RcH/TRClKY4qbK39ClD7SAXvlsWDhD2UrxMCfiU9FAOrqONCHpNFL6b8v3i
+            +vQ6DBes0atrMlYh6WfBrQ0CAwEAAQ==
+            -----END PUBLIC KEY-----
+        EOT -> null
+      - rsa_bits                   = 4096 -> null
+    }
+
+  # tls_private_key.internal_ssh will be destroyed
+  - resource "tls_private_key" "internal_ssh" {
+      - algorithm                  = "RSA" -> null
+      - ecdsa_curve                = "P224" -> null
+      - id                         = "d9dbd15172ed737fdc28bbfe3ac234da808766e8" -> null
+      - private_key_pem            = (sensitive value)
+      - public_key_fingerprint_md5 = "58:7c:18:cc:5f:9a:b8:40:a4:61:da:a3:0d:97:b0:2d" -> null
+      - public_key_openssh         = <<-EOT
+            ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJH4I9yZJsUfSrLNt34fFnmyhyvv+zYWvzuW87si9kvAKVyTVxIK1W2LUjC5HF5EkYAkUGjMJTl8qi7W0Dj01gKqU6v6zrA625w71uzDz+MKgda8nR4e6qGUwOXomLuB0F04+o5c5h7rjBjYdUbjbeWvJXwSDx26+juX1h7f41n590ZPJRajT+NkZufOdMFG67VjccWA8ZPaQb05bZckLMyiIk9zRYKaqPunEW/YLnc+2lOE4Kf6Vj9Jkhg09YhkQ766b8TWMQtQK/lJW/clEEnJIuZz8DquYb0HF/AjV0LWTQmlfbJwiUdKf7MHrHSC6ZO59PBAAsYnZUlAWqvM48MIrqDRb7tqAqHz/xYKiTaG5nF9bV5kkYzvJl78sYxliO7vEX++3deDZ6jwZd+NKLiM5CqEtnG8sd6sXrecvZzVcdECRfBbIJq3qDJ76omOkO2EMk1R+blgzLiFQ8poFdxo81RI5n/XcSAFRz9y5ap7uLap4BNaHcSPUSqVj3C9UhqxZTNqYulyi7/xoUMUPHcrlUF1Dzt7jOqyRHYaKI3uVOnbkVIA5Xcj53FWisCO1Ctg2OTIdPwSFm4dhfSjpX6fITyoktOp14V+m9s/Rx+67bUY2WZSxTvZkTlTBQesZ0AiKnKDa0+YDpqhi6Hcw5LFFd48K5jmV8/9VHQPs/zw==
+        EOT -> null
+      - public_key_pem             = <<-EOT
+            -----BEGIN PUBLIC KEY-----
+            MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAyR+CPcmSbFH0qyzbd+Hx
+            Z5socr7/s2Fr87lvO7IvZLwClck1cSCtVti1IwuRxeRJGAJFBozCU5fKou1tA49N
+            YCqlOr+s6wOtucO9bsw8/jCoHWvJ0eHuqhlMDl6Ji7gdBdOPqOXOYe64wY2HVG42
+            3lryV8Eg8duvo7l9Ye3+NZ+fdGTyUWo0/jZGbnznTBRuu1Y3HFgPGT2kG9OW2XJC
+            zMoiJPc0WCmqj7pxFv2C53PtpThOCn+lY/SZIYNPWIZEO+um/E1jELUCv5SVv3JR
+            BJySLmc/A6rmG9BxfwI1dC1k0JpX2ycIlHSn+zB6x0gumTufTwQALGJ2VJQFqrzO
+            PDCK6g0W+7agKh8/8WCok2huZxfW1eZJGM7yZe/LGMZYju7xF/vt3Xg2eo8GXfjS
+            i4jOQqhLZxvLHerF63nL2c1XHRAkXwWyCat6gye+qJjpDthDJNUfm5YMy4hUPKaB
+            XcaPNUSOZ/13EgBUc/cuWqe7i2qeATWh3Ej1EqlY9wvVIasWUzamLpcou/8aFDFD
+            x3K5VBdQ87e4zqskR2GiiN7lTp25FSAOV3I+dxVorAjtQrYNjkyHT8EhZuHYX0o6
+            V+nyE8qJLTqdeFfpvbP0cfuu21GNlmUsU72ZE5UwUHrGdAIipyg2tPmA6aoYuh3M
+            OSxRXePCuY5lfP/VR0D7P88CAwEAAQ==
+            -----END PUBLIC KEY-----
+        EOT -> null
+      - rsa_bits                   = 4096 -> null
+    }
+
+Plan: 0 to add, 0 to change, 37 to destroy.
+
+Changes to Outputs:
+  - ansible_exec_command    = "ansible-playbook -e jump_host='20.86.240.158' -e admin_user='azureuser' -e subnet_cidr_private='192.168.1.0/24' -e private_lan_master='192.168.1.100' -e private_lan_node01='192.168.1.101' -e private_lan_node02='192.168.1.102' -e internal_private_key_file='resources/internal.pem' -e external_private_key_file='resources/external.pem' -e ghost_url='ghosthope.westeurope.cloudapp.azure.com' -e prefix='mfvilla' ../ansible/playbooks/create.yml" -> null
+  - ghost_http_service_url  = "http://ghosthope.westeurope.cloudapp.azure.com" -> null
+  - ghost_https_service_url = "https://ghosthope.westeurope.cloudapp.azure.com" -> null
+  - master_private_address  = "192.168.1.100" -> null
+  - master_public_address   = "20.86.240.158" -> null
+  - node01_private_address  = "192.168.1.101" -> null
+  - node02_private_address  = "192.168.1.102" -> null
+  - ssh_admin_user          = "azureuser" -> null
+  - ssh_master_connection   = "ssh -i resources/external.pem azureuser@20.86.240.158" -> null
+  - ssh_node01_connection   = "ssh -i resources/internal.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand='ssh -i resources/external.pem -W %h:%p -q azureuser@20.86.240.158' azureuser@192.168.1.101" -> null
+  - ssh_node02_connection   = "ssh -i resources/internal.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand='ssh -i resources/external.pem -W %h:%p -q azureuser@20.86.240.158' azureuser@192.168.1.102" -> null
+  - subnet_cidr_private     = [
+      - "192.168.1.0/24",
+    ] -> null
+  - virtual_network_cidr    = [
+      - "192.168.0.0/16",
+    ] -> null
+random_id.randomId: Destroying... [id=30174M09MuE]
+null_resource.ansible: Destroying... [id=6460797351548999677]
+null_resource.ansible: Destruction complete after 0s
+random_id.randomId: Destruction complete after 0s
+local_file.external_pem[0]: Destroying... [id=7a6bde4753c64e4bfed4bbc268dbce1b2e8b8732]
+local_file.internal_pem[0]: Destroying... [id=9fdf2b21acf53ff122900dc140d551512083407f]
+local_file.external_pem[0]: Destruction complete after 0s
+local_file.internal_pem[0]: Destruction complete after 0s
+azurerm_network_interface_security_group_association.nic_nsg_external: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Master|/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkSecurityGroups/nsg_k8s_external]
+azurerm_virtual_machine_data_disk_attachment.nfs[0]: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_Node01/dataDisks/vm_k8s_Node01-data]
+azurerm_private_dns_cname_record.nfs[0]: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/CNAME/nfs]
+azurerm_private_dns_a_record.master: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/A/master]
+azurerm_key_vault_secret.mysql_ghost_password: Destroying... [id=https://keyvaultk8s.vault.azure.net/secrets/mysql-ghost-password/ef418e72d3e846c4863a8dff60761402]
+azurerm_key_vault_secret.mysql_admin_password: Destroying... [id=https://keyvaultk8s.vault.azure.net/secrets/mysql-admin-password/b7545ea635784e84a58b5d380d151aa8]
+azurerm_key_vault_secret.mysql_ghost_username: Destroying... [id=https://keyvaultk8s.vault.azure.net/secrets/mysql-ghost-username/69fe10e288a243d381dbd028bb910d88]
+azurerm_key_vault_secret.mysql_ghost_database: Destroying... [id=https://keyvaultk8s.vault.azure.net/secrets/mysql-ghost-database/98cba0912c6f430d87c3733c75dd0fab]
+azurerm_private_dns_zone_virtual_network_link.vn_dns_link: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/virtualNetworkLinks/vn_dns_link]
+azurerm_private_dns_cname_record.nfs[0]: Destruction complete after 1s
+azurerm_private_dns_a_record.node["Node02"]: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/A/node02]
+azurerm_private_dns_a_record.node["Node01"]: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com/A/node01]
+azurerm_private_dns_a_record.master: Destruction complete after 1s
+azurerm_private_dns_a_record.node["Node01"]: Destruction complete after 2s
+azurerm_private_dns_a_record.node["Node02"]: Destruction complete after 2s
+azurerm_network_interface_security_group_association.nic_nsg_external: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...networkSecurityGroups/nsg_k8s_external, 10s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 10s elapsed]
+azurerm_private_dns_zone_virtual_network_link.vn_dns_link: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...la.com/virtualNetworkLinks/vn_dns_link, 10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 10s elapsed]
+azurerm_virtual_machine_data_disk_attachment.nfs[0]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...8s_Node01/dataDisks/vm_k8s_Node01-data, 10s elapsed]
+azurerm_network_interface_security_group_association.nic_nsg_external: Destruction complete after 13s
+azurerm_network_security_group.nsg_k8s_external: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkSecurityGroups/nsg_k8s_external]
+azurerm_virtual_machine_data_disk_attachment.nfs[0]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...8s_Node01/dataDisks/vm_k8s_Node01-data, 20s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 20s elapsed]
+azurerm_private_dns_zone_virtual_network_link.vn_dns_link: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...la.com/virtualNetworkLinks/vn_dns_link, 20s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 20s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 20s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 20s elapsed]
+azurerm_network_security_group.nsg_k8s_external: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...networkSecurityGroups/nsg_k8s_external, 10s elapsed]
+azurerm_network_security_group.nsg_k8s_external: Destruction complete after 10s
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 30s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 30s elapsed]
+azurerm_virtual_machine_data_disk_attachment.nfs[0]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...8s_Node01/dataDisks/vm_k8s_Node01-data, 30s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 30s elapsed]
+azurerm_private_dns_zone_virtual_network_link.vn_dns_link: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...la.com/virtualNetworkLinks/vn_dns_link, 30s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 30s elapsed]
+azurerm_virtual_machine_data_disk_attachment.nfs[0]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...8s_Node01/dataDisks/vm_k8s_Node01-data, 40s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 40s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 40s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 40s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 40s elapsed]
+azurerm_private_dns_zone_virtual_network_link.vn_dns_link: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...la.com/virtualNetworkLinks/vn_dns_link, 40s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 50s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 50s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 50s elapsed]
+azurerm_private_dns_zone_virtual_network_link.vn_dns_link: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...la.com/virtualNetworkLinks/vn_dns_link, 50s elapsed]
+azurerm_virtual_machine_data_disk_attachment.nfs[0]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...8s_Node01/dataDisks/vm_k8s_Node01-data, 50s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 50s elapsed]
+azurerm_private_dns_zone_virtual_network_link.vn_dns_link: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...la.com/virtualNetworkLinks/vn_dns_link, 1m0s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 1m0s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 1m0s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 1m0s elapsed]
+azurerm_virtual_machine_data_disk_attachment.nfs[0]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...8s_Node01/dataDisks/vm_k8s_Node01-data, 1m0s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 1m0s elapsed]
+azurerm_virtual_machine_data_disk_attachment.nfs[0]: Destruction complete after 1m3s
+azurerm_managed_disk.nfs[0]: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/disks/vm_k8s_Node01-data]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 1m10s elapsed]
+azurerm_private_dns_zone_virtual_network_link.vn_dns_link: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...la.com/virtualNetworkLinks/vn_dns_link, 1m10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 1m10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 1m10s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 1m10s elapsed]
+azurerm_managed_disk.nfs[0]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...osoft.Compute/disks/vm_k8s_Node01-data, 10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 1m20s elapsed]
+azurerm_private_dns_zone_virtual_network_link.vn_dns_link: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...la.com/virtualNetworkLinks/vn_dns_link, 1m20s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 1m20s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 1m20s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 1m20s elapsed]
+azurerm_managed_disk.nfs[0]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...osoft.Compute/disks/vm_k8s_Node01-data, 20s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 1m30s elapsed]
+azurerm_private_dns_zone_virtual_network_link.vn_dns_link: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...la.com/virtualNetworkLinks/vn_dns_link, 1m30s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 1m30s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 1m30s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 1m30s elapsed]
+azurerm_managed_disk.nfs[0]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...osoft.Compute/disks/vm_k8s_Node01-data, 30s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 1m40s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 1m40s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 1m40s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 1m40s elapsed]
+azurerm_private_dns_zone_virtual_network_link.vn_dns_link: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...la.com/virtualNetworkLinks/vn_dns_link, 1m40s elapsed]
+azurerm_managed_disk.nfs[0]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...osoft.Compute/disks/vm_k8s_Node01-data, 40s elapsed]
+azurerm_private_dns_zone_virtual_network_link.vn_dns_link: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...la.com/virtualNetworkLinks/vn_dns_link, 1m50s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 1m50s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 1m50s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 1m50s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 1m50s elapsed]
+azurerm_managed_disk.nfs[0]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...osoft.Compute/disks/vm_k8s_Node01-data, 50s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 2m0s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 2m0s elapsed]
+azurerm_private_dns_zone_virtual_network_link.vn_dns_link: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...la.com/virtualNetworkLinks/vn_dns_link, 2m0s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 2m0s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 2m0s elapsed]
+azurerm_managed_disk.nfs[0]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...osoft.Compute/disks/vm_k8s_Node01-data, 1m0s elapsed]
+azurerm_managed_disk.nfs[0]: Destruction complete after 1m1s
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_Node02]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_Node01]
+azurerm_private_dns_zone_virtual_network_link.vn_dns_link: Destruction complete after 2m6s
+azurerm_private_dns_zone.k8s_private_dns_zone: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/privateDnsZones/mfvilla.com]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 2m10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 2m10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 2m10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 2m10s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node02, 10s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node01, 10s elapsed]
+azurerm_private_dns_zone.k8s_private_dns_zone: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...ft.Network/privateDnsZones/mfvilla.com, 10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 2m20s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 2m20s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 2m20s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 2m20s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node01, 20s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node02, 20s elapsed]
+azurerm_private_dns_zone.k8s_private_dns_zone: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...ft.Network/privateDnsZones/mfvilla.com, 20s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 2m30s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 2m30s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 2m30s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 2m30s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node02, 30s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node01, 30s elapsed]
+azurerm_private_dns_zone.k8s_private_dns_zone: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...ft.Network/privateDnsZones/mfvilla.com, 30s elapsed]
+azurerm_private_dns_zone.k8s_private_dns_zone: Destruction complete after 31s
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 2m40s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 2m40s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 2m40s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 2m40s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node01, 39s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node02, 39s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 2m50s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 2m50s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 2m50s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 2m50s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node02, 49s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node01, 49s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 3m0s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 3m0s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 3m0s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 3m0s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node01, 1m0s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node02, 1m0s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 3m10s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 3m10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 3m10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 3m10s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node02, 1m10s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node01, 1m10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 3m20s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 3m20s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 3m20s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 3m20s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node02, 1m20s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node01, 1m20s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 3m30s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 3m30s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 3m30s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 3m30s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node01, 1m30s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node02, 1m30s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 3m40s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 3m40s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 3m40s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 3m40s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node01, 1m39s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node02, 1m39s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 3m50s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 3m50s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 3m50s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 3m50s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node02, 1m49s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node01, 1m49s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 4m0s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 4m0s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 4m0s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 4m0s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node02, 1m59s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node01, 1m59s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 4m10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 4m10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 4m10s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 4m10s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node02, 2m9s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node01, 2m9s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 4m20s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 4m20s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 4m20s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 4m20s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node02, 2m19s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node01, 2m19s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 4m30s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 4m30s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 4m30s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 4m30s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node02, 2m29s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node01, 2m29s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 4m40s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 4m40s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 4m40s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 4m40s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node02, 2m39s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_Node01, 2m39s elapsed]
+azurerm_virtual_machine.vm_k8s_node["Node02"]: Destruction complete after 2m40s
+azurerm_virtual_machine.vm_k8s_node["Node01"]: Destruction complete after 2m41s
+tls_private_key.internal_ssh: Destroying... [id=d9dbd15172ed737fdc28bbfe3ac234da808766e8]
+azurerm_network_interface.nic_k8s_node["Node02"]: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Node02]
+azurerm_network_interface.nic_k8s_node["Node01"]: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Node01]
+tls_private_key.internal_ssh: Destruction complete after 0s
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 4m50s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 4m50s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 4m50s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 4m50s elapsed]
+azurerm_network_interface.nic_k8s_node["Node01"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...osoft.Network/networkInterfaces/Node01, 10s elapsed]
+azurerm_network_interface.nic_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...osoft.Network/networkInterfaces/Node02, 10s elapsed]
+azurerm_network_interface.nic_k8s_node["Node01"]: Destruction complete after 10s
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 5m0s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 5m0s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 5m0s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 5m0s elapsed]
+azurerm_network_interface.nic_k8s_node["Node02"]: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...osoft.Network/networkInterfaces/Node02, 20s elapsed]
+azurerm_network_interface.nic_k8s_node["Node02"]: Destruction complete after 21s
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 5m10s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 5m10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 5m10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 5m10s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 5m20s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 5m20s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 5m20s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 5m20s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...rname/69fe10e288a243d381dbd028bb910d88, 5m30s elapsed]
+azurerm_key_vault_secret.mysql_ghost_database: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...abase/98cba0912c6f430d87c3733c75dd0fab, 5m30s elapsed]
+azurerm_key_vault_secret.mysql_ghost_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/ef418e72d3e846c4863a8dff60761402, 5m30s elapsed]
+azurerm_key_vault_secret.mysql_admin_password: Still destroying... [id=https://keyvaultk8s.vault.azure.net/sec...sword/b7545ea635784e84a58b5d380d151aa8, 5m30s elapsed]
+azurerm_key_vault_secret.mysql_ghost_username: Destruction complete after 5m37s
+random_string.mysql_ghost_username: Destroying... [id=40FAhh8s]
+random_string.mysql_ghost_username: Destruction complete after 0s
+azurerm_key_vault_secret.mysql_ghost_password: Destruction complete after 5m37s
+random_string.mysql_ghost_password: Destroying... [id=7vL4@tMjEqf7oZ-Pqz]
+random_string.mysql_ghost_password: Destruction complete after 0s
+azurerm_key_vault_secret.mysql_admin_password: Destruction complete after 5m37s
+random_string.mysql_admin_password: Destroying... [id=b-ZzxZ7c7x,FBFA9xS]
+random_string.mysql_admin_password: Destruction complete after 0s
+azurerm_key_vault_secret.mysql_ghost_database: Destruction complete after 5m38s
+azurerm_key_vault_access_policy.keyvault_k8s_rw: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s/objectId/af6b03e0-8970-4010-a204-ed0b33702065]
+azurerm_key_vault_access_policy.keyvault_k8s_ro: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s/objectId/05c98608-4638-4104-bd5e-a04f0593eb93]
+azurerm_key_vault_access_policy.keyvault_k8s_rw: Destruction complete after 7s
+azurerm_key_vault_access_policy.keyvault_k8s_ro: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...d/05c98608-4638-4104-bd5e-a04f0593eb93, 10s elapsed]
+azurerm_key_vault_access_policy.keyvault_k8s_ro: Destruction complete after 14s
+azurerm_key_vault.keyvault_k8s: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.KeyVault/vaults/keyvaultk8s]
+azurerm_virtual_machine.vm_k8s_master: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Compute/virtualMachines/vm_k8s_master]
+azurerm_virtual_machine.vm_k8s_master: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_master, 10s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 10s elapsed]
+azurerm_virtual_machine.vm_k8s_master: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_master, 20s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 20s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 30s elapsed]
+azurerm_virtual_machine.vm_k8s_master: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_master, 30s elapsed]
+azurerm_virtual_machine.vm_k8s_master: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_master, 40s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 40s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 50s elapsed]
+azurerm_virtual_machine.vm_k8s_master: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_master, 50s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 1m0s elapsed]
+azurerm_virtual_machine.vm_k8s_master: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_master, 1m0s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 1m10s elapsed]
+azurerm_virtual_machine.vm_k8s_master: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_master, 1m10s elapsed]
+azurerm_virtual_machine.vm_k8s_master: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_master, 1m20s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 1m20s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 1m30s elapsed]
+azurerm_virtual_machine.vm_k8s_master: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_master, 1m30s elapsed]
+azurerm_virtual_machine.vm_k8s_master: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-....Compute/virtualMachines/vm_k8s_master, 1m40s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 1m40s elapsed]
+azurerm_virtual_machine.vm_k8s_master: Destruction complete after 1m41s
+tls_private_key.external_ssh: Destroying... [id=c7ee6a8b17750660099a84405f957cd347efe686]
+azurerm_network_interface.nic_k8s_master: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/networkInterfaces/Master]
+tls_private_key.external_ssh: Destruction complete after 0s
+azurerm_storage_account.sa_k8s: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Storage/storageAccounts/mvillasa]
+azurerm_storage_account.sa_k8s: Destruction complete after 2s
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 1m50s elapsed]
+azurerm_network_interface.nic_k8s_master: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...osoft.Network/networkInterfaces/Master, 10s elapsed]
+azurerm_network_interface.nic_k8s_master: Destruction complete after 10s
+azurerm_subnet.sn_k8s_private: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/virtualNetworks/vn_k8s/subnets/sn_k8s_private]
+azurerm_public_ip.pi_k8s: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/publicIPAddresses/pi_k8s]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 2m0s elapsed]
+azurerm_public_ip.pi_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...osoft.Network/publicIPAddresses/pi_k8s, 10s elapsed]
+azurerm_subnet.sn_k8s_private: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...Networks/vn_k8s/subnets/sn_k8s_private, 10s elapsed]
+azurerm_subnet.sn_k8s_private: Destruction complete after 11s
+azurerm_virtual_network.vn_k8s: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes/providers/Microsoft.Network/virtualNetworks/vn_k8s]
+azurerm_public_ip.pi_k8s: Destruction complete after 11s
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 2m10s elapsed]
+azurerm_virtual_network.vn_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-...crosoft.Network/virtualNetworks/vn_k8s, 10s elapsed]
+azurerm_virtual_network.vn_k8s: Destruction complete after 11s
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 2m20s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 2m30s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 2m40s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 2m50s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 3m0s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 3m10s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 3m20s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 3m30s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 3m40s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 3m50s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 4m0s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 4m10s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 4m20s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 4m30s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 4m40s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 4m50s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 5m0s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 5m10s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 5m20s elapsed]
+azurerm_key_vault.keyvault_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-.../Microsoft.KeyVault/vaults/keyvaultk8s, 5m30s elapsed]
+azurerm_key_vault.keyvault_k8s: Destruction complete after 5m39s
+azurerm_resource_group.rg_k8s: Destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes]
+azurerm_resource_group.rg_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes, 10s elapsed]
+azurerm_resource_group.rg_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes, 20s elapsed]
+azurerm_resource_group.rg_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes, 30s elapsed]
+azurerm_resource_group.rg_k8s: Still destroying... [id=/subscriptions/fa4d5daf-6219-4ac5-8718-a1ff86d3fca7/resourceGroups/RG_Kubernetes, 40s elapsed]
+azurerm_resource_group.rg_k8s: Destruction complete after 48s
+
+Destroy complete! Resources: 37 destroyed.
