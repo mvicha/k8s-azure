@@ -10,7 +10,7 @@ function fcnHelp {
   echo -en "\n\tundeploy\tElimina kubernetes de la infraestructura"
   echo -en "\n\tdestroy\t\tElimina la infraestructura"
   echo -en "\n\tinfo\t\tMuestra información del despliegue"
-  echo -en "\n\tmy_ip\t\tMuestra mi dirección IP pública\n\n"
+  echo -en "\n\tmy_ip\t\tMuestra mi dirección IP pública"
 
   echo "* Para comenzar con la ejecución primero deberá crear el archivo de variables correspondiente (Más información en README.md)"
   echo "* Luego deberá tomar la decisión si utilizar estados remotos o guardar su terraform state file localmente (Más información en README.md - Ejecutar utils/storage_account.sh para crear cuenta y configurar terraform/state.tf)"
@@ -109,6 +109,7 @@ case ${type} in
     ;;
   info)
     cd terraform
+    terraform refresh
     terraform output
     ;;
   my_ip)

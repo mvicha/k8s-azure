@@ -5,7 +5,7 @@ resource "azurerm_virtual_machine" "vm_k8s_master" {
   resource_group_name          = azurerm_resource_group.rg_k8s.name
   primary_network_interface_id = azurerm_network_interface.nic_k8s_master.id
   network_interface_ids        = [azurerm_network_interface.nic_k8s_master.id]
-  vm_size                      = "Standard_A2_v2"
+  vm_size                      = var.vm_size_master
 
   delete_os_disk_on_termination = true
 
@@ -64,7 +64,7 @@ resource "azurerm_virtual_machine" "vm_k8s_node" {
   resource_group_name          = azurerm_resource_group.rg_k8s.name
   primary_network_interface_id = azurerm_network_interface.nic_k8s_node[each.key].id
   network_interface_ids        = [azurerm_network_interface.nic_k8s_node[each.key].id]
-  vm_size                      = "Standard_A1_v2"
+  vm_size                      = each.value.vm_size
 
   delete_os_disk_on_termination = true
 

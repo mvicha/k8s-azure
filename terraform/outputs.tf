@@ -41,6 +41,11 @@ output "virtual_network_cidr" {
   value = azurerm_virtual_network.vn_k8s.address_space
 }
 
+# Ghost Admin URL
+output "ghost_admin_service_url" {
+  value = "https://${data.azurerm_public_ip.pi_k8s.fqdn}/ghost"
+}
+
 # Ghost URL
 output "ghost_http_service_url" {
   value = "http://${data.azurerm_public_ip.pi_k8s.fqdn}"
