@@ -18,12 +18,12 @@ Entre los nodos se cuenta con un servidor de NFS para poder compartir archivos. 
 
   *) Creamos los directorios donde persistiremos los datos
   ```bash
-  mkdir -p k8s-azure/.azure k8s-azure/.kube k8s-azure/.ssh
+  mkdir -p k8s-azure-data/.azure k8s-azure-data/.kube k8s-azure-data/.ssh
   ```
 
   *) Ejecuci&oacute;n de docker_env
   ```bash
-  docker container run --name casopractico2 -it --rm -v ${PWD}/k8s-azure/.azure:/root/.azure -v ${PWD}/k8s-azure/.kube:/root/.kube -v ${PWD}/k8s-azure/.ssh:/root/.ssh -v ${PWD}/k8s-azure:/SAFE_VOLUME mvilla/casopractico2:latest /bin/bash
+  docker container run --name casopractico2 -it --rm -v ${PWD}/k8s-azure-data/.azure:/root/.azure -v ${PWD}/k8s-azure-data/.kube:/root/.kube -v ${PWD}/k8s-azure-data/.ssh:/root/.ssh -v ${PWD}/k8s-azure:/SAFE_VOLUME mvilla/casopractico2:latest /bin/bash
   ```
 
   *) Iniciamos sesi&oacute;n en Azure utilizando az-cli ya dentro de nuestro contenedor
@@ -59,6 +59,9 @@ Antes de ejecutar la soluci&oacute;n debemos tomar algunas decisiones con respec
   *) Nombre de la cuenta de almacenamiento
   *) Utilizaremos claves de SSH propias o auto-generadas?
   *) Nombre de usuario para la conexi&oacute;n SSH
+  *) Prefijo de identificaci&oacute;n &uacute;nico
+  *) Alias de DNS para aplicaci&oacute;n Ghost
+  *) Direcci&oacute;n IP p&uacute;blica con permisos de acceso
 
 #### Estado local/remoto de Terraform
 Es posible guardar nuestro estado de Terraform de forma remota. De esta manera, si tenemos cualquier problema con nuestro directorio de trabajo, o si trabajamos con otras personas en la misma soluci&oacute;n el estado queda almacenado en la nube y podemos recuperar los &uacute;ltimos cambios de forma autom&aacute;tica.
@@ -94,8 +97,24 @@ Deber&aacute;s ingresar un valor para storage_account dentro de /SAFE_VOLUME/ter
 #### Nombre de usuario para la conexi&oacute;n SSH
 Si quisieras podr&iacute;s elegir el nombre de usuario para conectarte a los servidores via SSH. Para poder seleccionar el nombre s&oacute;lo debes cambiar el valor de "ssh_user" dentro de /SAFE_VOLUME/terraform/correccion-vars.tf
 
+#### Prefijo de identificaci&oacute;n &uacute;nico
+Deber&aacute;s ingresar un valor para prefix dentro de /SAFE_VOLUME/terraform/correccion-vars.tf. Es un prefijo de texto que se utilizar&aacute; para identificar recursos &uacute;nicos.
+
+#### Alias de DNS para aplicaci&oacute;n Ghost
+Deber&aacute;s ingresar un valor para ghost_dns_alias dentro de /SAFE_VOLUME/terraform/correccion-vars.tf. Este se utilizar&aacute; para acceder a los servicios de la aplicaci&oacute;n utilizando una URL con formato FQDN
+
+#### Direcci&oacute;n IP p&uacute;blica con permisos de acceso
+Deber&aacute;s ingresar un valor para my_ip dentro de /SAFE_VOLUME/terraform/correccion-vars.tf. Es la direcci&oacute;n IP p&uacute;blica de la m&aacute;quina desde la que se ejecuta Terraform + Ansible para poder conectar v&iacute;a SSH
+
 ### Ejecuci&oacute;n
-La ejecuci&oacute;n es muy sencilla. Habiendo llegado hasta aqu&iacute;, y siguiendo los pasos anteriores s&oacute;lo debemos cambiar de directorio y ejecutar terraform:
+La ejecuci&oacute;n es muy sencilla. Habiendo llegado hasta aqu&iacute;, y siguiendo los pasos anteriores tenemos 2 opciones de ejecuci&oacute;n
+  *) Utilizando el script que se ha desarrollado para cumplir con esta funci&oacute;n
+```bash
+cd /SAFE_VOLUME
+bin/run.sh create
+```
+
+  *) Ejecutando de forma manual
 ```bash
 cd /SAFE_VOLUME/terraform
 terraform plan -out plan.out
@@ -138,22 +157,23 @@ terraform apply plan.out
 
 ### Resultados de la ejecuci&oacute;n
 ```
-Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 37 added, 0 changed, 0 destroyed.
 
 Outputs:
 
 WARNING = ""
-ansible_exec_command = "ansible-playbook -i ../ansible/hosts -e jump_host='20.86.240.188' -e admin_user='azureuser' -e subnet_cidr_private='192.168.1.0/24' -e private_lan_master='192.168.1.100' -e private_lan_node01='192.168.1.101' -e private_lan_node02='192.168.1.102' -e internal_private_key_file='~/.ssh/test.pem' -e external_private_key_file='~/.ssh/test.pem' -e ghost_url='ghostmvilla.westeurope.cloudapp.azure.com' ../ansible/playbook.yml"
-ghost_http_service_url = "http://ghostmvilla.westeurope.cloudapp.azure.com"
-ghost_https_service_url = "https://ghostmvilla.westeurope.cloudapp.azure.com"
+ansible_exec_command = "ansible-playbook -e jump_host='20.76.158.77' -e admin_user='azureuser' -e subnet_cidr_private='192.168.1.0/24' -e private_lan_master='192.168.1.100' -e private_lan_node01='192.168.1.101' -e private_lan_node02='192.168.1.102' -e internal_private_key_file='resources/internal.pem' -e external_private_key_file='resources/external.pem' -e ghost_url='ghosthope.westeurope.cloudapp.azure.com' -e prefix='mfvilla' ../ansible/playbooks/create.yml"
+ghost_admin_service_url = "https://ghosthope.westeurope.cloudapp.azure.com/ghost"
+ghost_http_service_url = "http://ghosthope.westeurope.cloudapp.azure.com"
+ghost_https_service_url = "https://ghosthope.westeurope.cloudapp.azure.com"
 master_private_address = "192.168.1.100"
-master_public_address = "20.86.240.188"
+master_public_address = "20.76.158.77"
 node01_private_address = "192.168.1.101"
 node02_private_address = "192.168.1.102"
 ssh_admin_user = "azureuser"
-ssh_master_connection = "ssh -i ~/.ssh/test.pem azureuser@20.86.240.188"
-ssh_node01_connection = "ssh -i ~/.ssh/test.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand='ssh -i ~/.ssh/test.pem -W %h:%p -q azureuser@20.86.240.188' azureuser@192.168.1.101"
-ssh_node02_connection = "ssh -i ~/.ssh/test.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand='ssh -i ~/.ssh/test.pem -W %h:%p -q azureuser@20.86.240.188' azureuser@192.168.1.102"
+ssh_master_connection = "ssh -i resources/external.pem azureuser@20.76.158.77"
+ssh_node01_connection = "ssh -i resources/internal.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand='ssh -i resources/external.pem -W %h:%p -q azureuser@20.76.158.77' azureuser@192.168.1.101"
+ssh_node02_connection = "ssh -i resources/internal.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand='ssh -i resources/external.pem -W %h:%p -q azureuser@20.76.158.77' azureuser@192.168.1.102"
 subnet_cidr_private = tolist([
   "192.168.1.0/24",
 ])
@@ -163,13 +183,21 @@ virtual_network_cidr = tolist([
 ```
 
 * Si por alg&uacute;n motivo quisi&eacute;ramos ejecutar Ansible de forma manual, s&oacute;lo debemos realizar los siguientes pasos:
-  - Desde el mismo directorio de trabajo local /SAFE_VOLUME/terraform ejecutamos la l&iacute;nea que obtuvimos en el output de ansible_exec_command:
+  - Ejecuci&oacute;n por medio del script:
+```bash
+cd /SAFE_VOLUME
+bin/run.sh deploy
+```
+
+  - Ejecuci&oacute;n manual (ejecutamos la l&iacute;nea que obtuvimos en el output de ansible_exec_command):
   ```bash
+  cd /SAFE_VOLUME/terraform
   ansible-playbook -i ../ansible/hosts -e jump_host='20.86.240.188' -e admin_user='azureuser' -e subnet_cidr_private='192.168.1.0/24' -e private_lan_master='192.168.1.100' -e private_lan_node01='192.168.1.101' -e private_lan_node02='192.168.1.102' -e internal_private_key_file='~/.ssh/test.pem' -e external_private_key_file='~/.ssh/test.pem' -e ghost_url='ghostmvilla.westeurope.cloudapp.azure.com' ../ansible/playbook.yml
   ```
 
   - Una alternativa a la ejecuci&oacute;n manual es obligar a Terraform a que vuelva a ejecutar ansible. Para ello debemos seguir los siguientes pasos desde el mismo directorio de trabajo local /SAFE_VOLUME/terraform ejecutamos:
   ```bash
+  cd /SAFE_VOLUME/terraform
   terraform taint null_resource.ansible
   terraform apply -target null_resource.ansible
   ```
@@ -199,9 +227,13 @@ virtual_network_cidr = tolist([
 
       Esta variable define el nombre de la DB que se utilizar&aacute; con la aplicaci&oacute;n de blog
   
+    * vm_size_master
+
+      Esta variable define el tipo de VM que se utilizará para el nodo Master. Se recomienda no cambiarla.
+
     * workers:
 
-      Esta variable contiene la estructura de los workers, con su nombre y direcci&oacute;n IP privada
+      Esta variable define el nombre de cada uno de los nodos como objeto y conforma un array de parámetros para cada uno de ellos, definiendo la dirección IP privada de cada uno de los nodos y el tipo de  VM que se utilizará. Se recomienda no cambiarla.
 
   - Todo el resto de las configuraciones de Ansible se manejan autom&aacute;ticamente en base a los par&aacute;metros que Terraform env&iacute;a luego de desplegar la infraestructura.
 
