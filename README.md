@@ -98,13 +98,13 @@ Deber&aacute;s ingresar un valor para storage_account dentro de /SAFE_VOLUME/ter
 Si quisieras podr&iacute;s elegir el nombre de usuario para conectarte a los servidores via SSH. Para poder seleccionar el nombre s&oacute;lo debes cambiar el valor de "ssh_user" dentro de /SAFE_VOLUME/terraform/correccion-vars.tf
 
 #### Prefijo de identificaci&oacute;n &uacute;nico
-Deber&aacute;s ingresar un valor para prefix dentro de /SAFE_VOLUME/terraform/correccion-vars.tf. Es un prefijo de texto que se utilizar&aacute; para identificar recursos &uacute;nicos.
+Deber&aacute;s ingresar un valor para prefix dentro de /SAFE_VOLUME/terraform/variables.tf. Es un prefijo de texto que se utilizar&aacute; para identificar recursos &uacute;nicos.
 
 #### Alias de DNS para aplicaci&oacute;n Ghost
-Deber&aacute;s ingresar un valor para ghost_dns_alias dentro de /SAFE_VOLUME/terraform/correccion-vars.tf. Este se utilizar&aacute; para acceder a los servicios de la aplicaci&oacute;n utilizando una URL con formato FQDN
+Deber&aacute;s ingresar un valor para ghost_dns_alias dentro de /SAFE_VOLUME/terraform/variables.tf. Este se utilizar&aacute; para acceder a los servicios de la aplicaci&oacute;n utilizando una URL con formato FQDN
 
 #### Direcci&oacute;n IP p&uacute;blica con permisos de acceso
-Deber&aacute;s ingresar un valor para my_ip dentro de /SAFE_VOLUME/terraform/correccion-vars.tf. Es la direcci&oacute;n IP p&uacute;blica de la m&aacute;quina desde la que se ejecuta Terraform + Ansible para poder conectar v&iacute;a SSH
+Deber&aacute;s ingresar un valor para my_ip dentro de /SAFE_VOLUME/terraform/variables.tf. Es la direcci&oacute;n IP p&uacute;blica de la m&aacute;quina desde la que se ejecuta Terraform + Ansible para poder conectar v&iacute;a SSH
 
 ### Ejecuci&oacute;n
 La ejecuci&oacute;n es muy sencilla. Habiendo llegado hasta aqu&iacute;, y siguiendo los pasos anteriores tenemos 2 opciones de ejecuci&oacute;n

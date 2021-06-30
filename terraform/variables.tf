@@ -41,3 +41,22 @@ variable "workers" {
     }
   }
 }
+
+variable "prefix" {
+  type        = string
+  description = "Prefijo que se utilizará para crear nombre únicos"
+  default     = "mfvilla"
+}
+
+variable "ghost_dns_alias" {
+  type        = string
+  description = "Alias que se utilizará para acceder via URL al servidor de Ghost"
+  default     = "ghosthope"
+}
+
+variable "my_ip" {
+  type        = string
+  description = "Dirección IP de la máquina local. Necesaria para conectar a los servidores vía SSH"
+  default     = "149.91.115.233/32"
+}
+
