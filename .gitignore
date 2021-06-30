@@ -4,7 +4,7 @@ terraform/resources/*.pem
 
 # Terraform
 .terraform*
-terraform/state.tf
+**state.tf*
 **credentials.tf*
 
 # Temp files
